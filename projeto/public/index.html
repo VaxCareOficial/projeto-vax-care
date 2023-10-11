@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/vax-care-logo.png">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Vax Care</title>
+</head>
+
+<body>
+    <header id="header">
+        <nav class="nav">
+            <a href="#header"><img src="assets/svg/vax-care-logo.svg"></a>
+
+            <ul>
+                <li><a href="#sobre">Sobre nós</a></li>
+                <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#simulador">Simulador</a></li>
+                <li class="nav-login-link"><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div class="column-1">
+                <img src="assets/svg/vaccine-icon.svg">
+            </div>
+            <div class="column-2">
+                <h1>Lorem Ipsum</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit amet
+                    sunt pariatur? Totam deleniti
+                    optio eaque, consequuntur aspernatur soluta deserunt maxime, et sunt, asperiores atque corporis
+                    voluptatem? Similique, facere exercitationem.
+                </p>
+                <a class="btn" href="#projeto">Saiba mais</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="sobre-wave"></div>
+            <div id="sobre">
+                <div class="line-1">
+                    <div data-aos="fade-right" data-aos-duration="1000" class="box">
+                        <h1>Sobre nós</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur
+                            adipisicing elit. Fugit amet sunt pariatur? Totam
+                            deleniti optio eaque, consequuntur aspernatur soluta deserunt maxime, et sunt, asperiores
+                            atque corporis voluptatem? Similique, facere exercitationem.</p>
+                    </div>
+                    <div data-aos="fade-left" data-aos-duration="1000" class="logo"></div>
+                </div>
+                <div class="line-2">
+                    <div data-aos="fade-up" data-aos-duration="1000" class="box-1">
+                        <img src="assets/svg/mission-icon.svg" alt="Ícone Missão">
+                        <h4>Missão</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit amet sunt pariatur?</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-duration="1000" class="box-2">
+                        <img src="assets/svg/vision-icon.svg" alt="Ícone Visão">
+                        <h4>Visão</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit amet sunt pariatur?</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-duration="1000" class="box-3">
+                        <img src="assets/svg/values-icon.svg" alt="Ícone Valores">
+                        <h4>Valores</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit amet sunt pariatur?</p>
+                    </div>
+                </div>
+        </section>
+
+        <section>
+            <div class="sobre-wave-2"></div>
+            <div id="projeto">
+                <div class="container">
+                    <div data-aos="fade-right" data-aos-duration="1000" class="column-1">
+                        <img src="assets/svg/vaccine-icon-2.svg">
+                    </div>
+                    <div class="column-2">
+                        <h1 data-aos="fade-right" data-aos-duration="1000">Projeto</h1>
+                        <p data-aos="fade-right" data-aos-duration="1000">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit amet sunt pariatur? Totam
+                            deleniti optio eaque, consequuntur aspernatur soluta deserunt maxime, et sunt, asperiores
+                            atque corporis voluptatem? Similique, facere exercitationem. Lorem, ipsum dolor sit amet
+                            consectetur adipisicing elit. Fugit amet sunt pariatur? Totam deleniti optio eaque,
+                            consequuntur aspernatur soluta deserunt maxime, et sunt, asperiores atque corporis
+                            voluptatem? Similique, facere exercitationem. Lorem, ipsum dolor sit amet consectetur
+                            adipisicing elit. Fugit amet sunt pariatur? Totam deleniti optio eaque, consequuntur
+                            aspernatur soluta deserunt maxime, et sunt, asperiores atque corporis voluptatem? Similique,
+                            facere exercitationem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulador">
+            <div class="container">
+                <div class="column-1">
+                    <h1 data-aos="fade-right" data-aos-duration="1000">Simulador</h1>
+                    <p data-aos="fade-right" data-aos-duration="1000">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum reiciendis quod, adipisci rerum
+                        nulla porro. Officiis ex iure alias maxime, animi ratione assumenda sequi soluta at quaerat,
+                        ipsam, inventore dignissimos.
+                    </p>
+                    <div data-aos="fade-right" data-aos-duration="1000" class="resultado"></div>
+                </div>
+
+                <div data-aos="fade-left" data-aos-duration="1000" class="column-2">
+                    <div class="simulador">
+                        <div class="input-container">
+                            <label class="label" for="inputQtdVacina">Quantidade de vacinas</label>
+                            <input oninput="removeSimulatorInputError()" type="number" class="input" id="inputQtdVacina"
+                                placeholder="Insira um valor">
+                        </div>
+
+                        <div class="input-container">
+                            <label class="label" for="inputQtdRefrigerador">Quantidade de refrigeradores</label>
+                            <input oninput="removeSimulatorInputError()" type="number" class="input"
+                                id="inputQtdRefrigerador" placeholder="Insira um valor">
+                        </div>
+
+                        <div class="input-container">
+                            <label class="label" for="inputPrecoVacina">Preço por vacina</label>
+                            <input oninput="removeSimulatorInputError()" type="number" class="input"
+                                id="inputPrecoVacina" placeholder="Insira um valor">
+                        </div>
+
+                        <button onclick="simulateFinance()" id="btnSimular">Simular</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="equipe-wave"></div>
+            <div id="equipe">
+                <h1 data-aos="fade-down" data-aos-duration="1000">Nossa equipe</h1>
+                <div data-aos="fade-right" data-aos-duration="1000" class="member-line">
+                    <div class="member-container">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Antônio Sousa</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/AntonioGoncalvesSousa" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-container div-to-bottom">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Giovanni Vitor</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/giovannivitor" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-container">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Leonardo Santos</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/leOhsantos" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-right" data-aos-duration="1000" class="member-line">
+                    <div class="member-container">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Maria Veroneze</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/mariaeviegas" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-container div-to-bottom">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Pedro Silva</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/pedroarturdesouza" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+
+                    <div class="member-container">
+                        <div class="member-photo">
+                            <img src="">
+                        </div>
+
+                        <h4 class="member-name">Renan Casalle</h4>
+                        <h5 class="member-position">Lorem Ipsum</h5>
+
+                        <div class="social-line">
+                            <a href="https://github.com/renancasalle" target="_blank"><img
+                                    src="assets/svg/github-icon.svg" alt="GitHub"></a>
+                            <a href="" target="_blank"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                            <a href="" target="_blank"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="equipe-wave-2"></div>
+            <div id="contato">
+                <h1 data-aos="fade-down" data-aos-duration="1000">Fale Conosco</h1>
+                <div data-aos="fade-down" data-aos-duration="1000" class="container">
+                    <div class="line-1">
+                        <div class="column-1">
+                            <div class="input-container">
+                                <label class="label" for="inputName">Nome</label>
+                                <input oninput="removeContactInputError()" autocomplete="off" type="text" class="input"
+                                    id="inputName" placeholder="Insira seu nome">
+                            </div>
+
+                            <div class="input-container">
+                                <label class="label" for="inputEmail">E-mail</label>
+                                <input oninput="removeContactInputError()" autocomplete="off" type="text" class="input"
+                                    id="inputEmail" placeholder="Insira seu melhor e-mail">
+                            </div>
+
+                            <div class="input-container">
+                                <label class="label" for="inputSubject">Assunto</label>
+                                <input oninput="removeContactInputError()" autocomplete="off" type="text" class="input"
+                                    id="inputSubject" placeholder="Insira um assunto">
+                            </div>
+                        </div>
+
+                        <div class="column-2">
+                            <div class="input-container">
+                                <label class="label" for="textareaMessage">Mensagem</label>
+                                <textarea oninput="removeContactInputError()" class="textarea" id="textareaMessage"
+                                    placeholder="Insira sua mensagem aqui"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-2">
+                        <button onclick="validateContactInput()" id="btnSubmit">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-wave"></div>
+        <div class="footer">
+            <div class="column-1">
+                <img src="assets/svg/vax-care-logo.svg" alt="Vax Care Logo">
+                <p>© 2023 Copyright - Vax Care</p>
+            </div>
+
+            <div class="column-2">
+                <div class="social-line">
+                    <a href="https://github.com/grupo-9-sprint-2" target="_blank"><img src="assets/svg/github-icon.svg"
+                            alt="GitHub"></a>
+                    <a href="#"><img src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                    <a href="#"><img src="assets/svg/twitter-icon.svg" alt="Twitter"></a>
+                    <a href="#"><img src="assets/svg/instagram-icon.svg" alt="Instagram"></a>
+                </div>
+                <p>(11) 4002-8922</p>
+                <p>contato@vaxcare.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

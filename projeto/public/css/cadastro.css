@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #3ca9c2;
+    --secondary-color: #303030;
+    --background-color: #d9d9d9;
+    --border-color: #838383;
+    --error-color: #ffc2c2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(300deg, rgba(48, 48, 48, 1) 50%, rgba(217, 217, 217, 1) 100%);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cadastro-container {
+    display: flex;
+    width: 1000px;
+    height: 550px;
+    overflow: hidden;
+}
+
+.column-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    background-color: var(--secondary-color);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.column-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
+    background-color: #ffffff;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.cadastro-wave {
+    width: 560px;
+    height: 100%;
+    background-image: url("../assets/svg/sign-in-sign-up-wave.svg");
+    background-repeat: no-repeat;
+    transform: rotate(90deg);
+    position: absolute;
+    bottom: 0;
+    right: -160px;
+    z-index: 0;
+}
+
+.column-1 p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    position: absolute;
+    bottom: 20px;
+    margin-left: 30px;
+}
+
+.column-1 p a {
+    color: var(--primary-color);
+}
+
+.column-1 p a:hover {
+    text-decoration: underline;
+}
+
+.line-1 {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.line-1 img {
+    height: 40px;
+    margin-right: 32px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.line-center-1,
+.line-center-2,
+.line-center-3 {
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 50px;
+    z-index: 2;
+}
+
+.line-center-2,
+.line-center-3 {
+    display: none;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+h1.address {
+    margin-bottom: 4px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    margin-top: 12px;
+}
+
+.input-container.address {
+    margin-top: 4px;
+}
+
+.label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 8px 24px;
+}
+
+.input {
+    color: var(--secondary-color);
+    background-color: var(--background-color);
+    border-radius: 50px;
+    border: none;
+    padding: 12px 12px 12px 24px;
+    width: 100%;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .4s ease-in-out;
+}
+
+.input.password {
+    padding: 12px 48px 12px 24px;
+}
+
+.input.error {
+    background-color: var(--error-color);
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.52);
+}
+
+.password-icon-1 {
+    position: absolute;
+    top: 41px;
+    right: 16px;
+    height: 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.password-icon-2 {
+    position: absolute;
+    top: 41px;
+    right: 16px;
+    height: 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#btnStep1,
+#btnStep2,
+#btnStep3 {
+    margin-top: 24px;
+    padding: 14px 0;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border-radius: 50px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .4s ease-in-out;
+}
+
+#btnStep1:hover,
+#btnStep2:hover,
+#btnStep3:hover {
+    background-color: #262626;
+}
+
+.line-3 {
+    height: 15%;
+    margin: 0 0 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.logo {
+    height: 60px;
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.sign-up-icon {
+    height: 450px;
+    margin-left: 30px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 0 12px;
+    background-color: var(--background-color);
+}
+
+.step-1,
+.step-2,
+.step-3 {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.step-1.active,
+.step-2.active,
+.step-3.active {
+    background-color: var(--secondary-color);
+}
+
+.input-cep-cidade,
+.input-bairro-uf {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cep {
+    width: 44%;
+}
+
+.cidade {
+    width: 54%;
+}
+
+.bairro {
+    width: 78%;
+}
+
+.uf {
+    width: 20%;
+}
+
+.uf .label {
+    margin: 0 0 8px 16px;
+}

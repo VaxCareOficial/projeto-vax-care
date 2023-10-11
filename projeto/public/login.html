@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/vax-care-logo.png">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Vax Care</title>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="column-1">
+            <div class="line-1">
+                <a href="index.html"><img id="backArrowBtn" src="assets/svg/back-arrow-icon.svg"></a>
+            </div>
+
+            <div class="line-2">
+                <h1>Login</h1>
+
+                <div class="input-container">
+                    <label class="label" for="inputEmail">E-mail</label>
+                    <input oninput="removeInputError()" autofocus autocomplete="off" type="text" id="inputEmail"
+                        class="input">
+                    <label for="inputEmail"><img class="email-icon" src="assets/svg/email-icon.svg"></label>
+                </div>
+
+                <div class="input-container">
+                    <label class="label" for="inputPassword">Senha</label>
+                    <input oninput="removeInputError()" type="password" id="inputPassword" class="input">
+                    <label for="inputPassword"><img class="password-icon" src="assets/svg/password-icon.svg"></label>
+                </div>
+
+                <a>Esqueceu a senha?</a>
+
+                <button onclick="validateInput()" id="btnEntrar">Entrar</button>
+
+                <p class="login-error">E-mail ou senha incorretos.</p>
+            </div>
+
+            <div class="line-3">
+                <p>Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </div>
+        </div>
+        <div class="column-2">
+            <div class="login-wave"></div>
+            <img class="logo" src="assets/svg/vax-care-logo.svg" alt="Vax Care Logo">
+            <img class="sign-in-icon" src="assets/svg/sign-in-icon.svg">
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+
+</html>
