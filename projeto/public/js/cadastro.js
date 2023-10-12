@@ -145,7 +145,7 @@ function validateStep1() {
         inputCnpj.classList.add("error");
     }
 
-    if (nomeFantasia != "" && razaoSocial != "" && cnpj != "") {
+    if (nomeFantasia != "" && razaoSocial != "" && isCnpjValid) {
         step1.classList.remove("active");
         step2.classList.add("active");
         cadastroStep1.style.display = "none";
