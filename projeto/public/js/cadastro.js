@@ -1,21 +1,18 @@
 var cadastroStep1 = document.querySelector(".line-center-1");
 var cadastroStep2 = document.querySelector(".line-center-2");
-var cadastroStep3 = document.querySelector(".line-center-3");
-var step1 = document.querySelector(".step-1");
-var step2 = document.querySelector(".step-2");
-var step3 = document.querySelector(".step-3");
+
+var circle1 = document.querySelector(".circle-1");
+var circle2 = document.querySelector(".circle-2");
+var step1 = document.querySelector(".circle-1 .step");
+var step2 = document.querySelector(".circle-2 .step");
+
 var passwordIcon1 = document.querySelector(".password-icon-1");
 var passwordIcon2 = document.querySelector(".password-icon-2");
 
 var inputNomeFantasia = document.getElementById("inputNomeFantasia");
 var inputRazaoSocial = document.getElementById("inputRazaoSocial");
 var inputCnpj = document.getElementById("inputCnpj");
-var inputCep = document.getElementById("inputCep");
-var inputCidade = document.getElementById("inputCidade");
-var inputLogradouro = document.getElementById("inputLogradouro");
-var inputBairro = document.getElementById("inputBairro");
-var inputUf = document.getElementById("inputUf");
-var inputComplemento = document.getElementById("inputComplemento");
+
 var inputEmail = document.getElementById("inputEmail");
 var inputPassword = document.getElementById("inputPassword");
 var inputConfirmPassword = document.getElementById("inputConfirmPassword");
@@ -23,57 +20,9 @@ var inputConfirmPassword = document.getElementById("inputConfirmPassword");
 var nomeFantasia = "";
 var razaoSocial = "";
 var cnpj = "";
-var cep = "";
-var cidade = "";
-var logradouro = "";
-var bairro = "";
-var uf = "";
-var complemento = "";
 var email = "";
 var password = "";
 var confirmPassword = "";
-
-function getCep(cepNumber) {
-    fetch(`https://viacep.com.br/ws/${cepNumber}/json/`)
-        .then(res => res.json())
-        .then(data => {
-            if (!data.erro) {
-                cep = data.cep;
-
-                cidade = data.localidade;
-                inputCidade.value = data.localidade;
-
-                logradouro = data.logradouro;
-                inputLogradouro.value = data.logradouro;
-
-                bairro = data.bairro
-                inputBairro.value = data.bairro;
-
-                uf = data.uf;
-                inputUf.value = data.uf;
-
-                inputCidade.classList.remove("error");
-                inputLogradouro.classList.remove("error");
-                inputBairro.classList.remove("error");
-                inputUf.classList.remove("error");
-            } else {
-                cep = "";
-                inputCep.value = "Inválido"
-
-                cidade = "";
-                inputCidade.value = "";
-
-                logradouro = "";
-                inputLogradouro.value = "";
-
-                bairro = "";
-                inputBairro.value = "";
-
-                uf = "";
-                inputUf.value = "";
-            }
-        });
-}
 
 function validateCnpj(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, "");
@@ -126,6 +75,7 @@ function validateCnpj(cnpj) {
     return true;
 }
 
+// Fazer a validação dos inputs da primeira etapa do cadastro.
 function validateStep1() {
     nomeFantasia = inputNomeFantasia.value;
     razaoSocial = inputRazaoSocial.value;
@@ -146,16 +96,26 @@ function validateStep1() {
     }
 
     if (nomeFantasia != "" && razaoSocial != "" && isCnpjValid) {
+        circle2.classList.remove("no-drop");
         step1.classList.remove("active");
         step2.classList.add("active");
         cadastroStep1.style.display = "none";
         cadastroStep2.style.display = "flex";
 
-        // Deixar o input de CEP com foco.
-        inputCep.focus();
+        // Adiciona o evento de clique na bolinha de próxima etapa, quando o usuário clicar na bolinha, ele irá voltar para a segunda etapa do cadastro.
+        circle2.addEventListener("click", () => {
+            step1.classList.remove("active");
+            step2.classList.add("active");
+            cadastroStep1.style.display = "none";
+            cadastroStep2.style.display = "flex";
+        });
+
+        // Deixar o input de e-mail com foco.
+        inputEmail.focus();
     }
 }
 
+// Remover os erros dos inputs (backgrounds vermelhos) da primeira etapa do cadastro.
 function removeInputErrorStep1() {
     let isCnpjValid = validateCnpj(inputCnpj.value);
 
@@ -172,53 +132,9 @@ function removeInputErrorStep1() {
     }
 }
 
+
+// Fazer a validação dos inputs da segunda etapa do cadastro.
 function validateStep2() {
-    // Expressão Regular (Regular Expression) para validar o CEP.
-    var cepRegex = /^[0-9]{5}-[0-9]{3}$/;
-    var cepTest = cepRegex.test(cep);
-
-    if (!cepTest) {
-        inputCep.classList.add("error");
-    }
-
-    if (cidade == "") {
-        inputCidade.classList.add("error");
-    }
-
-    if (logradouro == "") {
-        inputLogradouro.classList.add("error");
-    }
-
-    if (bairro == "") {
-        inputBairro.classList.add("error");
-    }
-
-    if (uf == "") {
-        inputUf.classList.add("error");
-    }
-
-    if (cepTest && cidade != "" && logradouro != "" && bairro != "" && uf != "") {
-        step2.classList.remove("active");
-        step3.classList.add("active");
-        cadastroStep2.style.display = "none";
-        cadastroStep3.style.display = "flex";
-
-        // Deixar o input de e-mail com foco.
-        inputEmail.focus();
-    }
-}
-
-function removeInputErrorStep2() {
-    // Expressão Regular (Regular Expression) para validar o CEP.
-    var cepRegex = /^[0-9]{5}-[0-9]{3}$/;
-    var cepTest = cepRegex.test(inputCep.value);
-
-    if (cepTest) {
-        inputCep.classList.remove("error");
-    }
-}
-
-function validateStep3() {
     // Expressão Regular (Regular Expression) para validar o e-mail.
     var emailRegex = /\S+@\S+\.\S+/;
 
@@ -252,7 +168,8 @@ function validateStep3() {
     }
 }
 
-function removeInputErrorStep3() {
+// Remover os erros dos inputs (backgrounds vermelhos) da segunda etapa do cadastro.
+function removeInputErrorStep2() {
     // Expressão Regular (Regular Expression) para validar o e-mail.
     var emailRegex = /\S+@\S+\.\S+/;
     var emailTest = emailRegex.test(inputEmail.value);
@@ -270,6 +187,7 @@ function removeInputErrorStep3() {
     }
 }
 
+// Alterar senha para vísivel ou invisível.
 function toggleEyePassword() {
     if (inputPassword.type == "password") {
         inputPassword.setAttribute("type", "text");
@@ -286,8 +204,8 @@ function toggleEyePassword() {
     }
 }
 
-// Criar máscara no input de CNPJ
-inputCnpj.addEventListener("keypress", () => {
+// Criar máscara no input de CNPJ.
+function maskCnpj() {
     var inputLength = inputCnpj.value.length;
 
     if (inputLength == 2 || inputLength == 6) {
@@ -297,17 +215,16 @@ inputCnpj.addEventListener("keypress", () => {
     } else if (inputLength == 15) {
         inputCnpj.value += "-";
     }
+}
+
+// Remove a função padrão da tag de form (formulário). Sua função padrão seria enviar o usuário para outra página quando ele clicasse no botão de enviar ou pressionasse a tecla enter ao preencher o formulário.
+cadastroStep1.addEventListener("submit", (e) => e.preventDefault());
+cadastroStep2.addEventListener("submit", (e) => e.preventDefault());
+
+// Adiciona o evento de clique na bolinha de próxima etapa, quando o usuário clicar na bolinha, ele irá voltar para a primeira etapa do cadastro.
+circle1.addEventListener("click", () => {
+    step2.classList.remove("active");
+    step1.classList.add("active");
+    cadastroStep2.style.display = "none";
+    cadastroStep1.style.display = "flex";
 });
-
-// Criar máscara no input de CEP
-inputCep.addEventListener("keypress", () => {
-    var inputLength = inputCep.value.length;
-
-    if (inputLength == 5) {
-        inputCep.value += "-";
-    }
-});
-
-// Adiciona a função de deixar ou não a senha vísivel nos botões dos olhos.
-if (passwordIcon1) passwordIcon1.addEventListener("click", toggleEyePassword);
-if (passwordIcon2) passwordIcon2.addEventListener("click", toggleEyePassword);

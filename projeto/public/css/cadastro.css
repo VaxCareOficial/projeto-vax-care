@@ -113,8 +113,7 @@ input::-webkit-inner-spin-button {
 }
 
 .line-center-1,
-.line-center-2,
-.line-center-3 {
+.line-center-2 {
     width: 60%;
     height: 70%;
     display: flex;
@@ -125,8 +124,7 @@ input::-webkit-inner-spin-button {
     z-index: 2;
 }
 
-.line-center-2,
-.line-center-3 {
+.line-center-2 {
     display: none;
 }
 
@@ -137,10 +135,6 @@ h1 {
     text-transform: uppercase;
     color: var(--primary-color);
     margin-bottom: 20px;
-}
-
-h1.address {
-    margin-bottom: 4px;
 }
 
 .input-container {
@@ -205,8 +199,7 @@ h1.address {
 }
 
 #btnStep1,
-#btnStep2,
-#btnStep3 {
+#btnStep2 {
     margin-top: 24px;
     padding: 14px 0;
     width: 100%;
@@ -223,8 +216,7 @@ h1.address {
 }
 
 #btnStep1:hover,
-#btnStep2:hover,
-#btnStep3:hover {
+#btnStep2:hover {
     background-color: #262626;
 }
 
@@ -252,7 +244,8 @@ h1.address {
     pointer-events: none;
 }
 
-.circle {
+.circle-1,
+.circle-2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,45 +254,19 @@ h1.address {
     border-radius: 50%;
     margin: 0 12px;
     background-color: var(--background-color);
+    cursor: pointer;
 }
 
-.step-1,
-.step-2,
-.step-3 {
+.step {
     width: 12px;
     height: 12px;
     border-radius: 50%;
 }
 
-.step-1.active,
-.step-2.active,
-.step-3.active {
+.step.active {
     background-color: var(--secondary-color);
 }
 
-.input-cep-cidade,
-.input-bairro-uf {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.cep {
-    width: 44%;
-}
-
-.cidade {
-    width: 54%;
-}
-
-.bairro {
-    width: 78%;
-}
-
-.uf {
-    width: 20%;
-}
-
-.uf .label {
-    margin: 0 0 8px 16px;
+.circle-2.no-drop {
+    cursor: no-drop;
 }

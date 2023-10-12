@@ -22,7 +22,7 @@
                 <a href="index.html"><img id="btnBackArrow" src="assets/svg/back-arrow-icon.svg"></a>
             </div>
 
-            <div class="line-center-1">
+            <form class="line-center-1">
                 <h1>Cadastro</h1>
 
                 <div class="input-container">
@@ -39,88 +39,46 @@
 
                 <div class="input-container">
                     <label class="label" for="inputCnpj">CNPJ</label>
-                    <input oninput="removeInputErrorStep1()" autocomplete="off" type="text" id="inputCnpj" class="input"
-                        maxlength="18">
+                    <input onkeypress="maskCnpj()" oninput="removeInputErrorStep1()" autocomplete="off" type="text"
+                        id="inputCnpj" class="input" maxlength="18">
                 </div>
 
                 <button onclick="validateStep1()" id="btnStep1">Próximo</button>
-            </div>
+            </form>
 
-            <div class="line-center-2">
-                <h1 class="address">Cadastro</h1>
-
-                <div class="input-cep-cidade">
-                    <div class="input-container address cep">
-                        <label class="label" for="inputCep">CEP</label>
-                        <input autocomplete="off" oninput="removeInputErrorStep2()" onblur="getCep(this.value)"
-                            autofocus type="text" id="inputCep" class="input" maxlength="9">
-                    </div>
-
-                    <div class="input-container address cidade">
-                        <label class="label" for="inputCidade">Cidade</label>
-                        <input disabled type="text" id="inputCidade" class="input">
-                    </div>
-                </div>
-
-                <div class="input-container address">
-                    <label class="label" for="inputLogradouro">Logradouro</label>
-                    <input disabled type="text" id="inputLogradouro" class="input">
-                </div>
-
-                <div class="input-bairro-uf">
-                    <div class="input-container address bairro">
-                        <label class="label" for="inputBairro">Bairro</label>
-                        <input disabled type="text" id="inputBairro" class="input">
-                    </div>
-
-                    <div class="input-container address uf">
-                        <label class="label" for="inputUf">UF</label>
-                        <input disabled type="text" id="inputUf" class="input" maxlength="2">
-                    </div>
-                </div>
-
-                <div class="input-container address">
-                    <label class="label" for="inputComplemento">Complemento</label>
-                    <input autocomplete="off" type="text" id="inputComplemento" class="input">
-                </div>
-
-                <button onclick="validateStep2()" id="btnStep2">Próximo</button>
-            </div>
-
-            <div class="line-center-3">
+            <form class="line-center-2">
                 <h1>Cadastro</h1>
 
                 <div class="input-container">
                     <label class="label" for="inputEmail">E-mail</label>
-                    <input oninput="removeInputErrorStep3()" autofocus autocomplete="off" type="text" id="inputEmail"
+                    <input oninput="removeInputErrorStep2()" autofocus autocomplete="off" type="text" id="inputEmail"
                         class="input">
                 </div>
 
                 <div class="input-container">
                     <label class="label" for="inputPassword">Senha</label>
-                    <input oninput="removeInputErrorStep3()" type="password" id="inputPassword" class="input password">
-                    <img class="password-icon-1" src="assets/svg/invisible-password-icon.svg">
+                    <input oninput="removeInputErrorStep2()" type="password" id="inputPassword" class="input password">
+                    <img onclick="toggleEyePassword()" class="password-icon-1"
+                        src="assets/svg/invisible-password-icon.svg">
                 </div>
 
                 <div class="input-container">
-                    <label class="label" for="inputCnpj">Confirmar senha</label>
-                    <input oninput="removeInputErrorStep3()" type="password" id="inputConfirmPassword"
+                    <label class="label" for="inputConfirmPassword">Confirmar senha</label>
+                    <input oninput="removeInputErrorStep2()" type="password" id="inputConfirmPassword"
                         class="input password">
-                    <img class="password-icon-2" src="assets/svg/invisible-password-icon.svg">
+                    <img onclick="toggleEyePassword()" class="password-icon-2"
+                        src="assets/svg/invisible-password-icon.svg">
                 </div>
 
-                <button onclick="validateStep3()" id="btnStep3">Cadastrar</button>
-            </div>
+                <button onclick="validateStep2()" id="btnStep2">Cadastrar</button>
+            </form>
 
             <div class="line-3">
-                <div class="circle">
-                    <div class="step-1 active"></div>
+                <div class="circle-1">
+                    <div class="step active"></div>
                 </div>
-                <div class="circle">
-                    <div class="step-2"></div>
-                </div>
-                <div class="circle">
-                    <div class="step-3"></div>
+                <div class="circle-2 no-drop">
+                    <div class="step"></div>
                 </div>
             </div>
         </div>
