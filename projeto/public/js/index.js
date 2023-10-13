@@ -44,8 +44,6 @@ function simulateFinance() {
         Com a quantidade total de <span class="underlined-text">${qtdVacina}</span> vacinas, <br>
         O lucro é de <span class="green-text">R$${lucro.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span> <br>
         Porém existe uma perda de <span class="red-text">R$${perda1.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span> <br><br>
-        
-        
         Com a solução da <span class="blue-text">Vax Care:</span> <br><br>
         A perda será reduzida para um valor de <span class="green-text">R$${perda2.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span></p>
         `;
