@@ -523,6 +523,30 @@ a {
     transition: all .4s ease-in-out;
 }
 
+.input::-webkit-input-placeholder,
+.textarea::-webkit-input-placeholder {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.input:-moz-placeholder,
+.textarea::-webkit-input-placeholder {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.input::-moz-placeholder,
+.textarea::-webkit-input-placeholder {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.input:-ms-input-placeholder,
+.textarea::-webkit-input-placeholder {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
 .input.error,
 .textarea.error {
     background-color: var(--error-color);
