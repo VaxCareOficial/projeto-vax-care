@@ -100,7 +100,7 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all .4s ease-in-out;
-    padding: 0 20px;
+    margin: 0 20px;
 }
 
 #header .nav ul li:hover {
@@ -108,7 +108,7 @@ a {
 }
 
 .nav-login-link {
-    margin-left: 60px;
+    margin-left: 64px !important;
 }
 
 #header .container {
@@ -639,15 +639,19 @@ a {
     display: flex;
 }
 
-.social-line img {
+.social-line a {
     margin: 4px 8px;
-    height: 28px;
-    user-select: none;
     transition: all .4s ease-in-out;
 }
 
-.social-line img:hover,
-.footer-social-line a img:hover {
+.social-line a img {
+    height: 28px;
+    user-select: none;
+    pointer-events: none;
+    transition: all .4s ease-in-out;
+}
+
+.social-line a:hover {
     transform: scale(1.16);
 }
 
@@ -783,11 +787,15 @@ a {
     margin: -16px 56px 0 0;
 }
 
+.footer .social-line a {
+    transition: all .4s ease-in-out;
+}
+
 .footer .social-line a img {
     height: 40px;
-    margin: 4px 8px;
-    transition: all .4s ease-in-out;
+    margin: 4px 0;
     user-select: none;
+    pointer-events: none;
 }
 
 .footer .column-2 p {
