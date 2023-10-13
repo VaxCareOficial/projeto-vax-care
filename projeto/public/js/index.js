@@ -3,6 +3,7 @@ var nav = document.querySelector(".nav");
 var inputQtdVacina = document.getElementById("inputQtdVacina");
 var inputQtdRefrigerador = document.getElementById("inputQtdRefrigerador");
 var inputPrecoVacina = document.getElementById("inputPrecoVacina");
+var resultado = document.querySelector(".resultado");
 
 var inputName = document.getElementById("inputName");
 var inputEmail = document.getElementById("inputEmail");
@@ -15,9 +16,9 @@ function changeNav() {
 }
 
 function simulateFinance() {
-    var qtdVacina = inputQtdVacina.value;
-    var qtdRefrigerador = inputQtdRefrigerador.value;
-    var precoVacina = inputPrecoVacina.value;
+    var qtdVacina = Number(inputQtdVacina.value);
+    var qtdRefrigerador = Number(inputQtdRefrigerador.value);
+    var precoVacina = Number(inputPrecoVacina.value);
 
     if (qtdVacina == "") {
         inputQtdVacina.classList.add("error");
@@ -32,7 +33,22 @@ function simulateFinance() {
     }
 
     if (qtdVacina != "" && qtdRefrigerador != "" && precoVacina != "") {
+        var qtdTotalVacina = (qtdRefrigerador * qtdVacina);
+        var lucro = (precoVacina * qtdTotalVacina);
+        var perda1 = lucro * 0.17;
+        var perda2 = lucro * 0.07;
 
+        resultado.style.opacity = "1";
+        resultado.innerHTML = `
+        <p>Sem a solução da <span class="blue-text">Vax Care:</span> <br><br>
+        Com a quantidade total de <span class="underlined-text">${qtdVacina}</span> vacinas, <br>
+        O lucro é de <span class="green-text">R$${lucro.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span> <br>
+        Porém existe uma perda de <span class="red-text">R$${perda1.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span> <br><br>
+        
+        
+        Com a solução da <span class="blue-text">Vax Care:</span> <br><br>
+        A perda será reduzida para um valor de <span class="green-text">R$${perda2.toLocaleString('pt-br', { maximumFractionDigits: 2 })}.</span></p>
+        `;
     }
 }
 
