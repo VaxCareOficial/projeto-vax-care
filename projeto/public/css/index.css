@@ -608,6 +608,16 @@ a {
     border-radius: 50%;
     background-color: var(--background-color);
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.member-photo img {
+    height: 170px;
+    user-select: none;
+    pointer-events: none;
 }
 
 .member-name {
