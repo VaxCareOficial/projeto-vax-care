@@ -668,7 +668,7 @@ a {
 }
 
 .social-line a img {
-    height: 28px;
+    height: 30px;
     user-select: none;
     pointer-events: none;
     transition: all .4s ease-in-out;
@@ -808,10 +808,6 @@ a {
 
 .footer .column-1 p {
     margin: -16px 56px 0 0;
-}
-
-.footer .social-line a {
-    transition: all .4s ease-in-out;
 }
 
 .footer .social-line a img {
