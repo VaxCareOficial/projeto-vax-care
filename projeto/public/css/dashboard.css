@@ -253,4 +253,5 @@
 .container-principal .line-3 div{
     display: flex;
     padding: 2%;
+    flex-direction: column;
 }

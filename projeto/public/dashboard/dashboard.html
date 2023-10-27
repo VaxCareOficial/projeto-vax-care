@@ -141,7 +141,7 @@
                         <div class="line-2">
 
                             <div>
-
+                                <h1>Titulo</h1>
                                 <canvas id="GraficoSide"></canvas>
 
                             </div>
@@ -194,84 +194,84 @@
     </div>
 
     <script src="../js/dashboard.js"></script>
+    <script>
+        //GRAFICO 1
+        const dataPizza = {
+            labels: ['Funcionando em temperatura ideal',
+                'Em estado de alerta'],
+            datasets: [{
+                data: [94, 6],
+                backgroundColor: [
+                    'green',
+                    'red']
+            }]
+        };
+    
+        const configPizza = {
+            type: 'pie',
+            data: dataPizza,
+            options: {}
+        };
+    
+        //GRAFICO 2
+    
+        const dataSide = {
+            labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado', 'Domingo'],
+            datasets: [{
+                label: 'Quantidade de alertas por dia da semana',
+                data: [1, 8, 0, 3, 5, 15, 2],
+                backgroundColor: [
+                    'red'
+                ]
+            }]
+        };
+    
+        const configSide = {
+            type: 'bar',
+            data: dataSide,
+            options: {
+                indexAxis: 'y',
+            }
+        };
+    
+        //GRAFICO 3
+    
+        const dataBar = {
+            labels: ['Covid-19', 'H1N1', 'Febre Amarela', 'Hepatite A', 'Varicela'],
+            datasets: [{
+                label: 'Quantidade de refrigeradores por tipo de vacina',
+                data: [15, 19, 7, 3, 5],
+                backgroundColor: [
+                    'deepskyblue'
+                ]
+            }]
+        };
+    
+        const configBar = {
+            type: 'bar',
+            data: dataBar,
+            options: {}
+        };
+    
+    </script>
+    
+    <script>
+        //G1
+        const GraficoPizza = new Chart(
+            document.getElementById('GraficoPizza'),
+            configPizza
+        );
+        //G2
+        const GraficoSide = new Chart(
+            document.getElementById('GraficoSide'),
+            configSide
+        );
+        //G3
+        const GraficoBar = new Chart(
+            document.getElementById('GraficoBar'),
+            configBar
+        );
+    </script>
 </body>
 
 </html>
-<script>
-    //GRAFICO 1
-    const dataPizza = {
-        labels: ['Funcionando em temperatura ideal',
-            'Em estado de alerta'],
-        datasets: [{
-            data: [94, 6],
-            backgroundColor: [
-                'green',
-                'red']
-        }]
-    };
-
-    const configPizza = {
-        type: 'pie',
-        data: dataPizza,
-        options: {}
-    };
-
-    //GRAFICO 2
-
-    const dataSide = {
-        labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado', 'Domingo'],
-        datasets: [{
-            label: 'Quantidade de alertas por dia da semana',
-            data: [1, 8, 0, 3, 5, 15, 2],
-            backgroundColor: [
-                'red'
-            ]
-        }]
-    };
-
-    const configSide = {
-        type: 'bar',
-        data: dataSide,
-        options: {
-            indexAxis: 'y',
-        }
-    };
-
-    //GRAFICO 3
-
-    const dataBar = {
-        labels: ['Covid-19', 'H1N1', 'Febre Amarela', 'Hepatite A', 'Varicela'],
-        datasets: [{
-            label: 'Quantidade de refrigeradores por tipo de vacina',
-            data: [15, 19, 7, 3, 5],
-            backgroundColor: [
-                'deepskyblue'
-            ]
-        }]
-    };
-
-    const configBar = {
-        type: 'bar',
-        data: dataBar,
-        options: {}
-    };
-
-</script>
-
-<script>
-    //G1
-    const GraficoPizza = new Chart(
-        document.getElementById('GraficoPizza'),
-        configPizza
-    );
-    //G2
-    const GraficoSide = new Chart(
-        document.getElementById('GraficoSide'),
-        configSide
-    );
-    //G3
-    const GraficoBar = new Chart(
-        document.getElementById('GraficoBar'),
-        configBar
-    );
-</script>
