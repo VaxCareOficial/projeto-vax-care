@@ -237,3 +237,9 @@
     margin: 16px 8px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
+
+.container .content .container .column-1 
+.container-principal .line-2 .box{
+    display: flex;
+    flex-direction: column;
+}
