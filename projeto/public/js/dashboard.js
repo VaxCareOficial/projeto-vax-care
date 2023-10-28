@@ -29,3 +29,7 @@ function searchSensor() {
 
 inputSearch.addEventListener("input", searchSensor);
 imgInput.addEventListener("click", cleanSearch);
+
+function retornarIndex(){
+    window.location.href = "../index.html"
+}
