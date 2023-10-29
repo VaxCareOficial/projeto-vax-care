@@ -4,6 +4,9 @@ const containerSensor = document.querySelectorAll(".container-sensor");
 const inputSearch = document.getElementById("inputSearch");
 const imgInput = document.getElementById("imgInput");
 
+
+
+
 function cleanSearch() {
     inputSearch.value = "";
     line1Title.innerHTML = "<h1>Bem-vindo, <span>Usuário</span></h1>";

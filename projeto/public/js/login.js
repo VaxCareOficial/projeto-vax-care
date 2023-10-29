@@ -23,6 +23,8 @@ function validateInput() {
     if (email == "fernandobrandao@gmail.com" && password == "123") {
         // Direciona o usuário para a página de Dashboard.
         window.location.href = "dashboard/dashboard.html";
+        
+     
     }
 
     if ((emailTest && email == "fernandobrandao@gmail.com" && password != "123" && password != "") || (emailTest && password != "123" && password != "") || (emailTest && password == "123" && password != "")) {

@@ -61,7 +61,7 @@
                 </button>
             </div>
         </div>
-        <div class="content">
+        <div id= "dashboard-geral" class="content">
             <div class="container">
                 <div class="column-1">
                     <div class="line-1">
@@ -73,11 +73,11 @@
                             <div class="box">
                                 <h1 style="color: blue;">50</h1> <h5>sensores registrados</h5>
                             </div>
-                            <div class="box">
-                                <h1 style="color: green;">50</h1> <h5>sensores na temperatura ideal</h5>
+                            <div class="box" >
+                                <h1 style="color: green;">47</h1> <h5>sensores na temperatura ideal</h5>
                             </div>
                             <div class="box">
-                                <h1 style="color: red;">50</h1> <h5>sensores em estado de alerta</h5>
+                                <h1 style="color: red;">3</h1> <h5>sensores em estado de alerta</h5>
                             </div>
                         </div>
 
@@ -97,8 +97,8 @@
 
                             <div>
 
-                                <p>Sensor 05</p>
-                                <p>Instalado no refrigerador 05</p>
+                                <p>Sensor 01</p>
+                                <p>Instalado no refrigerador 01</p>
                                 <p>Tipo de vacina: Febre Amarela</p>
 
                             </div>
@@ -141,7 +141,7 @@
                         <div class="line-2">
 
                             <div>
-                                <h1>Titulo</h1>
+                                
                                 <canvas id="GraficoSide"></canvas>
 
                             </div>
@@ -162,11 +162,13 @@
                     <div class="container-sensor">
                         <div class="line-2">
 
-                            <div>
+                
+                                <div>
+                                    <canvas id="grafico_variacao_temperatura"></canvas>
+                                </div>
+                                  
 
-                                Insira o gráfico aqui
-
-                            </div>
+                            
 
                         </div>
 
@@ -271,6 +273,36 @@
             document.getElementById('GraficoBar'),
             configBar
         );
+    </script>
+
+    <script>
+
+      
+            // Gráfico da variação de temperatura de um sensor específico
+            const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
+
+            new Chart(grafico_variacao_temperatura, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50'],
+                datasets: [{
+                label: 'Temperatura (°C)',
+                data: [3.36, 4.99, 5.10, 5.76, 6.55, 7.40],
+                borderWidth: 1,
+                // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
+                // essa temperatura "atual" indica calor  
+                backgroundColor: 'yellow'
+                }]
+            },
+            options: {
+                scales: {
+                y: {
+                    beginAtZero: true
+                }
+                }
+            }
+            });
+
     </script>
 </body>
 
