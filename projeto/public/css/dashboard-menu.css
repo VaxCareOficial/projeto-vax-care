@@ -142,3 +142,15 @@ body {
     width: 84%;
     background-color: var(--background-color);
 }
+.box-2 img{
+    height: 70px;
+    width: 70px;
+    margin-left: 177px;
+}
+.box-2{
+    display: flex;
+    flex-direction: column;
+}
+.line-2{
+    font-weight: 600;
+}
