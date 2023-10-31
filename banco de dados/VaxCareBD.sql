@@ -1,94 +1,71 @@
 create database VaxCareBD;
 use VaxCareBd;
 
-create table vacina(
-idVacina int primary key, 
-nome varchar(45),
-tempMinima decimal,
-tempMaxima decimal);
+CREATE TABLE Empresa (
+	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+	nomeFantasia VARCHAR(45),
+	razaoSocial VARCHAR(45),
+	cnpj CHAR(18)
+);
 
-create table empresa(
-idEmpresa int primary key auto_increment,
-nomeFantasia varchar(45),
-razaoSocial varchar(45),
-cnpj char(18)); 
+CREATE TABLE EnderecoFilial (
+	idEnderecoFilial INT PRIMARY KEY AUTO_INCREMENT,
+    cep CHAR(9),
+    logradouro VARCHAR(45),
+    cidade VARCHAR(45),
+    bairro VARCHAR(45),
+    complemento VARCHAR(45),
+    uf CHAR(2),
+    fkEmpresa INT,
+    CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+);
 
-create table sensor(
-idSensor int primary key auto_increment,
-nome varchar(45));
+CREATE TABLE Usuario (
+	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+    email VARCHAR(45),
+    senha VARCHAR(45),
+    tipoUsuario VARCHAR(25),
+    CONSTRAINT chkTipoUsuario CHECK (tipoUsuario IN('Administrador', 'Funcionário')),
+    fkEmpresa INT,
+    CONSTRAINT fkEmpresaUsuario FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+);
 
-create table usuario(
-idUsuario int primary key auto_increment,
-nome varchar(45),
-email varchar(45),
-senha varchar(45),
-tipoUsuario varchar(25),
-fkEmpresa int,
-foreign key (fkEmpresa) references empresa(idEmpresa));
+CREATE TABLE Vacina (
+	idVacina INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	tempMinima DECIMAL(4,2),
+	tempMaxima DECIMAL(4,2)
+);
 
-create table enderecoFilial(
-idEnderecoFilial int primary key auto_increment,
-cep char(9),
-logradouro varchar(45),
-cidade varchar(45),
-bairro varchar(45),
-complemento varchar(45),
-uf char (8),
-fkEmpresa int,
-foreign key (fkEmpresa) references empresa(idEmpresa));
+CREATE TABLE Sensor (
+	idSensor INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45)
+);
 
-create table dadosSensor(
-idDadoSensor int primary key auto_increment,
-temperatura decimal,
-dataAtual datetime,
-fkSensor int,
-foreign key (fkSensor) references sensor(idSensor));
+CREATE TABLE DadosSensor (
+	idDadosSensor INT PRIMARY KEY AUTO_INCREMENT,
+	temperatura DECIMAL(4,2),
+	dataAtual TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	fkSensor INT,
+	CONSTRAINT fkSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor)
+);
 
-create table refrigerador(
-idRefrigerador int primary key,
-fkSensor int,
-foreign key (fkSensor) references sensor(idSensor),
-fkVacina int,
-foreign key (fkVacina) references vacina(idVacina),
-fkEnderecoFilial int,
-foreign key (fkEnderecoFilial) references enderecoFilial(idEnderecoFilial));
-
-select * from dadosSensor;
-
-insert into vacina values
-(1, 'Covid-19', '-15', '-25'), 
-(2, 'Gripe', '2', '8'),
-(3, 'Tetano', '2', '8'),
-(4, 'Febre Amarela', '2', '8'); 
+CREATE TABLE Refrigerador (
+	idRefrigerador INT PRIMARY KEY AUTO_INCREMENT,
+	fkSensor INT,
+	CONSTRAINT fkSensorRefrigerador FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
+	fkVacina INT,
+	CONSTRAINT fkVacinaRefrigerador FOREIGN KEY (fkVacina) REFERENCES Vacina(idVacina),
+	fkEnderecoFilial INT,
+	CONSTRAINT fkEnderecoFilial FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial)
+);
 
 insert into empresa values
 (null, 'VacinneCare', 'Vaccine Care Franqueadora LTDA', '26186289000179'),
 (null, 'Pfizer', 'Laboratórios Pfizer Ltda', '46070868001998'),
 (null, 'Astrazeneca', 'ASTRAZENECA DO BRASIL LTDA', '60318797000100'),
 (null, 'Biontech', 'Biontech Solucoes Em Tecnologia LTDA',  '27400744000150'); 
-
-insert into sensor values
-(null, 'DHT11-A1'),
-(null, 'DHT11-A2'),
-(null, 'DHT11-A3'),
-(null, 'DHT11-A4'); 
-
-insert into usuario values
-(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3),
-(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 4),
-(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Vizualizador', 2),
-(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Vizualizador', 1); 
-
-create table enderecoFilial(
-idEnderecoFilial int primary key auto_increment,
-cep char(9),
-logradouro varchar(45),
-cidade varchar(45),
-bairro varchar(45),
-complemento varchar(45),
-uf char (8),
-fkEmpresa int,
-foreign key (fkEmpresa) references empresa(idEmpresa));
 
 insert into enderecoFilial values
 (null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
@@ -97,12 +74,23 @@ insert into enderecoFilial values
 (null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 4),
 (null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 2);
 
-create table dadosSensor(
-idDadoSensor int primary key auto_increment,
-temperatura decimal,
-dataAtual datetime,
-fkSensor int,
-foreign key (fkSensor) references sensor(idSensor));
+insert into usuario values
+(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3),
+(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 4),
+(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 2),
+(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1); 
+
+insert into vacina values
+(1, 'Covid-19', '-15', '-25'), 
+(2, 'Gripe', '2', '8'),
+(3, 'Tetano', '2', '8'),
+(4, 'Febre Amarela', '2', '8'); 
+
+insert into sensor values
+(null, 'DHT11-A1'),
+(null, 'DHT11-A2'),
+(null, 'DHT11-A3'),
+(null, 'DHT11-A4'); 
 
 insert into dadosSensor values
 (null, 4.21, '2023-10-26 14:30:00', 1),
@@ -117,15 +105,5 @@ insert into refrigerador values
 (4, 4, 1, 3);
 
 select * from refrigerador join enderecoFilial on fkEnderecoFilial = idEnderecoFilial; 
-
-
-
-	
-
-
-
-
-
-
 
 
