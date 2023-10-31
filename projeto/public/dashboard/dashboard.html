@@ -55,9 +55,9 @@
                 </a>
             </div>
             <div class="line-3">
-                <button id="btnLogout">
+                <button id="btnLogout" onclick="retornarIndex()"">
                     Logout
-                    <img src="../assets/svg/logout-icon.svg" onclick="retornarIndex()">
+                    <img src="../assets/svg/logout-icon.svg">
                 </button>
             </div>
         </div>
@@ -71,20 +71,20 @@
                     <div class="container-principal">
                         <div class="line-2">
                             <div class="box">
-                                <h1 style="color: blue;">50</h1> <h5>sensores registrados</h5>
+                                <h1 style="color: #74abe0;">50</h1> <h5>sensores registrados</h5>
                             </div>
                             <div class="box" >
-                                <h1 style="color: green;">47</h1> <h5>sensores na temperatura ideal</h5>
+                                <h1 style="color: #b2e8ab;">47</h1> <h5>sensores na temperatura ideal</h5>
                             </div>
                             <div class="box">
-                                <h1 style="color: red;">3</h1> <h5>sensores em estado de alerta</h5>
+                                <h1 style="color: #ea5965">3</h1> <h5>sensores em estado de alerta</h5>
                             </div>
                         </div>
-
+                       
                         <div class="line-3">
-
+                            
                             <div>
-
+                                <h2 class="title-graphic1">Percentual de funcionalidade</h1>
                                 <canvas id="GraficoPizza"></canvas>
 
                             </div>
@@ -163,7 +163,7 @@
                     <div class="container-sensor">
                         <div class="line-2">
 
-                
+                            <h1 class="title-graphic">variação de temperatura em tempo real</h1>
                                 <div>
                                     <canvas id="grafico_variacao_temperatura"></canvas>
                                 </div>
@@ -176,14 +176,13 @@
                         <div class="line-3">
                             <div class="column">
 
-                                <div>
+                                <div class="block">
 
                                     Insira o gráfico aqui
 
                                 </div>
-
-                                <div>
-
+                                
+                                <div class="block">
                                     Insira o gráfico aqui
 
                                 </div>
@@ -205,8 +204,8 @@
             datasets: [{
                 data: [47, 3],
                 backgroundColor: [
-                    'green',
-                    'red']
+                    '#74abe0',
+                    '#ea5965']
             }]
         };
     
@@ -224,7 +223,7 @@
                 label: 'Quantidade de alertas por dia da semana',
                 data: [1, 8, 0, 3, 5, 15, 2],
                 backgroundColor: [
-                    'red'
+                    '#ea5965'
                 ]
             }]
         };
@@ -245,7 +244,7 @@
                 label: 'Quantidade de refrigeradores por tipo de vacina',
                 data: [15, 19, 7, 3, 5],
                 backgroundColor: [
-                    'deepskyblue'
+                    '#74abe0'
                 ]
             }]
         };
@@ -280,8 +279,8 @@
 
       
             // Gráfico da variação de temperatura de um sensor específico
+           
             const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
-
             new Chart(grafico_variacao_temperatura, {
             type: 'line',
             data: {
@@ -292,7 +291,7 @@
                 borderWidth: 1,
                 // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
                 // essa temperatura "atual" indica calor  
-                backgroundColor: 'yellow'
+                backgroundColor: '#ea5965'
                 }]
             },
             options: {

@@ -20,7 +20,7 @@ function validateInput() {
         inputPassword.classList.add("error");
     }
 
-    if (email == "fernandobrandao@gmail.com" && password == "123") {
+    if (email == "fernando.brandao@sptech.school" && password == "123") {
         // Direciona o usuário para a página de Dashboard.
         window.location.href = "dashboard/dashboard.html";
         

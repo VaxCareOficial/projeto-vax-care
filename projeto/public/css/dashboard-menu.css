@@ -145,12 +145,21 @@ body {
 .box-2 img{
     height: 70px;
     width: 70px;
-    margin-left: 177px;
-}
-.box-2{
-    display: flex;
-    flex-direction: column;
 }
 .line-2{
     font-weight: 600;
+}
+.box-2 img{
+    align-self: center;
+}
+.title-graphic{
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+.title-graphic1{
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+#grafico_variacao_temperatura{
+    padding: 15px;
 }
