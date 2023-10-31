@@ -87,10 +87,10 @@ INSERT INTO Vacina VALUES
 (4, 'Febre Amarela', '2', '8'); 
 
 INSERT INTO Sensor VALUES
-(null, 'DHT11-A1'),
-(null, 'DHT11-A2'),
-(null, 'DHT11-A3'),
-(null, 'DHT11-A4'); 
+(null, 'LM35-A1'),
+(null, 'LM35-A2'),
+(null, 'LM35-A3'),
+(null, 'LM35-A4'); 
 
 INSERT INTO DadosSensor VALUES
 (null, 4.21, '2023-10-26 14:30:00', 1),
