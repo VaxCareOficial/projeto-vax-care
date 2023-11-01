@@ -109,7 +109,7 @@
                             <div class="box-2">
                                 
                                 <img src="../assets/svg/warning.svg" alt="">
-                                <p>Um aumento constante na temperatura pode representar uma ameaça significativa para a integridade das vacinas, aumentando o risco de perdas.</p>
+                                <p>Uma queda de temperatura constante pode representar uma ameaça significativa para a integridade das vacinas, aumentando o risco de perdas.</p>
                             
                             </div>
 
@@ -231,9 +231,29 @@
 
                                 
                                 
-                                <div class="block">
-                                    Insira o gráfico aqui
-
+                                <div class="block-bottom-graph-2">
+                                    <h6>Resolução acerca dos alertas</h6>
+                                    <canvas id="myPieChart"></canvas>
+                                    
+                                    <script>
+                                        var context = document.getElementById('myPieChart').getContext('2d');
+                                
+                                        var data = {
+                                            datasets: [{
+                                                data: [25, 75], // Os valores representam 25% e 75%
+                                                backgroundColor: ['#ea5965', '#b2e8ab'], // Cores das fatias
+                                            }],
+                                            labels: ['Resultou em perda total', 'Voltou ao seu funcionamento ideal'], // Rótulos das fatias
+                                        };
+                                
+                                        var options = {}; // Adicione opções aqui, se necessário
+                                
+                                        var pieChart = new Chart(context, {
+                                            type: 'pie', // Tipo de gráfico é 'pie' para gráfico de pizza
+                                            data: data,
+                                            options: options
+                                        });
+                                    </script>
                                 </div>
 
                             </div>
@@ -336,7 +356,7 @@
                 labels: ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50'],
                 datasets: [{
                 label: 'Temperatura (°C)',
-                data: [3.36, 4.99, 5.10, 5.76, 6.55, 7.40],
+                data: [4, 4, 3.01, 2.27, 1.93, 1],
                 borderWidth: 1,
                 // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
                 // essa temperatura "atual" indica calor  
