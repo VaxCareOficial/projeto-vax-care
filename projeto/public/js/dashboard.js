@@ -9,7 +9,7 @@ const imgInput = document.getElementById("imgInput");
 
 function cleanSearch() {
     inputSearch.value = "";
-    line1Title.innerHTML = "<h1>Bem-vindo, <span>Usuário</span></h1>";
+    line1Title.innerHTML = "<h1>Bem-vindo, <span>Pfizer</span></h1>";
     imgInput.src = "../assets/svg/search-icon.svg";
     imgInput.classList.remove("active");
     containerPrincipal.forEach((e) => e.style.display = "flex");

@@ -57,11 +57,11 @@
             <div class="line-3">
                 <button id="btnLogout" onclick="retornarIndex()"">
                     Logout
-                    <img src="../assets/svg/logout-icon.svg">
+                    <img src=" ../assets/svg/logout-icon.svg">
                 </button>
             </div>
         </div>
-        <div id= "dashboard-geral" class="content">
+        <div id="dashboard-geral" class="content">
             <div class="container">
                 <div class="column-1">
                     <div class="line-1">
@@ -71,22 +71,25 @@
                     <div class="container-principal">
                         <div class="line-2">
                             <div class="box">
-                                <h1 style="color: #74abe0;">50</h1> <h5>sensores registrados</h5>
-                                
-                            </div>
-                            <div class="box" >
-                                <h1 style="color: #b2e8ab;">47</h1> <h5>sensores na temperatura ideal</h5>
+                                <h1 style="color: #74abe0;">50</h1>
+                                <h5>sensores registrados</h5>
+
                             </div>
                             <div class="box">
-                                <h1 style="color: #ea5965">3</h1> <h5>sensores em estado de alerta</h5>
+                                <h1 style="color: #b2e8ab;">47</h1>
+                                <h5>sensores na temperatura ideal</h5>
+                            </div>
+                            <div class="box">
+                                <h1 style="color: #ea5965">3</h1>
+                                <h5>sensores em estado de alerta</h5>
                             </div>
                         </div>
-                       
+
                         <div class="line-3">
-                            
+
                             <div>
                                 <h2 class="title-graphic1">Percentual de funcionalidade</h1>
-                                <canvas id="GraficoPizza"></canvas>
+                                    <canvas id="GraficoPizza"></canvas>
 
                             </div>
 
@@ -95,9 +98,6 @@
 
                     <div class="container-sensor">
                         <div class="line-2">
-
-                    
-
                             <div>
 
                                 <p>Sensor 01</p>
@@ -107,10 +107,11 @@
                             </div>
 
                             <div class="box-2">
-                                
+
                                 <img src="../assets/svg/warning.svg" alt="">
-                                <p>Uma queda de temperatura constante pode representar uma ameaça significativa para a integridade das vacinas, aumentando o risco de perdas.</p>
-                            
+                                <p>Uma queda de temperatura constante pode representar uma ameaça significativa para a
+                                    integridade das vacinas, aumentando o risco de perdas.</p>
+
                             </div>
 
                         </div>
@@ -121,18 +122,18 @@
                                     <h3>1 °C</h3>
                                     <span>Ultima temperatura capturada</span>
                                 </div>
-                                <div  class="box-detalhada">
+                                <div class="box-detalhada">
                                     <h3>1 °C</h3>
                                     <span>Abaixo da temperatura ideal</span>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="box-detalhada">
-                                    <h4>Motivo  alerta:</h4>
+                                    <h4>Motivo alerta:</h4>
                                     <span>Temperatura em queda</span>
 
                                 </div>
-                                <div  class="box-detalhada">
+                                <div class="box-detalhada">
                                     <h3>#2</h3>
                                     <span>Em sensores que mais emitiram alertas</span>
                                 </div>
@@ -159,7 +160,7 @@
 
                             <div>
                                 <h3>
-                                  Resumo semanal de alertas
+                                    Resumo semanal de alertas
                                 </h3>
                                 <canvas id="GraficoSide"></canvas>
 
@@ -184,14 +185,14 @@
                     <div class="container-sensor">
                         <div class="line-2">
 
-                            
-                                <div class="block-top-chart">
-                                    <h3 class="title-graphic">Variação de temperatura em tempo real</h3>
-                                    <canvas id="grafico_variacao_temperatura"></canvas>
-                                </div>
-                                  
 
-                            
+                            <div class="block-top-chart">
+                                <h3 class="title-graphic">Variação de temperatura em tempo real</h3>
+                                <canvas id="grafico_variacao_temperatura"></canvas>
+                            </div>
+
+
+
 
                         </div>
 
@@ -201,43 +202,41 @@
                                 <div class="block-bottom-graph">
 
                                     <h5>Quantidade de alertas por dia</h5>
-                                        <canvas id="myChart"></canvas>
-                                      </div>
-                                      
-                                      <script>
-                                        const ctx = document.getElementById('myChart');
-                                        
-                                        new Chart(ctx, {
-                                            
-                                          type: 'bar',
-                                          data: {
+                                    <canvas id="myChart"></canvas>
+                                </div>
+
+                                <script>
+                                    const ctx = document.getElementById('myChart');
+
+                                    new Chart(ctx, {
+
+                                        type: 'bar',
+                                        data: {
                                             labels: ['Segunda...', 'Terça...', 'Quarta...', 'Quinta...', 'Sexta...', 'Sábado...', 'Domingo'],
                                             datasets: [{
-                                              label: 'Alertas',
-                                              data: [0, 2, 0, 7, 0, 1, 0],
-                                              borderWidth: 1
-                                              
-                                            }]
-                                          },
-                                          options: {
-                                            scales: {
-                                              y: {
-                                                beginAtZero: true
-                                              }
-                                            }
-                                          }
-                                        });
-                                      </script>
+                                                label: 'Alertas',
+                                                data: [0, 2, 0, 7, 0, 1, 0],
+                                                borderWidth: 1
 
-                                
-                                
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    });
+                                </script>
+
                                 <div class="block-bottom-graph-2">
-                                    <h6>Resolução acerca dos alertas</h6>
-                                    <canvas id="myPieChart"></canvas>
-                                    
+                                    <h5>Resolução acerca dos alertas</h5>
+                                    <canvas id="pieChart"></canvas>
+
                                     <script>
-                                        var context = document.getElementById('myPieChart').getContext('2d');
-                                
+                                        var context = document.getElementById('pieChart').getContext('2d');
+
                                         var data = {
                                             datasets: [{
                                                 data: [25, 75], // Os valores representam 25% e 75%
@@ -245,9 +244,9 @@
                                             }],
                                             labels: ['Resultou em perda total', 'Voltou ao seu funcionamento ideal'], // Rótulos das fatias
                                         };
-                                
+
                                         var options = {}; // Adicione opções aqui, se necessário
-                                
+
                                         var pieChart = new Chart(context, {
                                             type: 'pie', // Tipo de gráfico é 'pie' para gráfico de pizza
                                             data: data,
@@ -255,7 +254,6 @@
                                         });
                                     </script>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -264,7 +262,6 @@
         </div>
     </div>
 
-    <script src="../js/dashboard.js"></script>
     <script>
         //GRAFICO 1
         const dataPizza = {
@@ -277,15 +274,14 @@
                     '#ea5965']
             }]
         };
-    
+
         const configPizza = {
             type: 'pie',
             data: dataPizza,
             options: {}
         };
-    
+
         //GRAFICO 2
-    
         const dataSide = {
             labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado', 'Domingo'],
             datasets: [{
@@ -296,7 +292,7 @@
                 ]
             }]
         };
-    
+
         const configSide = {
             type: 'bar',
             data: dataSide,
@@ -304,9 +300,8 @@
                 indexAxis: 'y',
             }
         };
-    
+
         //GRAFICO 3
-    
         const dataBar = {
             labels: ['Covid-19', 'H1N1', 'Febre Amarela', 'Hepatite A', 'Varicela'],
             datasets: [{
@@ -317,15 +312,14 @@
                 ]
             }]
         };
-    
+
         const configBar = {
             type: 'bar',
             data: dataBar,
             options: {}
         };
-    
     </script>
-    
+
     <script>
         //G1
         const GraficoPizza = new Chart(
@@ -345,34 +339,33 @@
     </script>
 
     <script>
+        // Gráfico da variação de temperatura de um sensor específico
 
-      
-            // Gráfico da variação de temperatura de um sensor específico
-           
-            const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
-            new Chart(grafico_variacao_temperatura, {
+        const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
+        new Chart(grafico_variacao_temperatura, {
             type: 'line',
             data: {
                 labels: ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50'],
                 datasets: [{
-                label: 'Temperatura (°C)',
-                data: [4, 4, 3.01, 2.27, 1.93, 1],
-                borderWidth: 1,
-                // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
-                // essa temperatura "atual" indica calor  
-                backgroundColor: '#ea5965'
+                    label: 'Temperatura (°C)',
+                    data: [4, 4, 3.01, 2.27, 1.93, 1],
+                    borderWidth: 1,
+                    // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
+                    // essa temperatura "atual" indica calor  
+                    backgroundColor: '#ea5965'
                 }]
             },
             options: {
                 scales: {
-                y: {
-                    beginAtZero: true
-                }
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-            });
-
+        });
     </script>
+
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
