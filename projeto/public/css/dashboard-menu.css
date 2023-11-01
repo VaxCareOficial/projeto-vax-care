@@ -168,8 +168,44 @@ body {
     border: 3px solid #74abe0 
     
 }
-
-
-
+.box-detalhada{
+    display: flex;
+    flex-direction: column;
+}
+.box-detalhada h3{
+    color: var(--primary-color)
+}
+.line-3 h4{
+    color: var(--primary-color)
+}
+.line-3 span{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+.column-1 .container-sensor .line-3 .column div {
+    padding-top: 10px;
+}
+.block-bottom-graph{
+    display: flex;
+    flex-direction: column;
+}
+.block-bottom-graph h5{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+.block-top-chart{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    color: var(--secondary-color);
+}
 
 

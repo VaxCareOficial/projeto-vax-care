@@ -65,7 +65,7 @@
             <div class="container">
                 <div class="column-1">
                     <div class="line-1">
-                        <h1>Bem-vindo, <span>Usuário</span></h1>
+                        <h1>Bem-vindo, <span>Pfizer</span></h1>
                     </div>
 
                     <div class="container-principal">
@@ -117,12 +117,25 @@
 
                         <div class="line-3">
                             <div class="column">
-                                <div>Texto</div>
-                                <div>Texto</div>
+                                <div class="box-detalhada">
+                                    <h3>1 °C</h3>
+                                    <span>Ultima temperatura capturada</span>
+                                </div>
+                                <div  class="box-detalhada">
+                                    <h3>1 °C</h3>
+                                    <span>Abaixo da temperatura ideal</span>
+                                </div>
                             </div>
                             <div class="column">
-                                <div>Texto</div>
-                                <div>Texto</div>
+                                <div class="box-detalhada">
+                                    <h4>Motivo  alerta:</h4>
+                                    <span>Temperatura em queda</span>
+
+                                </div>
+                                <div  class="box-detalhada">
+                                    <h3>#2</h3>
+                                    <span>Em sensores que mais emitiram alertas</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,8 +184,9 @@
                     <div class="container-sensor">
                         <div class="line-2">
 
-                            <h1 class="title-graphic">variação de temperatura em tempo real</h1>
-                                <div>
+                            
+                                <div class="block-top-chart">
+                                    <h3 class="title-graphic">Variação de temperatura em tempo real</h3>
                                     <canvas id="grafico_variacao_temperatura"></canvas>
                                 </div>
                                   
@@ -184,11 +198,38 @@
                         <div class="line-3">
                             <div class="column">
 
-                                <div class="block">
+                                <div class="block-bottom-graph">
 
-                                    Insira o gráfico aqui
+                                    <h5>Quantidade de alertas por dia</h5>
+                                        <canvas id="myChart"></canvas>
+                                      </div>
+                                      
+                                      <script>
+                                        const ctx = document.getElementById('myChart');
+                                        
+                                        new Chart(ctx, {
+                                            
+                                          type: 'bar',
+                                          data: {
+                                            labels: ['Segunda...', 'Terça...', 'Quarta...', 'Quinta...', 'Sexta...', 'Sábado...', 'Domingo'],
+                                            datasets: [{
+                                              label: 'Alertas',
+                                              data: [0, 2, 0, 7, 0, 1, 0],
+                                              borderWidth: 1
+                                              
+                                            }]
+                                          },
+                                          options: {
+                                            scales: {
+                                              y: {
+                                                beginAtZero: true
+                                              }
+                                            }
+                                          }
+                                        });
+                                      </script>
 
-                                </div>
+                                
                                 
                                 <div class="block">
                                     Insira o gráfico aqui
