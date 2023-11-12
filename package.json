@@ -1,10 +1,9 @@
 {
-  "name": "site",
+  "name": "projeto",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./site/app.js",
-    "dev": "cd site && npm run dev",
-    "postinstall": "cd site && npm install"
+    "start": "node ./projeto/app.js",
+    "postinstall": "cd projeto && npm install"
   }
 }
