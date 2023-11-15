@@ -4,14 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../assets/img/vax-care-logo.png">
+    <link rel="icon" href="../assets/imgs/vax-care-logo.png">
     <link rel="stylesheet" href="../css/dashboard-menu.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="../js/simuladorSensor.js"></script>
     <title>Dashboard | Vax Care</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+ <!-- simularSensorJogandoDadoNoBanco() -->
+
+<body 
+
+
+
+> 
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -55,7 +62,7 @@
                 </a>
             </div>
             <div class="line-3">
-                <button id="btnLogout" onclick="retornarIndex()"">
+                <button id="btnLogout" onclick="retornarIndex()">
                     Logout
                     <img src=" ../assets/svg/logout-icon.svg">
                 </button>
@@ -100,8 +107,8 @@
                         <div class="line-2">
                             <div>
 
-                                <p>Sensor 01</p>
-                                <p>Instalado no refrigerador 01</p>
+                                <!-- <p>Sensor 01</p> -->
+                                <p>Refrigerador <span id="id_refrigerador_pesquisado"></span></p>
                                 <p>Tipo de vacina: Febre Amarela</p>
 
                             </div>
@@ -119,7 +126,7 @@
                         <div class="line-3">
                             <div class="column">
                                 <div class="box-detalhada">
-                                    <h3>1 °C</h3>
+                                    <h3 id="ultima_temperatura"> </h3>
                                     <span>Ultima temperatura capturada</span>
                                 </div>
                                 <div class="box-detalhada">
@@ -145,7 +152,7 @@
                 <div class="column-2">
                     <div class="line-1">
                         <div class="input-container">
-                            <input type="text" id="inputSearch" placeholder="Buscar por sensor">
+                            <input type="text" id="inputSearch" placeholder="Buscar por sensor" >
                             <img id="imgInput" src="../assets/svg/search-icon.svg">
                         </div>
 
@@ -341,28 +348,34 @@
     <script>
         // Gráfico da variação de temperatura de um sensor específico
 
-        const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
-        new Chart(grafico_variacao_temperatura, {
-            type: 'line',
-            data: {
-                labels: ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50'],
-                datasets: [{
-                    label: 'Temperatura (°C)',
-                    data: [4, 4, 3.01, 2.27, 1.93, 1],
-                    borderWidth: 1,
-                    // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
-                    // essa temperatura "atual" indica calor  
-                    backgroundColor: '#ea5965'
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+    //     const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
+    //     new Chart(grafico_variacao_temperatura, {
+    //         type: 'line',
+    //         data: {
+    //             labels: [],
+    //             datasets: [{
+    //                 label: 'Temperatura (°C)',
+    //                 data: [4, 4, 3.01, 2.27, 1.93, 1],
+    //                 borderWidth: 1,
+    //                 // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics, 
+    //                 // essa temperatura "atual" indica calor  
+    //                 backgroundColor: '#ea5965'
+    //             }]
+    //         },
+    //         options: {
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true
+    //                 }
+    //             }
+    //         }
+    //     });
+    // </script>
+
+    // <script>
+        function mostrarUltimaTemperatura(){
+            ultima_temperatura.innerHTML = sessionStorage.SENSOR_TEMPERATURA;
+        }
     </script>
 
     <script src="../js/dashboard.js"></script>

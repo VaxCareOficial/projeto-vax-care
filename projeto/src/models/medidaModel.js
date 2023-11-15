@@ -61,8 +61,55 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarSensoresExistentes(){
+        var instrucaoSql = `select count(idSensor) as qtdSensor from sensor;`
+        return database.executar(instrucaoSql);
+}
+
+function cadastrarMedidas(fkSensor, temperatura) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO dadosSensor (fkSensor, temperatura, dataAtual, statusTemperatura) VALUES (${fkSensor},'${temperatura}', now(), 'Ideal');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarDados(idSensor, limite_linhas){
+    var instrucaoSql = `select temperatura, DATE_FORMAT(dataAtual, "%d/%m %H:%i") AS datas, idRefrigerador 
+                            from dadosSensor d join sensor s on d.fkSensor = s.idSensor
+                                join refrigerador r on s.idSensor = r.fkSensor where s.idSensor = ${idSensor}
+                                order by idDadosSensor desc limit ${limite_linhas};`
+                                
+    return database.executar(instrucaoSql);
+}
+
+
+function buscarEmTempoReal(idSensor){
+    var instrucaoSql = `select temperatura, DATE_FORMAT(dataAtual, "%d/%m %H:%i") AS datas, idRefrigerador 
+                            from dadosSensor d join sensor s on d.fkSensor = s.idSensor
+                                join refrigerador r on s.idSensor = r.fkSensor where s.idSensor = ${idSensor}
+                                order by idDadosSensor desc limit 1;`
+
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+
+
+
+
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarSensoresExistentes,
+    cadastrarMedidas,
+    buscarDados,
+    buscarEmTempoReal
 }
