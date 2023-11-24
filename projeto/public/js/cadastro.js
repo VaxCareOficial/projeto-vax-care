@@ -115,6 +115,7 @@ function validateStep1() {
     }
 }
 
+
 // Remover os erros dos inputs (backgrounds vermelhos) da primeira etapa do cadastro.
 function removeInputErrorStep1() {
     let isCnpjValid = validateCnpj(inputCnpj.value);
@@ -134,7 +135,7 @@ function removeInputErrorStep1() {
 
 
 // Fazer a validação dos inputs da segunda etapa do cadastro.
-function validateStep2() {
+function cadastrar() {
     // Expressão Regular (Regular Expression) para validar o e-mail.
     var emailRegex = /\S+@\S+\.\S+/;
 
@@ -162,9 +163,36 @@ function validateStep2() {
 
     if (emailTest && password != "" && confirmPassword != "" && password == confirmPassword) {
         alert("Cadastro concluído com sucesso!");
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeFantasia,
+                razaoSocialServer: razaoSocial,
+                cnpjServer: cnpj,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        // Direciona o usuário para a página de Login.
-        window.location.href = "login.html";
+                if (resposta.ok) {
+                    window.location = "login.html";
+                } else {
+                    erro.innerHTML = `<h4>Não foi possivel realizar o cadastro nesse momento, Tente denovo mais tarde</h4>`;
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
     }
 }
 
