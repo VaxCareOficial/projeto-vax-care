@@ -1,6 +1,10 @@
 CREATE DATABASE bdVaxCare;
 USE bdVaxCare;
 
+CREATE USER 'vaxcare'@'localhost' IDENTIFIED BY 'vaxcare123';
+GRANT ALL PRIVILEGES ON bdVaxCare.* TO 'vaxcare'@'localhost';
+FLUSH PRIVILEGES;
+
 CREATE TABLE Empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 	nomeFantasia VARCHAR(45),

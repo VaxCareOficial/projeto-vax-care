@@ -17,6 +17,8 @@ var inputEmail = document.getElementById("inputEmail");
 var inputPassword = document.getElementById("inputPassword");
 var inputConfirmPassword = document.getElementById("inputConfirmPassword");
 
+var cadastroError = document.querySelector(".cadastro-error");
+
 var nomeFantasia = "";
 var razaoSocial = "";
 var cnpj = "";
@@ -162,37 +164,24 @@ function cadastrar() {
     }
 
     if (emailTest && password != "" && confirmPassword != "" && password == confirmPassword) {
-        alert("Cadastro concluído com sucesso!");
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
+        fetch("/empresa/cadastrar-empresa", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeFantasia,
+                nomeFantasiaServer: nomeFantasia,
                 razaoSocialServer: razaoSocial,
                 cnpjServer: cnpj,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    window.location = "login.html";
-                } else {
-                    erro.innerHTML = `<h4>Não foi possivel realizar o cadastro nesse momento, Tente denovo mais tarde</h4>`;
-                }
+                emailServer: email,
+                senhaServer: password
             })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
-        return false;
+        }).then(function (resposta) {
+            if (resposta.status == 201) {
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = "login.html";
+            }
+        });
     }
 }
 

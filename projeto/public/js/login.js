@@ -20,20 +20,33 @@ function validateInput() {
         inputPassword.classList.add("error");
     }
 
-    if (email == "fernando.brandao@sptech.school" && password == "123") {
-        // Direciona o usuário para a página de Dashboard.
-        window.location.href = "dashboard/dashboard.html";
-        
-     
-    }
+    if (emailTest && password != "") {
+        fetch("/empresa/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: password
+            })
+        }).then(function (resposta) {
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
+                    sessionStorage.setItem("idEmpresa", resposta[0].idEmpresa);
+                    window.location.href = "dashboard/dashboard.html";
+                })
+            } else {
+                resposta.text().then(text => {
+                    loginError.classList.add("active");
+                    loginError.innerHTML = text;
 
-    if ((emailTest && email == "fernandobrandao@gmail.com" && password != "123" && password != "") || (emailTest && password != "123" && password != "") || (emailTest && password == "123" && password != "")) {
-        loginError.classList.add("active");
-
-        // Coloca um delay de 3 segundos para o elemento sumir da tela.
-        setTimeout(() => {
-            loginError.classList.remove("active");
-        }, 3000);
+                    setTimeout(() => {
+                        loginError.classList.remove("active");
+                    }, 3000);
+                });
+            }
+        });
     }
 }
 

@@ -1,27 +1,28 @@
 var database = require("../database/config");
 
-function buscarPorId(id) {
-  var query = `select * from empresa where id = '${id}'`;
-
-  return database.executar(query);
+function autenticar(email, senha) {
+    var instrucao = `
+        SELECT * FROM Usuario JOIN Empresa ON idEmpresa = fkEmpresa WHERE email = '${email}' AND senha = '${senha}';
+    `;
+    return database.executar(instrucao);
 }
 
-function listar() {
-  var query = `select * from empresa`;
-
-  return database.executar(query);
+function cadastrarEmpresa(nomeFantasia, razaoSocial, cnpj) {
+    var instrucao = `
+      INSERT INTO Empresa (nomeFantasia, razaoSocial, cnpj) VALUES ('${nomeFantasia}', '${razaoSocial}', '${cnpj}');
+  `;
+    return database.executar(instrucao);
 }
 
-function buscarPorCnpj(cnpj) {
-  var query = `select * from empresa where cnpj = '${cnpj}'`;
-
-  return database.executar(query);
+function cadastrarUsuario(nome, email, senha, tipoUsuario, idEmpresa) {
+    var instrucao = `
+        INSERT INTO Usuario (nome, email, senha, tipoUsuario, fkEmpresa) VALUES ('${nome}', '${email}', '${senha}', '${tipoUsuario}', ${idEmpresa});
+    `;
+    return database.executar(instrucao);
 }
 
-function cadastrar(razaoSocial, cnpj) {
-  var query = `insert into empresa (razao_social, cnpj) values ('${razaoSocial}', '${cnpj}')`;
-
-  return database.executar(query);
-}
-
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = {
+    autenticar,
+    cadastrarEmpresa,
+    cadastrarUsuario
+};

@@ -4,8 +4,9 @@ const containerSensor = document.querySelectorAll(".container-sensor");
 const inputSearch = document.getElementById("inputSearch");
 const imgInput = document.getElementById("imgInput");
 
-let proximaAtualizacao;
+const idEmpresa = sessionStorage.getItem("idEmpresa");
 
+let proximaAtualizacao;
 
 function cleanSearch() {
     inputSearch.value = "";
@@ -16,14 +17,12 @@ function cleanSearch() {
     containerSensor.forEach((e) => e.style.display = "none");
 }
 
-const graficoVariacao= document.getElementById('grafico_variacao_temperatura');
+imgInput.addEventListener("click", cleanSearch);
 
-
+const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
 
 function searchSensor(myChart) {
-
     let searchText = inputSearch.value;
-   
 
     if (searchText != "") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
@@ -32,7 +31,7 @@ function searchSensor(myChart) {
         containerPrincipal.forEach((e) => e.style.display = "none");
         containerSensor.forEach((e) => e.style.display = "flex");
 
-       
+
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
@@ -62,6 +61,7 @@ function searchSensor(myChart) {
     }
 }
 
+inputSearch.addEventListener("input", searchSensor);
 
 function plotarGrafico(resposta, searchText) {
 
@@ -91,7 +91,7 @@ function plotarGrafico(resposta, searchText) {
         var registro = resposta[i];
         labels.push(registro.datas);
         dados.datasets[0].data.push(registro.temperatura);
-        
+
     }
 
     console.log('----------------------------------------------')
@@ -119,9 +119,6 @@ function plotarGrafico(resposta, searchText) {
 
 
 function atualizarGrafico(searchText, dados, myChart) {
-
-
-
     fetch(`/medidas/buscarEmTempoReal/${searchText}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
@@ -132,12 +129,8 @@ function atualizarGrafico(searchText, dados, myChart) {
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dados);
 
-                
-                
-
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                 // avisoCaptura.innerHTML = ""
-
 
                 if (novoRegistro[0].datas == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
@@ -171,30 +164,18 @@ function atualizarGrafico(searchText, dados, myChart) {
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 2000);
         }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-
+    }).catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 }
 
-
-
-inputSearch.addEventListener("input", searchSensor);
-imgInput.addEventListener("click", cleanSearch);
-
-function retornarIndex(){
+function retornarIndex() {
     sessionStorage.clear();
     window.location.href = "../index.html"
 }
 
-
-
-
-
-
-
-
-
-
-
+window.addEventListener("load", () => {
+    if (!idEmpresa) {
+        window.location.href = "../login.html";
+    }
+});
