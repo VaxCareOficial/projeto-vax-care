@@ -22,7 +22,7 @@ CREATE TABLE EnderecoFilial (
     uf CHAR(2),
     fkEmpresa INT,
     CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
-);
+) AUTO_INCREMENT = 1000;
 
 CREATE TABLE Usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +32,9 @@ CREATE TABLE Usuario (
     tipoUsuario VARCHAR(25),
     CONSTRAINT chkTipoUsuario CHECK (tipoUsuario IN('Administrador', 'Funcionário')),
     fkEmpresa INT,
-    CONSTRAINT fkEmpresaUsuario FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    CONSTRAINT fkEmpresaUsuario FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
+    fkEnderecoFilial INT,
+    CONSTRAINT fkEnderecoFilialUsuario FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial)
 );
 
 CREATE TABLE Vacina (
@@ -51,6 +53,7 @@ CREATE TABLE DadosSensor (
 	idDadosSensor INT PRIMARY KEY AUTO_INCREMENT,
 	temperatura DECIMAL(4,2),
 	dataAtual TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    statusAlert VARCHAR(45),
 	fkSensor INT,
 	CONSTRAINT fkSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor)
 );
@@ -73,10 +76,10 @@ INSERT INTO Empresa VALUES
 
 INSERT INTO EnderecoFilial VALUES
 (null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
-(null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 2), 
-(null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 3),
-(null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 4),
-(null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 2);
+(null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
+(null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
+(null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
+(null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
 
 INSERT INTO Usuario VALUES
 (null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3),
@@ -95,12 +98,6 @@ INSERT INTO Sensor VALUES
 (null, 'LM35-A2'),
 (null, 'LM35-A3'),
 (null, 'LM35-A4'); 
-
-INSERT INTO DadosSensor VALUES
-(null, 4.21, '2023-10-26 14:30:00', 1),
-(null, 5.27, '2023-10-26 14:30:03', 2),
-(null, 5.01, '2023-10-26 14:30:06', 3),
-(null, 8.17, '2023-10-26 14:30:09', 4); 
 
 INSERT INTO Refrigerador VALUES
 (1, 1, 4, 5),

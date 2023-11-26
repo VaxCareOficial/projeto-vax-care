@@ -7,6 +7,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var empresaRouter = require("./src/routes/empresa");
+var usuarioRouter = require("./src/routes/usuario");
 var refrigeradorRouter = require("./src/routes/refrigerador");
 var vacinaRouter = require("./src/routes/vacina");
 var sensorRouter = require("./src/routes/sensor");
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/empresa", empresaRouter);
+app.use("/usuario", usuarioRouter);
 app.use("/refrigerador", refrigeradorRouter);
 app.use("/vacina", vacinaRouter);
 app.use("/sensor", sensorRouter);

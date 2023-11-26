@@ -164,7 +164,7 @@ function cadastrar() {
     }
 
     if (emailTest && password != "" && confirmPassword != "" && password == confirmPassword) {
-        fetch("/empresa/cadastrar-empresa", {
+        fetch("/empresa/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

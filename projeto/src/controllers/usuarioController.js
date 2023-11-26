@@ -1,0 +1,33 @@
+var usuarioModel = require("../models/usuarioModel");
+
+function cadastrar(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var tipoUsuario = "Funcionário";
+    var idEmpresa = req.params.idEmpresa;
+    var idEnderecoFilial = req.params.idEnderecoFilial;
+
+    if (nome == "") {
+        res.status(400).send("Preencha o campo de nome.");
+    } else if (email == "") {
+        res.status(400).send("Preencha o campo de e-mail.");
+    } else if (senha == "") {
+        res.status(400).send("Preencha o campo de senha.");
+    } else {
+        usuarioModel.cadastrar(nome, email, senha, tipoUsuario, idEmpresa, idEnderecoFilial)
+            .then(
+                function () {
+                    res.status(201).send("Cadastro realizado com sucesso!");
+                }
+            ).catch(
+                function (erro) {
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+module.exports = {
+    cadastrar
+}
