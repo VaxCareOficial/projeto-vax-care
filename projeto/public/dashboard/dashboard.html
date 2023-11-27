@@ -14,7 +14,7 @@
 
  <!-- simularSensorJogandoDadoNoBanco() -->
 
-<body> 
+<body > 
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -104,8 +104,8 @@
                             <div>
 
                                 <!-- <p>Sensor 01</p> -->
-                                <p>Refrigerador <span id="id_refrigerador_pesquisado"></span></p>
-                                <p>Tipo de vacina: Febre Amarela</p>
+                                <p>Refrigerador: <span id="id_refrigerador_pesquisado"></span></p>
+                                <p>Tipo de vacina: <span id="id_tipo_vacina"></span></p>
 
                             </div>
 
@@ -122,12 +122,12 @@
                         <div class="line-3">
                             <div class="column">
                                 <div class="box-detalhada">
-                                    <h3 id="ultima_temperatura"> </h3>
+                                    <h3 id="ultima_temperatura"></h3>
                                     <span>Ultima temperatura capturada</span>
                                 </div>
                                 <div class="box-detalhada">
-                                    <h3>1 °C</h3>
-                                    <span>Abaixo da temperatura ideal</span>
+                                    <h3 id="id_diferenca_temperatura"></h3>
+                                    <span id="id_mensagem_diferenca_temperatura">Abaixo da temperatura ideal</span>
                                 </div>
                             </div>
                             <div class="column">
@@ -148,7 +148,7 @@
                 <div class="column-2">
                     <div class="line-1">
                         <div class="input-container">
-                            <input type="text" id="inputSearch" placeholder="Buscar por sensor" >
+                            <input type="text" id="inputSearch" placeholder="Buscar por refrigerador">
                             <img id="imgInput" src="../assets/svg/search-icon.svg">
                         </div>
 
@@ -368,11 +368,7 @@
     //     });
     // </script>
 
-    // <script>
-        function mostrarUltimaTemperatura(){
-            ultima_temperatura.innerHTML = sessionStorage.SENSOR_TEMPERATURA;
-        }
-    </script>
+    
 
     <script src="../js/dashboard.js"></script>
 </body>

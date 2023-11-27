@@ -1,6 +1,6 @@
 function simularSensorJogandoDadoNoBanco(){
 
-    fetch(`/medidas/buscarSensores`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/sensor/buscarSensores`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -9,9 +9,32 @@ function simularSensorJogandoDadoNoBanco(){
 
                 while(true){
                     var fkSensor = parseInt(Math.random() * qtdSensores + 1);
-                    var temperatura = Math.random().toFixed(2);
+                    var temperatura = (Math.random()* 8 + 1).toFixed(2);
+
+                    var status = ``;
+
+                    if(temperatura <= 2.00){
+
+                      status = `Crítico Frio`
+
+                    }else if(temperatura <= 4.45){
+
+                      status = `Alerta Frio`
+
+                    }else if(temperatura <= 6.75){
+
+                      status = `Ideal`
+
+                    }else if(temperatura <= 7.98){
+
+                      status = `Alerta Calor`
+
+                    }else{
+
+                      status = `Crítico Calor`
+                    }
             
-                    fetch("/medidas/cadastrarMedidas", {
+                    fetch("/sensor/cadastrarMedidas", {
                         method: "POST",
                         headers: {
                           "Content-Type": "application/json",
@@ -20,7 +43,8 @@ function simularSensorJogandoDadoNoBanco(){
                           // crie um atributo que recebe o valor recuperado aqui
                           // Agora vá para o arquivo routes/usuario.js
                           fkSensorServer: fkSensor,
-                          temperaturaServer: temperatura
+                          temperaturaServer: temperatura,
+                          statusServer: status
                         }),
                       })
                         .then(function (resposta) {

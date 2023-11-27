@@ -1,3 +1,5 @@
+
+
 const line1Title = document.querySelector(".column-1 .line-1");
 const containerPrincipal = document.querySelectorAll(".container-principal");
 const containerSensor = document.querySelectorAll(".container-sensor");
@@ -5,8 +7,23 @@ const inputSearch = document.getElementById("inputSearch");
 const imgInput = document.getElementById("imgInput");
 
 const idEmpresa = sessionStorage.getItem("idEmpresa");
+const idUsuario = sessionStorage.getItem("idUsuario");
 
 let proximaAtualizacao;
+let refrigeradorDisponivel = ``;
+
+
+function validarRefrigeradoresDisponiveis(idUsuario){
+
+    fetch(`/refrigerador/buscarRefrigeradores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+          console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+            
+        });
+  
+      })
+}
+
 
 function cleanSearch() {
     inputSearch.value = "";
@@ -21,8 +38,14 @@ imgInput.addEventListener("click", cleanSearch);
 
 const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
 
-function searchSensor(myChart) {
+
+
+function searchSensor() {
+
     let searchText = inputSearch.value;
+
+    id_refrigerador_pesquisado.innerHTML = searchText;
+    
 
     if (searchText != "") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
@@ -31,14 +54,17 @@ function searchSensor(myChart) {
         containerPrincipal.forEach((e) => e.style.display = "none");
         containerSensor.forEach((e) => e.style.display = "flex");
 
+        selecionarTipodeVacina(searchText);
+        
 
+        
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
         // searchText é o que será digitado na barra de pesquisa e quem será levado como parâmetro 
 
-        fetch(`/medidas/buscarDados/${searchText}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/refrigerador/buscarDados/${searchText}/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -55,13 +81,12 @@ function searchSensor(myChart) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-
     } else {
         cleanSearch();
     }
 }
 
-inputSearch.addEventListener("input", searchSensor);
+
 
 function plotarGrafico(resposta, searchText) {
 
@@ -88,10 +113,10 @@ function plotarGrafico(resposta, searchText) {
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        labels.push(registro.datas);
-        dados.datasets[0].data.push(registro.temperatura);
-
+        // var registro = resposta[i];
+        labels.push(resposta[i].data);
+        dados.datasets[0].data.push(resposta[i].temperatura);
+        
     }
 
     console.log('----------------------------------------------')
@@ -119,55 +144,107 @@ function plotarGrafico(resposta, searchText) {
 
 
 function atualizarGrafico(searchText, dados, myChart) {
-    fetch(`/medidas/buscarEmTempoReal/${searchText}`, { cache: 'no-store' }).then(function (response) {
+
+    fetch(`/refrigerador/buscarEmTempoReal/${searchText}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
-                obterdados(searchText);
+                
                 // alertar(novoRegistro, idAquario);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dados);
 
+                ultima_temperatura.innerHTML = `${novoRegistro[0].temperatura}°C`;
+
+
+                let diferencaTemperatura = 90;
+                let mensagemDiferencaTemperatura = ``
+
+                if(novoRegistro[0].temperatura < 4.46){
+
+                    diferencaTemperatura = 4.46 - novoRegistro[0].temperatura;
+                    mensagemDiferencaTemperatura = `Abaixo da temperatura ideal`
+
+                }else if(novoRegistro[0].temperatura > 6.75){
+
+                    diferencaTemperatura = 6.75 - novoRegistro[0].temperatura;
+                    mensagemDiferencaTemperatura = `Acima da temperatura ideal`
+
+                }else{
+
+                    diferencaTemperatura = novoRegistro[0].temperatura - 0;
+                    mensagemDiferencaTemperatura = `Dentro da temperatura ideal`
+                }
+
+                id_diferenca_temperatura.innerHTML = `${diferencaTemperatura.toFixed(2)}°C`;
+                id_mensagem_diferenca_temperatura.innerHTML = mensagemDiferencaTemperatura;
+                
+
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                 // avisoCaptura.innerHTML = ""
 
-                if (novoRegistro[0].datas == dados.labels[dados.labels.length - 1]) {
+
+                if (novoRegistro[0].data == dados.labels[dados.labels.length-1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                    avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("igual caralho")
                     console.log("Horário do novo dado capturado:")
-                    console.log(novoRegistro[0].datas)
+                    console.log(novoRegistro[0].data)
                     console.log("Horário do último dado capturado:")
                     console.log(dados.labels[dados.labels.length - 1])
                     console.log("---------------------------------------------------------------")
 
-                    ultima_temperatura.innerHTML = novoRegistro[0].temperatura;
+                   
                 } else {
                     // tirando e colocando valores no gráfico
+                    console.log("difeente caralho")
                     dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].datas); // incluir um novo momento
+                    dados.labels.push(novoRegistro[0].data); // incluir um novo momento
 
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de umidade
 
-                    ultima_temperatura.innerHTML = novoRegistro[0].temperatura;
+                   
 
                     myChart.update();
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 5000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 1000);
         }
-    }).catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
 }
+
+
+function selecionarTipodeVacina(searchText){
+
+    fetch(`/refrigerador/buscarVacina/${searchText}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+          console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+  
+          id_tipo_vacina.innerHTML = resposta[0].nome;
+  
+        });
+  
+      })
+}
+
+
+
+
+inputSearch.addEventListener("input", searchSensor);
+
+
 
 function retornarIndex() {
     sessionStorage.clear();
