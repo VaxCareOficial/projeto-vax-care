@@ -4,8 +4,56 @@
 
 .column-1 {
     width: 50%;
+   
+}
+.content .column-1 .line-1 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .column-1 .line-2 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .column-2 .line-1 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .column-2 .line-2 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .column-2 {
     width: 50%;
+}
+
+label{
+    margin-top: 4px;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container input{
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    width: 240px;
 }
