@@ -1,6 +1,7 @@
 .content {
     display: flex;
     padding: 50px;
+    user-select: none;
 }
 
 .column-1 {
@@ -48,6 +49,10 @@ select:focus {
 
 input::placeholder {
     color: #3CA9C2;
+}
+
+input:disabled {
+    background-color: #f2f2f2;
 }
 
 .content .column-1 .line-2 {

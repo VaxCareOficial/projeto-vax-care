@@ -65,17 +65,18 @@
         <div>
           <h3>Cadastrar Endereço da Filial</h3>
           <div class="form-endereco">
-            <input type="text" placeholder="CEP" id="inputCep" />
+            <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" type="text" placeholder="CEP" id="inputCep"
+              maxlength="9">
 
-            <input type="text" placeholder="Logradouro" id="inputLogradouro" />
+            <input type="text" placeholder="Logradouro" id="inputLogradouro">
 
-            <input type="text" placeholder="Cidade" id="inputCidade" />
+            <input type="text" placeholder="Cidade" id="inputCidade">
 
-            <input type="text" placeholder="Bairro" id="inputBairro" />
+            <input type="text" placeholder="Bairro" id="inputBairro">
 
-            <input type="text" placeholder="Complemento" id="inputComplemento" />
+            <input type="text" placeholder="UF" id="inputUf">
 
-            <input type="text" placeholder="UF" id="inputUf" />
+            <input type="text" placeholder="Complemento" id="inputComplemento">
 
             <button onclick="cadastrarEndereco(), setTimeout(() => gerarEnderecoFilial(), 200)">
               Cadastrar
