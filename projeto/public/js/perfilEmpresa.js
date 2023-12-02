@@ -1,5 +1,3 @@
-var idEmpresa = sessionStorage.getItem("idEmpresa");
-
 function cadastrar() {
     var name = inputName.value;
     var email = inputEmail.value;

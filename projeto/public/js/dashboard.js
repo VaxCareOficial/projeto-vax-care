@@ -6,7 +6,6 @@ const containerSensor = document.querySelectorAll(".container-sensor");
 const inputSearch = document.getElementById("inputSearch");
 const imgInput = document.getElementById("imgInput");
 
-const idEmpresa = sessionStorage.getItem("idEmpresa");
 const idUsuario = sessionStorage.getItem("idUsuario");
 
 let proximaAtualizacao;
@@ -243,16 +242,3 @@ function selecionarTipodeVacina(searchText){
 
 
 inputSearch.addEventListener("input", searchSensor);
-
-
-
-function retornarIndex() {
-    sessionStorage.clear();
-    window.location.href = "../index.html"
-}
-
-window.addEventListener("load", () => {
-    if (!idEmpresa) {
-        window.location.href = "../login.html";
-    }
-});

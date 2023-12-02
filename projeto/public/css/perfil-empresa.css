@@ -1,41 +1,52 @@
 .content {
     display: flex;
+    padding: 50px;
 }
 
 .column-1 {
     width: 50%;
-   
+
 }
-.form-usuario{
+
+.form-usuario {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.form-endereco input{
-    padding: 12px;
+
+.form-endereco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content h3 {
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+input,
+select {
+    padding: 12px 12px 12px 16px;
+    margin: 10px 0;
     border: none;
     border-radius: 50px;
     width: 340px;
     height: 45px;
-}
-.border{
-    /*display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 430px;
-    width: 550px;
-    background-color: #303030;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 140px;
-    border-bottom-left-radius: 140px; 
-    border-bottom-right-radius: 40px; */
-}
-.content .column-1 .line-1 {
-    height: 50%;
+    transition: all .2s ease-in-out;
 }
 
-input::placeholder{
+select {
+    color: #3CA9C2;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 4px #0000004d;
+}
+
+input::placeholder {
     color: #3CA9C2;
 }
 
@@ -45,10 +56,6 @@ input::placeholder{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.content .column-2 .line-1 {
-    height: 50%;
 }
 
 .content .column-2 .line-2 {
@@ -63,36 +70,25 @@ input::placeholder{
     width: 50%;
 }
 
-label{
-    margin-top: 4px;
-}
-
-.input-container{
+.input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.input-container input{
-    padding: 12px;
-    border: none;
-    border-radius: 50px;
-    width: 340px;
-    height: 45px;
-}
-
-.input-container select{
-    padding: 12px;
-    border: none;
-    border-radius: 50px;
-    width: 340px;
-    color: #3CA9C2;
-}
-
-button{
+.content button {
+    background-color: #303030;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 12px;
     padding: 12px;
     border: none;
     border-radius: 50px;
     width: 340px;
     cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.content button:hover {
+    background-color: #1f1f1f;
 }
