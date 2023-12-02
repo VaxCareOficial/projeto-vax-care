@@ -23,7 +23,7 @@
     align-items: center;
 }
 
-.content h3 {
+.content h2 {
     font-weight: 500;
     margin: 8px 0;
 }
@@ -73,6 +73,11 @@ input:disabled {
     align-items: center;
 }
 
+.label{
+    align-self: flex-start;
+    margin: 0 0 4px 26px;
+}
+
 .column-2 {
     width: 50%;
     display: flex;
@@ -84,6 +89,7 @@ input:disabled {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 4px;
 }
 
 .content button {
