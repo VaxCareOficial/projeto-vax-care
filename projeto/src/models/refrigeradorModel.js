@@ -51,9 +51,9 @@ function buscarTipoDeVacina(idRefrigerador) {
 }
 
 
-function buscarAlertasDosRefrigeradores(idUsuario) {
+function buscarAlertasDosRefrigeradores(idSensor) {
 
-    var instrucaoSql = ``
+    var instrucaoSql = `SELECT * FROM sensor JOIN dadosSensor ON idSensor = fkSensor WHERE idSensor = ${idSensor} AND statusAlert IN('Alerta Frio', 'Alerta Calor', 'Crítico Frio', 'Crítico Calor') order by DataAtual Desc LIMIT 1;`
                                 
     return database.executar(instrucaoSql);
 }

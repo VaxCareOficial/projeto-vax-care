@@ -87,11 +87,11 @@ function buscarTipoDeVacina(req, res) {
 
 function  buscarAlertasDosRefrigeradores(req, res) {
 
-    var idUsuario = req.params.idUsuario;
+    var idSensor = req.params.idSensor;
 
     console.log(`Recuperando todos os dados dos refrigeradores disponiveis para o usuario logado`);
 
-    refrigeradorModel. buscarAlertasDosRefrigeradores(idUsuario).then(function (resultado) {
+    refrigeradorModel. buscarAlertasDosRefrigeradores(idSensor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

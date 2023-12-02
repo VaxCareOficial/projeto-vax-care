@@ -19,7 +19,7 @@ router.get("/buscarVacina/:searchText", function (req, res) {
     refrigeradorController.buscarTipoDeVacina(req, res);
 })
 
-router.get("/buscarDados/:idUsuario", function (req, res) {
+router.get("/buscarAlertas/:idSensor", function (req, res) {
     refrigeradorController.buscarAlertasDosRefrigeradores(req, res);
 })
 

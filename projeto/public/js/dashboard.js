@@ -25,7 +25,6 @@ window.addEventListener("load", () => {
 });
 
 function validarRefrigeradoresDisponiveis(idUsuario) {
-
     fetch(`/refrigerador/buscarRefrigeradores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
           console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
@@ -34,11 +33,24 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
                 listaDisponivel.push(dado.idRefrigerador)
                 listaSensores.push(dado.idSensor)
             }
+
+
+            buscarAlertas()
         });
 
     })
 }
 
+// função que busca o ultimo alerta de cada sensor/refrigerador
+
+async function buscarAlertas(){
+    for (let i = 0; i < listaSensores.length; i++) {
+        var resposta = await fetch(`/refrigerador/buscarAlertas/${listaSensores[i]}`)
+        var dado = await resposta.json();
+       console.log(dado);
+       alert(dado[0].statusAlert);
+    }
+}
 
 function cleanSearch() {
     inputSearch.value = "";
@@ -265,24 +277,6 @@ function selecionarTipodeVacina(searchText) {
 
     })
 }
-
-
-// Função que retorna os dados para montar s notificações de alertas
-
-function buscarAlertasDosSensores(idUsuario){
-    
-    fetch(`/refrigerador/buscarAlertas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-        response.json().then(function (resposta) {
-            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
-
-            
-
-        });
-
-    })
-}
-
-
 
 
 inputSearch.addEventListener("input", searchSensor);
