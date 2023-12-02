@@ -16,7 +16,7 @@ function buscarDados(idRefrigerador, idUsuario, limite_linhas){
                         idUsuario, 
                         idRefrigerador, 
                         idSensor, 
-                        idDadosSensor, temperatura, DATE_FORMAT(dataHoraAtual, "%d/%m %H:%i:%S") as data, statusTemperatura
+                        idDadosSensor, temperatura, DATE_FORMAT(dataAtual, "%d/%m %H:%i:%S") as data, statusAlert
                             from usuario join enderecoFilial on fkEnderecoFilial = idEnderecoFilial 
                                 join refrigerador as r on r.fkEnderecoFilial = idEnderecoFilial 
                                     join sensor on fkSensor = idSensor
@@ -32,7 +32,7 @@ function buscarDados(idRefrigerador, idUsuario, limite_linhas){
 
 function buscarMedidasEmTempoReal(idRefrigerador) {
 
-    var instrucaoSql = `select idDadosSensor, temperatura,  DATE_FORMAT(dataHoraAtual,'%d/%m %H:%i:%s')AS data, statusTemperatura, ds.fkSensor 
+    var instrucaoSql = `select idDadosSensor, temperatura,  DATE_FORMAT(dataAtual,'%d/%m %H:%i:%s')AS data, statusAlert, ds.fkSensor 
                             from dadosSensor ds join sensor on ds.fkSensor = idSensor 
                             join refrigerador r on idSensor = r.fkSensor
                             where idRefrigerador = ${idRefrigerador}

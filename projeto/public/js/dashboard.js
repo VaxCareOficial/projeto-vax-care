@@ -12,13 +12,18 @@ const idUsuario = sessionStorage.getItem("idUsuario");
 let proximaAtualizacao;
 let refrigeradorDisponivel = ``;
 
+let listaDisponivel =[]
+
 
 function validarRefrigeradoresDisponiveis(idUsuario){
 
     fetch(`/refrigerador/buscarRefrigeradores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
           console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
-            
+            for (let i = 0; i < resposta.length; i++) {
+                let dado = resposta[i]
+                listaDisponivel.push(dado.idRefrigerador)
+            }
         });
   
       })
@@ -36,7 +41,7 @@ function cleanSearch() {
     variacao.innerHTML = ``
 }
 
-imgInput.addEventListener("click", cleanSearch);
+imgInput.addEventListener("click", cleanSearch)
 
 const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
 
@@ -47,9 +52,18 @@ function searchSensor() {
     let searchText = inputSearch.value;
 
     id_refrigerador_pesquisado.innerHTML = searchText;
+
+    let existeRefrigeradorNaLista = false;
+
+    for(var i=0; i< listaDisponivel.length; i++){
+
+        if(listaDisponivel[i] == searchText){
+            existeRefrigeradorNaLista = true;
+        }
+    }
     
 
-    if (searchText != "") {
+    if (existeRefrigeradorNaLista == true && searchText!="") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
         imgInput.src = "../assets/svg/x-icon.svg";
         imgInput.classList.add("active");
@@ -59,7 +73,7 @@ function searchSensor() {
         selecionarTipodeVacina(searchText);
         
 
-        
+
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
@@ -84,7 +98,8 @@ function searchSensor() {
             });
 
     } else {
-        cleanSearch();
+        cleanSearch()
+        alert(`Voce nao tem o sensor ${searchText}`);
     }
 }
 
@@ -266,9 +281,31 @@ function selecionarTipodeVacina(searchText){
 }
 
 
+// var key = event.keyCode || event.charCode;
 
+// if( key == 8 || key == 46 )
+//     return false;
+// };
 
-inputSearch.addEventListener("input", searchSensor);
+inputSearch.addEventListener('input', function(inputSearch) {
+    const key = event.key; // const {key} = event; ES6+
+    if (key === "Backspace" || key === "Delete") {
+        return false;
+    }else{
+        searchSensor()
+    }
+});
+
+// inputSearch.oninput=function(){
+//     var key = event.key;
+//      if(key === "Backspace" || key === "Delete"){
+//         inputSearch.value=""
+//         return false
+//      }else{
+//         searchSensor()
+//      }
+    
+// }
 
 
 

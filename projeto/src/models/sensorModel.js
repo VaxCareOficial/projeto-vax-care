@@ -11,7 +11,7 @@ function cadastrarMedidas(fkSensor, temperatura, statusTemperatura) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO dadosSensor (temperatura, dataHoraAtual, statusTemperatura, fkSensor) VALUES (${temperatura},now(),'${statusTemperatura}', ${fkSensor});
+        INSERT INTO dadosSensor (temperatura, dataAtual, statusAlert, fkSensor) VALUES (${temperatura},now(),'${statusTemperatura}', ${fkSensor});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
