@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/vax-care-logo.png">
     <link rel="stylesheet" href="../css/dashboard-menu.css">
-    <link rel="stylesheet" href="../css/relatorio.css">
+    <link rel="stylesheet" href="../css/gerenciador-vacina.css">
     <title>Relatórios | Vax Care</title>
 </head>
 
@@ -24,7 +24,57 @@
                 </button>
             </div>
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div class="column-1">
+
+                <h2>Cadastrar vacina</h2>
+                
+                <div class="input-container">
+                <label class="label" for="inputTipoVacina">Tipo Vacina</label>
+                <input type="text" placeholder="Insira o tipo de vacina" id="inputTipoVacina">
+
+            </div>
+
+        <div class="input-container">
+            <label class="label" for="inputTemperaturaMaxima">Temperatura máxima</label>
+                <input type="text" placeholder="Insira a temperatura máxima" id="inputTemperaturaMaxima">
+            
+            </div>
+
+        <div class="input-container">
+            <label class="label" for="inputTemperaturaMinima">Temperatura mínima</label>
+                <input type="text" placeholder="Insira a temperatura mínima" id="inputTemperaturaMinima">
+            
+            </div>
+
+                <button>Cadastrar</button>
+                <button>Exibir vacinas</button>
+            </div>
+            <div class="column-2"> 
+                <h2>Cadastrar refrigerador</h2>
+                <div class="input-container">
+                <label class="label" for="inputNomeSensor">Nome do sensor</label>
+                <input type="text" placeholder="Insira o nome do sensor" id="inputNomeSensor">
+            </div>
+
+                <div class="input-container">
+                <label class="label" for="selectTipoVacina">Tipo de vacina</label>
+                <select id="selectTipoVacina">
+                    <option value="0">Selecionar</option>
+                  </select>
+                </div>
+
+                <div class="input-container">
+                  <label class="label" for="selectFilial">Filial</label>
+                  <select id="selectFilial">
+                    <option value="0">Selecionar</option>
+                  </select>
+                </div>
+
+                  <button>Cadastrar</button>
+                  <button>Exibir refrigeradores</button>
+                
+        </div>
     </div>
 
     <script src="../js/menu.js"></script>
