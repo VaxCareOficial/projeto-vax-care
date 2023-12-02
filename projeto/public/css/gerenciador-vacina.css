@@ -1,3 +1,4 @@
+
 .content {
     display: flex;
     padding: 50px;
@@ -9,23 +10,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.form-usuario {
-    display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.form-endereco {
+.column-2 {
+    width: 50%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.content h2 {
+.content h2{
     font-weight: 500;
     margin: 8px 0;
+    margin-bottom: 26px;
 }
 
 input,
@@ -73,7 +72,7 @@ input:disabled {
     align-items: center;
 }
 
-.label{
+ .label{
     align-self: flex-start;
     margin: 0 0 4px 26px;
 }
@@ -89,8 +88,9 @@ input:disabled {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 4px;
+    margin-bottom: 8px;
 }
+
 
 .content button {
     background-color: #303030;
