@@ -7,20 +7,29 @@ const inputSearch = document.getElementById("inputSearch");
 const imgInput = document.getElementById("imgInput");
 
 const idUsuario = sessionStorage.getItem("idUsuario");
+const nomeUsuario = sessionStorage.getItem("nomeUsuario");
+const nomeFantasia = sessionStorage.getItem("nomeFantasia");
 
 let proximaAtualizacao;
 let refrigeradorDisponivel = ``;
 
+window.addEventListener("load", () => {
+    if (tipoUsuario == "Administrador") {
+        nome.innerHTML = nomeFantasia;
+    } else {
+        nome.innerHTML = nomeUsuario;
+    }
+});
 
-function validarRefrigeradoresDisponiveis(idUsuario){
+function validarRefrigeradoresDisponiveis(idUsuario) {
 
     fetch(`/refrigerador/buscarRefrigeradores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
-          console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
-            
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+
         });
-  
-      })
+
+    })
 }
 
 
@@ -44,7 +53,7 @@ function searchSensor() {
     let searchText = inputSearch.value;
 
     id_refrigerador_pesquisado.innerHTML = searchText;
-    
+
 
     if (searchText != "") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
@@ -54,9 +63,9 @@ function searchSensor() {
         containerSensor.forEach((e) => e.style.display = "flex");
 
         selecionarTipodeVacina(searchText);
-        
 
-        
+
+
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
@@ -115,7 +124,7 @@ function plotarGrafico(resposta, searchText) {
         // var registro = resposta[i];
         labels.push(resposta[i].data);
         dados.datasets[0].data.push(resposta[i].temperatura);
-        
+
     }
 
     console.log('----------------------------------------------')
@@ -148,7 +157,7 @@ function atualizarGrafico(searchText, dados, myChart) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
-                
+
                 // alertar(novoRegistro, idAquario);
                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                 console.log(`Dados atuais do gráfico:`);
@@ -160,17 +169,17 @@ function atualizarGrafico(searchText, dados, myChart) {
                 let diferencaTemperatura = 90;
                 let mensagemDiferencaTemperatura = ``
 
-                if(novoRegistro[0].temperatura < 4.46){
+                if (novoRegistro[0].temperatura < 4.46) {
 
                     diferencaTemperatura = 4.46 - novoRegistro[0].temperatura;
                     mensagemDiferencaTemperatura = `Abaixo da temperatura ideal`
 
-                }else if(novoRegistro[0].temperatura > 6.75){
+                } else if (novoRegistro[0].temperatura > 6.75) {
 
                     diferencaTemperatura = 6.75 - novoRegistro[0].temperatura;
                     mensagemDiferencaTemperatura = `Acima da temperatura ideal`
 
-                }else{
+                } else {
 
                     diferencaTemperatura = novoRegistro[0].temperatura - 0;
                     mensagemDiferencaTemperatura = `Dentro da temperatura ideal`
@@ -178,13 +187,13 @@ function atualizarGrafico(searchText, dados, myChart) {
 
                 id_diferenca_temperatura.innerHTML = `${diferencaTemperatura.toFixed(2)}°C`;
                 id_mensagem_diferenca_temperatura.innerHTML = mensagemDiferencaTemperatura;
-                
+
 
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                 // avisoCaptura.innerHTML = ""
 
 
-                if (novoRegistro[0].data == dados.labels[dados.labels.length-1]) {
+                if (novoRegistro[0].data == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
                     console.log("igual caralho")
@@ -194,7 +203,7 @@ function atualizarGrafico(searchText, dados, myChart) {
                     console.log(dados.labels[dados.labels.length - 1])
                     console.log("---------------------------------------------------------------")
 
-                   
+
                 } else {
                     // tirando e colocando valores no gráfico
                     console.log("difeente caralho")
@@ -204,7 +213,7 @@ function atualizarGrafico(searchText, dados, myChart) {
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de umidade
 
-                   
+
 
                     myChart.update();
                 }
@@ -225,17 +234,17 @@ function atualizarGrafico(searchText, dados, myChart) {
 }
 
 
-function selecionarTipodeVacina(searchText){
+function selecionarTipodeVacina(searchText) {
 
     fetch(`/refrigerador/buscarVacina/${searchText}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
-          console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
-  
-          id_tipo_vacina.innerHTML = resposta[0].nome;
-  
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+
+            id_tipo_vacina.innerHTML = resposta[0].nome;
+
         });
-  
-      })
+
+    })
 }
 
 

@@ -35,6 +35,9 @@ function validateInput() {
                 resposta.json().then(resposta => {
                     sessionStorage.setItem("idEmpresa", resposta[0].idEmpresa);
                     sessionStorage.setItem("idUsuario", resposta[0].idUsuario);
+                    sessionStorage.setItem("nomeUsuario", resposta[0].nome);
+                    sessionStorage.setItem("nomeFantasia", resposta[0].nomeFantasia);
+                    sessionStorage.setItem("tipoUsuario", resposta[0].tipoUsuario);
                     window.location.href = "dashboard/dashboard.html";
                 })
             } else {
