@@ -6,7 +6,9 @@
 
 .column-1 {
     width: 50%;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-usuario {
@@ -73,6 +75,9 @@ input:disabled {
 
 .column-2 {
     width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-container {
@@ -96,4 +101,9 @@ input:disabled {
 
 .content button:hover {
     background-color: #1f1f1f;
+}
+
+.container-button{
+    display: flex;
+    flex-direction: column;
 }
