@@ -1,5 +1,4 @@
-
-
+const form = document.getElementById("form");
 const line1Title = document.querySelector(".column-1 .line-1");
 const containerPrincipal = document.querySelectorAll(".container-principal");
 const containerSensor = document.querySelectorAll(".container-sensor");
@@ -13,7 +12,7 @@ const nomeFantasia = sessionStorage.getItem("nomeFantasia");
 let proximaAtualizacao;
 let refrigeradorDisponivel = ``;
 
-let listaDisponivel =[]
+let listaDisponivel = []
 let listaSensores = []
 
 window.addEventListener("load", () => {
@@ -28,7 +27,7 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
 
     fetch(`/refrigerador/buscarRefrigeradores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
-          console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
             for (let i = 0; i < resposta.length; i++) {
                 let dado = resposta[i]
                 listaDisponivel.push(dado.idRefrigerador)
@@ -38,7 +37,6 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
 
     })
 }
-
 
 function cleanSearch() {
     inputSearch.value = "";
@@ -55,8 +53,6 @@ imgInput.addEventListener("click", cleanSearch)
 
 const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
 
-
-
 function searchSensor() {
 
     let searchText = inputSearch.value;
@@ -65,15 +61,12 @@ function searchSensor() {
     let existeRefrigeradorNaLista = false;
 
     for (let i = 0; i < listaDisponivel.length; i++) {
-        if(listaDisponivel[i]==searchText){
-            existeRefrigeradorNaLista=true
+        if (listaDisponivel[i] == searchText) {
+            existeRefrigeradorNaLista = true
         }
-        
     }
-    
 
-
-    if (existeRefrigeradorNaLista == true && searchText!="") {
+    if (existeRefrigeradorNaLista == true && searchText != "") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
         imgInput.src = "../assets/svg/x-icon.svg";
         imgInput.classList.add("active");
@@ -109,14 +102,11 @@ function searchSensor() {
 
     } else {
         cleanSearch()
-        alert(`Voce nao tem o sensor ${searchText}`);
+        alert(`Voce nao tem o refrigerador de número ${searchText}!`);
     }
 }
 
-
-
 function plotarGrafico(resposta, searchText) {
-
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
@@ -169,9 +159,7 @@ function plotarGrafico(resposta, searchText) {
     setTimeout(() => atualizarGrafico(searchText, dados, myChart), 2000);
 }
 
-
 function atualizarGrafico(searchText, dados, myChart) {
-
     fetch(`/refrigerador/buscarEmTempoReal/${searchText}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (novoRegistro) {
@@ -206,7 +194,7 @@ function atualizarGrafico(searchText, dados, myChart) {
 
                 id_diferenca_temperatura.innerHTML = `${diferencaTemperatura.toFixed(2)}°C`;
                 id_mensagem_diferenca_temperatura.innerHTML = mensagemDiferencaTemperatura;
-                
+
 
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                 // avisoCaptura.innerHTML = ""
@@ -252,9 +240,7 @@ function atualizarGrafico(searchText, dados, myChart) {
 
 }
 
-
 function selecionarTipodeVacina(searchText) {
-
     fetch(`/refrigerador/buscarVacina/${searchText}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
@@ -262,40 +248,25 @@ function selecionarTipodeVacina(searchText) {
             id_tipo_vacina.innerHTML = resposta[0].nome;
 
         });
-
     })
 }
-
 
 // Função que retorna os dados para montar s notificações de alertas
 
-function buscarAlertasDosSensores(idUsuario){
-    
+function buscarAlertasDosSensores(idUsuario) {
     fetch(`/refrigerador/buscarAlertas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (resposta) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
-
-            
-
         });
-
     })
 }
 
-
-
-
-inputSearch.addEventListener("input", searchSensor);
-
-
-
-function retornarIndex() {
-    sessionStorage.clear();
-    window.location.href = "../index.html"
+function enviarPorEnter(e) {
+    if (e.key == "Enter") {
+        if (document.activeElement != searchBtn) {
+            searchBtn.click();
+        }
+    }
 }
 
-window.addEventListener("load", () => {
-    if (!idEmpresa) {
-        window.location.href = "../login.html";
-    }
-});
+document.addEventListener("keypress", enviarPorEnter);
