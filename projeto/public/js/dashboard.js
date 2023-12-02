@@ -14,6 +14,7 @@ let proximaAtualizacao;
 let refrigeradorDisponivel = ``;
 
 let listaDisponivel =[]
+let listaSensores = []
 
 window.addEventListener("load", () => {
     if (tipoUsuario == "Administrador") {
@@ -31,6 +32,7 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
             for (let i = 0; i < resposta.length; i++) {
                 let dado = resposta[i]
                 listaDisponivel.push(dado.idRefrigerador)
+                listaSensores.push(dado.idSensor)
             }
         });
 
@@ -60,7 +62,16 @@ function searchSensor() {
     let searchText = inputSearch.value;
 
     id_refrigerador_pesquisado.innerHTML = searchText;
+    let existeRefrigeradorNaLista = false;
+
+    for (let i = 0; i < listaDisponivel.length; i++) {
+        if(listaDisponivel[i]==searchText){
+            existeRefrigeradorNaLista=true
+        }
+        
+    }
     
+
 
     if (existeRefrigeradorNaLista == true && searchText!="") {
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
@@ -249,6 +260,22 @@ function selecionarTipodeVacina(searchText) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
 
             id_tipo_vacina.innerHTML = resposta[0].nome;
+
+        });
+
+    })
+}
+
+
+// Função que retorna os dados para montar s notificações de alertas
+
+function buscarAlertasDosSensores(idUsuario){
+    
+    fetch(`/refrigerador/buscarAlertas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+
+            
 
         });
 

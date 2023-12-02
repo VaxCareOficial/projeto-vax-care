@@ -1,6 +1,8 @@
 CREATE DATABASE bdVaxCare;
 USE bdVaxCare;
 
+drop database bdvaxcare;
+
 CREATE USER 'vaxcare'@'localhost' IDENTIFIED BY 'vaxcare123';
 GRANT ALL PRIVILEGES ON bdVaxCare.* TO 'vaxcare'@'localhost';
 FLUSH PRIVILEGES;
@@ -32,7 +34,9 @@ CREATE TABLE Usuario (
     tipoUsuario VARCHAR(25),
     CONSTRAINT chkTipoUsuario CHECK (tipoUsuario IN('Administrador', 'Funcionário')),
     fkEnderecoFilial INT,
-    CONSTRAINT fkEnderecoFilialUsuario FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial)
+    CONSTRAINT fkEnderecoFilialUsuario FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial),
+    fkEmpresa INT,
+    CONSTRAINT fk_Empresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 CREATE TABLE Vacina (
@@ -86,11 +90,13 @@ INSERT INTO EnderecoFilial (idEnderecoFilial, cep, logradouro, cidade, bairro, c
 -- Comando de select, para verificar os endereços de cada empresa
 select * from empresa join enderecoFilial on idEmpresa = fkEmpresa;
 
-INSERT INTO Usuario (idUsuario, nome, email, senha, tipoUsuario, fkEnderecoFilial) VALUES
-(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 1002),
-(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 1003),
-(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 1001),
-(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1000); 
+select * from empresa;
+
+INSERT INTO Usuario (idUsuario, nome, email, senha, tipoUsuario, fkEnderecoFilial, fkEmpresa) VALUES
+(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 1002, 3),
+(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 1003, 4),
+(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 1001, 2),
+(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1000, 1); 
 
 INSERT INTO Vacina VALUES
 (1, 'Covid-19', '2', '8'), 
@@ -124,3 +130,16 @@ JOIN Vacina AS v ON r.fkVacina = v.idVacina
 JOIN Sensor AS s ON r.fkSensor = s.idSensor 
 JOIN Empresa as em ON e.fkEmpresa = em.idEmpresa
 WHERE idEmpresa = 2;
+
+
+-- insert teste para a dashboard
+
+insert into sensor (idSensor, nome)values 
+(null, 'teste'),
+(null, 'teste2');
+
+select * from sensor;
+
+insert into refrigerador (idRefrigerador, fkSensor, fkVacina, fkEnderecoFilial) values 
+(null, 8, 1, 1000),
+(null, 9, 3, 1000);

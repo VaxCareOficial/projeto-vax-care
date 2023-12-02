@@ -4,7 +4,8 @@ var database = require("../database/config");
 
 function buscarRefrigeradoresDisponiveis(idUsuario) {
 
-    var instrucaoSql = `select idRefrigerador from refrigerador join enderecoFilial on fkEnderecoFilial = idEnderecoFilial join usuario u on idEnderecoFilial = u.fkEnderecoFilial where idUsuario = ${idUsuario};`
+    var instrucaoSql = `select idRefrigerador, idSensor from refrigerador join enderecoFilial on fkEnderecoFilial = idEnderecoFilial join usuario u on idEnderecoFilial = u.fkEnderecoFilial 
+    JOIN sensor ON fkSensor = idSensor where idUsuario = ${idUsuario};`
                                 
     return database.executar(instrucaoSql);
 }
@@ -50,9 +51,19 @@ function buscarTipoDeVacina(idRefrigerador) {
 }
 
 
+function buscarAlertasDosRefrigeradores(idUsuario) {
+
+    var instrucaoSql = ``
+                                
+    return database.executar(instrucaoSql);
+}
+
+
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
     buscarMedidasEmTempoReal,
-    buscarTipoDeVacina
+    buscarTipoDeVacina,
+    buscarAlertasDosRefrigeradores
 }

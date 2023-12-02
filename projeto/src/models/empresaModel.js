@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function autenticar(email, senha) {
     var instrucao = `
-    SELECT * FROM usuario JOIN enderecoFilial ON fkEnderecoFilial = idEnderecoFilial WHERE email = '${email}' AND senha = '${senha}';
+    SELECT * FROM usuario JOIN empresa on fkEmpresa = idEmpresa WHERE email = '${email}' AND senha = '${senha}'
     `;
     return database.executar(instrucao);
 }
