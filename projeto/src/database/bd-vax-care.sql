@@ -21,7 +21,7 @@ CREATE TABLE EnderecoFilial (
     complemento VARCHAR(45),
     uf CHAR(2),
     fkEmpresa INT,
-    CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    CONSTRAINT fkEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 ) AUTO_INCREMENT = 1000;
 
 CREATE TABLE Usuario (
@@ -31,8 +31,6 @@ CREATE TABLE Usuario (
     senha VARCHAR(45),
     tipoUsuario VARCHAR(25),
     CONSTRAINT chkTipoUsuario CHECK (tipoUsuario IN('Administrador', 'Funcionário')),
-    fkEmpresa INT,
-    CONSTRAINT fkEmpresaUsuario FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     fkEnderecoFilial INT,
     CONSTRAINT fkEnderecoFilialUsuario FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial)
 );
@@ -50,12 +48,13 @@ CREATE TABLE Sensor (
 );
 
 CREATE TABLE DadosSensor (
-	idDadosSensor INT PRIMARY KEY AUTO_INCREMENT,
+	idDadosSensor INT AUTO_INCREMENT,
 	temperatura DECIMAL(4,2),
 	dataAtual TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     statusAlert VARCHAR(45),
 	fkSensor INT,
-	CONSTRAINT fkSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor)
+	CONSTRAINT fkSensor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor),
+    PRIMARY KEY(idDadosSensor, fkSensor)
 );
 
 CREATE TABLE Refrigerador (
@@ -68,28 +67,34 @@ CREATE TABLE Refrigerador (
 	CONSTRAINT fkEnderecoFilial FOREIGN KEY (fkEnderecoFilial) REFERENCES EnderecoFilial(idEnderecoFilial)
 );
 
-INSERT INTO Empresa VALUES
+
+-- Script de Inserção
+
+INSERT INTO Empresa (idEmpresa, nomeFantasia, razaoSocial, cnpj) VALUES
 (null, 'VacinneCare', 'Vaccine Care Franqueadora LTDA', '26186289000179'),
 (null, 'Pfizer', 'Laboratórios Pfizer Ltda', '46070868001998'),
 (null, 'Astrazeneca', 'ASTRAZENECA DO BRASIL LTDA', '60318797000100'),
 (null, 'Biontech', 'Biontech Solucoes Em Tecnologia LTDA',  '27400744000150');
 
-INSERT INTO EnderecoFilial VALUES
+INSERT INTO EnderecoFilial (idEnderecoFilial, cep, logradouro, cidade, bairro, complemento, uf, fkEmpresa) VALUES
 (null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
-(null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
-(null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
-(null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
-(null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
+(null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 2), 
+(null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 3),
+(null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 4),
+(null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 2);
 
-INSERT INTO Usuario VALUES
-(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3),
-(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 4),
-(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 2),
-(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1); 
+-- Comando de select, para verificar os endereços de cada empresa
+select * from empresa join enderecoFilial on idEmpresa = fkEmpresa;
+
+INSERT INTO Usuario (idUsuario, nome, email, senha, tipoUsuario, fkEnderecoFilial) VALUES
+(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 1002),
+(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 1003),
+(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 1001),
+(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1000); 
 
 INSERT INTO Vacina VALUES
-(1, 'Covid-19', '-15', '-25'), 
-(2, 'Gripe', '2', '8'),
+(1, 'Covid-19', '2', '8'), 
+(2, 'Pentavalente', '2', '8'),
 (3, 'Tetano', '2', '8'),
 (4, 'Febre Amarela', '2', '8'); 
 
@@ -97,13 +102,21 @@ INSERT INTO Sensor VALUES
 (null, 'LM35-A1'),
 (null, 'LM35-A2'),
 (null, 'LM35-A3'),
-(null, 'LM35-A4'); 
+(null, 'LM35-A4'),
+(null, 'LM35-A5'),
+(null, 'LM35-A6'),
+(null, 'LM35-A7'); 
 
-INSERT INTO Refrigerador VALUES
-(1, 1, 4, 5),
-(2, 3, 2, 1),
-(3, 2, 3, 4),
-(4, 4, 1, 3);
+INSERT INTO Refrigerador (idRefrigerador, fkSensor, fkVacina, fkEnderecoFilial) VALUES
+(null, 1, 4, 1000),
+(null, 2, 2, 1001),
+(null, 3, 3, 1002),
+(null, 4, 1, 1003),
+(null, 5, 1,1003),
+(null, 6, 2, 1003),
+(null, 7, 4, 1003);
+
+select * from refrigerador join enderecoFilial on fkEnderecoFilial = idEnderecoFilial;
 
 SELECT idRefrigerador, s.nome AS 'Nome do sensor', v.nome AS 'Nome da vacina', em.nomeFantasia AS 'Empresa', e.cep AS 'Cep', e.logradouro AS 'Logradouro', e.cidade AS 'Cidade', e.bairro AS 'Bairro', e.complemento AS 'Complemento', e.uf AS 'UF'
 FROM Refrigerador AS r JOIN enderecoFilial AS e ON r.fkEnderecoFilial = e.idEnderecoFilial 

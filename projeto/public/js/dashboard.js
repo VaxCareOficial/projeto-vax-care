@@ -32,6 +32,8 @@ function cleanSearch() {
     imgInput.classList.remove("active");
     containerPrincipal.forEach((e) => e.style.display = "flex");
     containerSensor.forEach((e) => e.style.display = "none");
+
+    variacao.innerHTML = ``
 }
 
 imgInput.addEventListener("click", cleanSearch);
@@ -168,7 +170,7 @@ function atualizarGrafico(searchText, dados, myChart) {
 
                 }else if(novoRegistro[0].temperatura > 6.75){
 
-                    diferencaTemperatura = 6.75 - novoRegistro[0].temperatura;
+                    diferencaTemperatura = novoRegistro[0].temperatura - 6.75;
                     mensagemDiferencaTemperatura = `Acima da temperatura ideal`
 
                 }else{
@@ -179,6 +181,30 @@ function atualizarGrafico(searchText, dados, myChart) {
 
                 id_diferenca_temperatura.innerHTML = `${diferencaTemperatura.toFixed(2)}°C`;
                 id_mensagem_diferenca_temperatura.innerHTML = mensagemDiferencaTemperatura;
+
+                if(novoRegistro[0].statusTemperatura == "Crítio Frio"){
+                    mensagem_alerta.innerHTML = `A última temperatura capturada por este refrigerador apresenta uma queda crítica de temperatura, na qual os lotes armazenados podem ter sido perdidos.`
+                
+                }else if(novoRegistro[0].statusTemperatura == "Alerta Frio"){
+
+                    mensagem_alerta.innerHTML = `Uma queda de temperatura constante pode representar uma ameaça significativa para a
+                    integridade das vacinas, aumentando o risco de perdas.`
+
+                }else if(novoRegistro[0].statusTemperatura == "Ideal"){
+
+                    mensagem_alerta.innerHTML = `Refrigerador funcionando dentro de ua temperatura ideal. A integridade dos lotes de vacina, não corre riscos`
+                
+                }else if(novoRegistro[0].statusTemperatura == "Alerta calor"){
+
+                    mensagem_alerta.innerHTML = `Um aumento de temperatura constante pode representar uma ameaça significativa para a
+                    integridade das vacinas, aumentando o risco de perdas.`
+
+                }else if(novoRegistro[0].statusTemperatura == "Crítico Calor"){
+
+                    mensagem_alerta.innerHTML = `A última temperatura capturada por este refrigerador apresenta uma aumento crítico de temperatura, na qual os lotes armazenados podem ter sido perdidos.`
+
+                }
+                
                 
 
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)

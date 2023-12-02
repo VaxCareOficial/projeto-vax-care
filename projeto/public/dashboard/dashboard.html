@@ -14,7 +14,7 @@
 
  <!-- simularSensorJogandoDadoNoBanco() -->
 
-<body > 
+<body> 
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -112,8 +112,7 @@
                             <div class="box-2">
 
                                 <img src="../assets/svg/warning.svg" alt="">
-                                <p>Uma queda de temperatura constante pode representar uma ameaça significativa para a
-                                    integridade das vacinas, aumentando o risco de perdas.</p>
+                                <p id="mensagem_alerta"></p>
 
                             </div>
 
@@ -189,7 +188,7 @@
                         <div class="line-2">
 
 
-                            <div class="block-top-chart">
+                            <div class="block-top-chart" id="variacao">
                                 <h3 class="title-graphic">Variação de temperatura em tempo real</h3>
                                 <canvas id="grafico_variacao_temperatura"></canvas>
                             </div>
@@ -233,30 +232,7 @@
                                     });
                                 </script>
 
-                                <div class="block-bottom-graph-2">
-                                    <h5>Resolução acerca dos alertas</h5>
-                                    <canvas id="pieChart"></canvas>
-
-                                    <script>
-                                        var context = document.getElementById('pieChart').getContext('2d');
-
-                                        var data = {
-                                            datasets: [{
-                                                data: [25, 75], // Os valores representam 25% e 75%
-                                                backgroundColor: ['#ea5965', '#b2e8ab'], // Cores das fatias
-                                            }],
-                                            labels: ['Resultou em perda total', 'Voltou ao seu funcionamento ideal'], // Rótulos das fatias
-                                        };
-
-                                        var options = {}; // Adicione opções aqui, se necessário
-
-                                        var pieChart = new Chart(context, {
-                                            type: 'pie', // Tipo de gráfico é 'pie' para gráfico de pizza
-                                            data: data,
-                                            options: options
-                                        });
-                                    </script>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
