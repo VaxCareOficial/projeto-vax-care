@@ -58,6 +58,18 @@ function buscarAlertasDosRefrigeradores(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function contarRefrigeradoresEmpresa(idEmpresa){
+
+    var instrucaoSql = `select count(idRefrigerador) 
+    as qtdRefrigerador 
+    from Refrigerador 
+    as r 
+    join enderecoFilial as e on r.fkEnderecoFilial = e.idEnderecoFilial WHERE fkEmpresa = ${idEmpresa};`
+                                
+    return database.executar(instrucaoSql);
+    
+}
+
 function cadastrar(idSensor, idVacina, idEnderecoFilial) {
 
     var instrucaoSql = `INSERT INTO Refrigerador VALUES (null, ${idSensor}, ${idVacina}, ${idEnderecoFilial})`
@@ -74,5 +86,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     buscarTipoDeVacina,
     buscarAlertasDosRefrigeradores,
+    contarRefrigeradoresEmpresa,
     cadastrar
 }

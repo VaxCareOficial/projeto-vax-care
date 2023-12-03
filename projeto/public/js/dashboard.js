@@ -262,6 +262,15 @@ function selecionarTipodeVacina(searchText) {
     })
 }
 
+function contarRefrigeradoresEmpresa(){
+    fetch(`/refrigerador/contarRefrigeradoresEmpresa/${idEmpresa}`)
+    .then(resposta => {
+        resposta.json().then(resposta => {
+            refrigeradoresRegistrados.innerHTML = resposta[0].qtdRefrigerador;
+        })
+    })
+}
+
 function enviarPorEnter(e) {
     if (e.key == "Enter") {
         if (document.activeElement != searchBtn) {

@@ -16,7 +16,7 @@
 
 <!-- simularSensorJogandoDadoNoBanco() -->
 
-<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario)">
+<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -40,7 +40,7 @@
                     <div class="container-principal">
                         <div class="line-2">
                             <div class="box">
-                                <h1 style="color: #74abe0;">50</h1>
+                                <h1 id="refrigeradoresRegistrados" style="color: #74abe0;">50</h1>
                                 <h5>Refrigeradores registrados</h5>
 
                             </div>

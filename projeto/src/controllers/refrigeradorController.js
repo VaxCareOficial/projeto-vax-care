@@ -106,6 +106,17 @@ function buscarAlertasDosRefrigeradores(req, res) {
     });
 }
 
+function contarRefrigeradoresEmpresa(req, res) {
+
+    var idEmpresa = req.params.idEmpresa;
+
+    refrigeradorModel.contarRefrigeradoresEmpresa(idEmpresa)
+        .then(function (resultado) {
+            res.status(200).json(resultado)
+        }).catch(function (erro) {
+            console.log(erro)
+        })
+}
 
 function cadastrar(req, res) {
     var tipoVacina = req.body.tipoVacinaServer;
@@ -147,5 +158,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     buscarTipoDeVacina,
     buscarAlertasDosRefrigeradores,
+    contarRefrigeradoresEmpresa,
     cadastrar
 }

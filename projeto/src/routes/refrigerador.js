@@ -23,6 +23,10 @@ router.get("/buscarAlertas/:idSensor", function (req, res) {
     refrigeradorController.buscarAlertasDosRefrigeradores(req, res);
 })
 
+router.get("/contarRefrigeradoresEmpresa/:idEmpresa", function (req, res) {
+    refrigeradorController.contarRefrigeradoresEmpresa(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     refrigeradorController.cadastrar(req, res);
 })
