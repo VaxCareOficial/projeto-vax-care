@@ -178,8 +178,7 @@ function cadastrar() {
             })
         }).then(function (resposta) {
             if (resposta.status == 201) {
-                alert("Cadastro realizado com sucesso!");
-                window.location.href = "login.html";
+                abrirModal();
             }
         });
     }
@@ -232,6 +231,15 @@ function maskCnpj() {
     } else if (inputLength == 15) {
         inputCnpj.value += "-";
     }
+}
+
+function abrirModal() {
+    modalBackground.classList.add("active");
+    modal.classList.add("active");
+}
+
+function redirecionarLogin() {
+    window.location.href = "login.html";
 }
 
 // Remove a função padrão da tag de form (formulário). Sua função padrão seria enviar o usuário para outra página quando ele clicasse no botão de enviar ou pressionasse a tecla enter ao preencher o formulário.

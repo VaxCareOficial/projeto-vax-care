@@ -113,20 +113,30 @@ function redirecionarEnderecoFilial() {
   window.location.href = "../dashboard/endereco-filial.html";
 }
 
-function abrirModal(modal) {
-  modalBackground.classList.add("active");
+function abrirModalLogout(modal) {
+  modalLogoutBackground.classList.add("active");
 
   var idModal = modal.getAttribute("data-modal");
 
   document.getElementById(idModal).classList.add("active");
 }
 
-function fecharModal(modal) {
-  modalBackground.classList.remove("active");
+function fecharModalLogout(modal) {
+  modalLogoutBackground.classList.remove("active");
 
   var idModal = modal.getAttribute("data-modal");
 
   document.getElementById(idModal).classList.remove("active");
+}
+
+function abrirModalCadastro() {
+  modalCadastroBackground.classList.add("active");
+  modalCadastro.classList.add("active");
+}
+
+function fecharModalCadastro() {
+  modalCadastroBackground.classList.remove("active");
+  modalCadastro.classList.remove("active");
 }
 
 function retornarIndex() {

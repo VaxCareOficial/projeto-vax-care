@@ -262,7 +262,7 @@ p {
 .container .content .container .column-1 .container-principal .line-2 .box {
     display: flex;
     flex-direction: column;
-    padding: 3px;
+    padding: 8px;
 }
 
 .container .content .container .column-1 .container-principal .line-3 div,
