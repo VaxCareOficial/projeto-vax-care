@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
         Dashboard
       </button>
 
-      <button onclick="redirecionarPerfilEmpresa()" id="perfilEmpresaBtn">
+      <button onclick="redirecionarUsuario()" id="usuarioBtn">
         <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0, 0, 400,400">
           <g id="svgg">
@@ -44,10 +44,10 @@ window.addEventListener("load", () => {
               stroke="none" fill="#3ca9c2" fill-rule="evenodd"></path>
           </g>
         </svg>
-        Perfil Empresa
+        Gerenciar <br> usuário
       </button>
 
-      <button onclick="redirecionarGerenciarRefrigerador()" id="gerenciarRefrigeradorBtn">
+      <button onclick="redirecionarRefrigerador()" id="refrigeradorBtn">
       <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400"
       viewBox="0, 0, 400,400">
       <g id="svgg">
@@ -58,22 +58,42 @@ window.addEventListener("load", () => {
       </svg>
         Gerenciar <br> refrigerador
       </button>
+
+      <button onclick="redirecionarEnderecoFilial()" id="enderecoFilialBtn">
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400"
+      viewBox="0, 0, 400,400">
+      <g id="svgg">
+        <path id="path0"
+      d="M192.188 51.532 C 187.466 54.058,37.333 188.035,35.156 191.665 C 24.655 209.177,47.800 225.221,63.328 211.193 L 66.406 208.412 66.406 272.803 L 66.406 337.193 68.385 341.165 C 69.621 343.645,71.575 345.975,73.591 347.373 L 76.818 349.609 115.743 349.826 C 170.499 350.130,167.188 352.830,167.188 307.892 C 167.188 266.852,166.889 267.222,200.000 267.222 C 233.133 267.222,232.813 266.822,232.813 308.080 C 232.813 352.880,229.424 350.131,284.257 349.826 L 323.182 349.609 326.409 347.373 C 328.425 345.975,330.379 343.645,331.615 341.165 L 333.594 337.193 333.594 272.803 L 333.594 208.412 336.672 211.193 C 352.944 225.894,376.741 207.486,363.884 190.143 C 361.201 186.523,210.982 53.216,207.648 51.496 C 203.774 49.497,195.957 49.515,192.188 51.532 "
+      stroke="none" fill="#3ca9c2" fill-rule="evenodd"></path>
+      </g>
+      </svg>
+        Gerenciar <br> endereço filial
+      </button>
         `;
   }
 
   // Alterar a cor do texto do botão da página que está ativa.
   if (window.location.pathname == "/dashboard/dashboard.html") {
     dashboardBtn.classList.add("active");
-    perfilEmpresaBtn.classList.remove("active");
-    gerenciarRefrigeradorBtn.classList.remove("active");
-  } else if (window.location.pathname == "/dashboard/perfil-empresa.html") {
+    usuarioBtn.classList.remove("active");
+    refrigeradorBtn.classList.remove("active");
+    enderecoFilialBtn.classList.remove("active");
+  } else if (window.location.pathname == "/dashboard/usuario.html") {
     dashboardBtn.classList.remove("active");
-    perfilEmpresaBtn.classList.add("active");
-    gerenciarRefrigeradorBtn.classList.remove("active");
-  } else if (window.location.pathname == "/dashboard/gerenciar-refrigerador.html") {
+    usuarioBtn.classList.add("active");
+    refrigeradorBtn.classList.remove("active");
+    enderecoFilialBtn.classList.remove("active");
+  } else if (window.location.pathname == "/dashboard/refrigerador.html") {
     dashboardBtn.classList.remove("active");
-    perfilEmpresaBtn.classList.remove("active");
-    gerenciarRefrigeradorBtn.classList.add("active");
+    usuarioBtn.classList.remove("active");
+    refrigeradorBtn.classList.add("active");
+    enderecoFilialBtn.classList.remove("active");
+  } else if (window.location.pathname == "/dashboard/endereco-filial.html") {
+    dashboardBtn.classList.remove("active");
+    usuarioBtn.classList.remove("active");
+    refrigeradorBtn.classList.remove("active");
+    enderecoFilialBtn.classList.add("active");
   }
 });
 
@@ -81,12 +101,16 @@ function redirecionarDashboard() {
   window.location.href = "../dashboard/dashboard.html";
 }
 
-function redirecionarPerfilEmpresa() {
-  window.location.href = "../dashboard/perfil-empresa.html";
+function redirecionarUsuario() {
+  window.location.href = "../dashboard/usuario.html";
 }
 
-function redirecionarGerenciarRefrigerador() {
-  window.location.href = "../dashboard/gerenciar-refrigerador.html";
+function redirecionarRefrigerador() {
+  window.location.href = "../dashboard/refrigerador.html";
+}
+
+function redirecionarEnderecoFilial() {
+  window.location.href = "../dashboard/endereco-filial.html";
 }
 
 function retornarIndex() {

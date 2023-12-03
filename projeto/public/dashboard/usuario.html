@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../assets/img/vax-care-logo.png" />
+  <link rel="stylesheet" href="../css/dashboard-menu.css" />
+  <link rel="stylesheet" href="../css/usuario.css" />
+  <title>Gerenciar Usuário | Vax Care</title>
+</head>
+
+<body onload="gerarEnderecoFilial()">
+  <div class="container">
+    <div class="menu">
+      <div class="line-1">
+        <img src="../assets/svg/vax-care-logo.svg" alt="Logo Vax Care" />
+      </div>
+      <div class="line-2" id="line2"></div>
+      <div class="line-3">
+        <button id="btnLogout" onclick="retornarIndex()">
+          Logout
+          <img src="../assets/svg/logout-icon.svg" />
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="column-1">
+        <div>
+          <h2>Cadastrar Usuários</h2>
+
+          <div class="form-usuario">
+
+            <div class="input-container">
+              <label class="label" for="inputName">Nome</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome" id="inputName" />
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputEmail">E-mail</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o e-mail" id="inputEmail" />
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputPassword">Senha</label>
+              <input oninput="removerErroInput(this)" type="password" placeholder="Insira a senha" id="inputPassword" />
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputConfirmPassword">Confirmar senha</label>
+              <input oninput="removerErroInput(this)" type="password" placeholder="Confirme a Senha"
+                id="inputConfirmPassword" />
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="selectEnderecoFilial">Endereço filial</label>
+              <select oninput="removerErroInput(this)" id="selectEnderecoFilial">
+                <option value="0">Selecionar</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="container-button">
+            <button onclick="cadastrarUsuario()">Cadastrar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="column-2">
+        <!-- Tabela contendo os dados dos usuários -->
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="../js/menu.js"></script>
+  <script src="../js/usuario.js"></script>
+</body>
+
+</html>

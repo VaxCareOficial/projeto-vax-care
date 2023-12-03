@@ -1,0 +1,113 @@
+.content {
+    display: flex;
+    padding: 50px;
+    user-select: none;
+}
+
+.column-1 {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-endereco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content h2 {
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+input {
+    padding: 12px 12px 12px 16px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 50px;
+    width: 340px;
+    height: 45px;
+    transition: all .4s ease-in-out;
+}
+
+input.error {
+    background-color: #ffc2c2;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 4px #0000004d;
+}
+
+input::placeholder {
+    color: #3CA9C2;
+}
+
+input:disabled {
+    background-color: #f2f2f2;
+}
+
+.content .column-1 .line-2 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .column-2 .line-2 {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    align-self: flex-start;
+    margin: 0 0 4px 26px;
+}
+
+.column-2 {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.content button {
+    background-color: #303030;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 12px;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    width: 340px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.content button:hover {
+    background-color: #1f1f1f;
+}
+
+.container-button {
+    display: flex;
+    flex-direction: column;
+}

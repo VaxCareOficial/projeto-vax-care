@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/img/vax-care-logo.png">
+  <link rel="stylesheet" href="../css/dashboard-menu.css">
+  <link rel="stylesheet" href="../css/endereco-filial.css">
+  <title>Gerenciar Endereço Filial | Vax Care</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="menu">
+      <div class="line-1">
+        <img src="../assets/svg/vax-care-logo.svg" alt="Logo Vax Care">
+      </div>
+      <div class="line-2" id="line2"></div>
+      <div class="line-3">
+        <button id="btnLogout" onclick="retornarIndex()">
+          Logout
+          <img src="../assets/svg/logout-icon.svg">
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="column-1">
+        <div>
+          <h2>Cadastrar Endereço da Filial</h2>
+          <div class="form-endereco">
+
+            <div class="input-container">
+              <label class="label" for="inputCep">CEP</label>
+              <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" oninput="removerErroInput(this)" type="text"
+                placeholder="Insira o CEP" id="inputCep" maxlength="9">
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputLogradouro">Logradouro</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o logradouro"
+                id="inputLogradouro">
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputCidade">Cidade</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira a cidade" id="inputCidade">
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputBairro">Bairro</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o bairro" id="inputBairro">
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputUf">UF</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o UF" id="inputUf" maxlength="2">
+            </div>
+
+            <div class="input-container">
+              <label class="label" for="inputComplemento">Complemento</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o complemento"
+                id="inputComplemento">
+            </div>
+
+            <button onclick="cadastrarEndereco(), setTimeout(() => gerarEnderecoFilial(), 200)">
+              Cadastrar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="column-2">
+        <!-- Tabela contendo os dados dos endereços -->
+      </div>
+    </div>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/enderecoFilial.js"></script>
+</body>
+
+</html>
