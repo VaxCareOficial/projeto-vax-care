@@ -108,11 +108,10 @@ function buscarAlertasDosRefrigeradores(req, res) {
 
 
 function cadastrar(req, res) {
-
-    var tipoVacina = req.body.nomeVacinaServer;
+    var tipoVacina = req.body.tipoVacinaServer;
     var temperaturaMinima = req.body.temperaturaMinimaServer;
     var temperaturaMaxima = req.body.temperaturaMaximaServer;
-    var nomeSensor = req.body.nomeVacinaServer;
+    var nomeSensor = req.body.nomeSensorServer;
     var filial = req.body.filialServer;
 
     var ultimoIdVacina = 0;
@@ -127,7 +126,7 @@ function cadastrar(req, res) {
                     ultimoIdSensor = resultadoSensor.insertId;
 
                     refrigeradorModel.cadastrar(ultimoIdSensor, ultimoIdVacina, filial)
-                        .then(function() {
+                        .then(function () {
                             res.status(201).send("refrigerador cadastrado com sucesso!")
                         }).catch(function (error) {
                             console.log(error);
@@ -138,11 +137,6 @@ function cadastrar(req, res) {
         }).catch(function (error) {
             console.log(error);
         })
-
-
-
-
-
 }
 
 

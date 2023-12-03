@@ -10,7 +10,7 @@
     <title>Gerenciador de Vacinas | Vax Care</title>
 </head>
 
-<body onload="gerarVacina(), gerarEnderecoFilial()">
+<body onload="gerarEnderecoFilial()">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -26,35 +26,26 @@
         </div>
         <div class="content">
             <div class="column-1">
-
-                <h2>Cadastrar Vacina</h2>
+                <h2>Cadastrar Refrigerador</h2>
 
                 <div class="input-container">
-                    <label class="label" for="inputTipoVacina">Tipo vacina</label>
+                    <label class="label" for="inputTipoVacina">Tipo da vacina</label>
                     <input oninput="removerErroInput(this)" type="text" placeholder="Insira o tipo de vacina"
                         id="inputTipoVacina">
-
                 </div>
 
                 <div class="input-container">
                     <label class="label" for="inputTemperaturaMaxima">Temperatura máxima</label>
                     <input oninput="removerErroInput(this)" type="number" placeholder="Insira a temperatura máxima"
                         id="inputTemperaturaMaxima">
-
                 </div>
 
                 <div class="input-container">
                     <label class="label" for="inputTemperaturaMinima">Temperatura mínima</label>
                     <input oninput="removerErroInput(this)" type="number" placeholder="Insira a temperatura mínima"
                         id="inputTemperaturaMinima">
-
                 </div>
 
-                <button onclick="cadastrarVacina(), setTimeout(() => gerarVacina(), 200)">Cadastrar</button>
-                <button>Exibir vacinas</button>
-            </div>
-            <div class="column-2">
-                <h2>Cadastrar Refrigerador</h2>
                 <div class="input-container">
                     <label class="label" for="inputNomeSensor">Nome do sensor</label>
                     <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome do sensor"
@@ -62,22 +53,16 @@
                 </div>
 
                 <div class="input-container">
-                    <label class="label" for="selectTipoVacina">Tipo de vacina</label>
-                    <select oninput="removerErroInput(this)" id="selectTipoVacina">
-                        <option value="0">Selecionar</option>
-                    </select>
-                </div>
-
-                <div class="input-container">
-                    <label class="label" for="selectFilial">Endereço Filial</label>
+                    <label class="label" for="selectFilial">Endereço filial</label>
                     <select oninput="removerErroInput(this)" id="selectFilial">
                         <option value="0">Selecionar</option>
                     </select>
                 </div>
 
                 <button onclick="cadastrarRefrigerador()">Cadastrar</button>
-                <button>Exibir refrigeradores</button>
-
+            </div>
+            <div class="column-2">
+                <!-- Tabela contendo os dados dos refrigeradores -->
             </div>
         </div>
 
