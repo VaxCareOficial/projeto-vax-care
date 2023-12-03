@@ -52,7 +52,7 @@ async function buscarAlertas() {
 
 function limparBusca() {
     inputSearch.value = "";
-    line1Title.innerHTML = "<h1>Bem-vindo, <span>Pfizer</span></h1>";
+    line1Title.innerHTML = `<h1>Bem-vindo, <span>${nomeUsuario}</span></h1>`;
     imgInput.src = "../assets/svg/search-icon.svg";
     containerPrincipal.forEach((e) => e.style.display = "flex");
     containerSensor.forEach((e) => e.style.display = "none");
