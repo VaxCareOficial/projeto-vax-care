@@ -32,7 +32,7 @@ function cadastrarRefrigerador() {
                 inputNomeSensor.value = "";
                 selectFilial.value = 0;
 
-                alert("Refrigerador cadastrado com sucesso!");
+                abrirModalCadastro();
             } else {
                 console.log("Houve um problema ao cadastrar o refrigerador!");
             }

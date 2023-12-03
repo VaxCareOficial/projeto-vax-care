@@ -194,6 +194,7 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: all .4s ease-in-out;
+    user-select: none;
 }
 
 .modal-logout {
@@ -226,6 +227,11 @@ body {
     align-items: center;
 }
 
+.modal-logout .line-2 p {
+    margin-top: -6px;
+    font-weight: 500;
+}
+
 .modal-logout .line-3 {
     height: 30%;
     display: flex;
@@ -235,6 +241,7 @@ body {
 
 .modal-logout .line-3 button {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     text-transform: uppercase;
     color: #ffffff;
     padding: 12px 18px;
@@ -255,12 +262,12 @@ body {
 }
 
 .modal-logout .line-3 button:nth-child(2) {
-    background-color: #fb6969;
+    background-color: #3ca9c2;
     margin-left: 4px;
 }
 
 .modal-logout .line-3 button:nth-child(2):hover {
-    background-color: #ee3f3f;
+    background-color: #318ca0;
 }
 
 .modal-background.active {
@@ -269,5 +276,81 @@ body {
 }
 
 .modal-logout.active {
+    transform: scale(1);
+}
+
+.modal-cadastro {
+    width: 300px;
+    height: 250px;
+    border-radius: 24px;
+    padding-bottom: 12px;
+    background-color: #ffffff;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all .4s ease-in-out;
+}
+
+.modal-cadastro .line-1 {
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-cadastro .line-1 img {
+    all: unset;
+    height: 56px;
+    pointer-events: none;
+    margin-top: 12px;
+}
+
+.modal-cadastro .line-2 h4 {
+    font-size: 1.3rem;
+    color: #303030;
+    text-align: center;
+    font-weight: 500;
+}
+
+.modal-cadastro .line-2 {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-cadastro .line-3 {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.modal-cadastro .line-3 button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    user-select: none;
+    background-color: #3ca9c2;
+}
+
+.modal-cadastro .line-3 button:nth-child(1):hover {
+    background-color: #318fa4;
+}
+
+.modal-background.active,
+.modal-cadastro.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-cadastro.active {
     transform: scale(1);
 }

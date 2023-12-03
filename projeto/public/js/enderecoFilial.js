@@ -70,7 +70,7 @@ function cadastrarEndereco() {
                 inputBairro.removeAttribute("disabled");
                 inputUf.removeAttribute("disabled");
 
-                alert("Endereço cadastrado com sucesso!");
+                abrirModalCadastro();
             }
         });
     }

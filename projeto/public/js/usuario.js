@@ -34,7 +34,7 @@ function cadastrarUsuario() {
                 inputConfirmPassword.value = "";
                 selectEnderecoFilial.value = 0;
 
-                alert("Usuário cadastrado com sucesso!");
+                abrirModalCadastro();
             }
         });
     }
