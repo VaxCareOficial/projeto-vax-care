@@ -1,4 +1,3 @@
-
 .content {
     display: flex;
     padding: 50px;
@@ -21,10 +20,16 @@
     flex-direction: column;
 }
 
-.content h2{
+.content h2 {
     font-weight: 500;
     margin: 8px 0;
     margin-bottom: 26px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input,
@@ -35,7 +40,12 @@ select {
     border-radius: 50px;
     width: 340px;
     height: 45px;
-    transition: all .2s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+input.error,
+select.error {
+    background-color: #ffc2c2;
 }
 
 select {
@@ -72,7 +82,7 @@ input:disabled {
     align-items: center;
 }
 
- .label{
+.label {
     align-self: flex-start;
     margin: 0 0 4px 26px;
 }
@@ -109,7 +119,7 @@ input:disabled {
     background-color: #1f1f1f;
 }
 
-.container-button{
+.container-button {
     display: flex;
     flex-direction: column;
 }

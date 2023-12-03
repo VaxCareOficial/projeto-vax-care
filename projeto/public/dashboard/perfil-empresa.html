@@ -30,36 +30,38 @@
           <h2>Cadastrar Endereço da Filial</h2>
           <div class="form-endereco">
 
-          <div class="input-container">
-            <label class="label" for="inputCep">CEP</label>
-            <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" type="text" placeholder="Insira o CEP" id="inputCep"
-              maxlength="9">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputCep">CEP</label>
+              <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" oninput="removerErroInput(this)" type="text"
+                placeholder="Insira o CEP" id="inputCep" maxlength="9">
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputLogradouro">Logradouro</label>
-            <input type="text" placeholder="Insira o logradouro" id="inputLogradouro">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputLogradouro">Logradouro</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o logradouro"
+                id="inputLogradouro">
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputCidade">Cidade</label>
-            <input type="text" placeholder="Insira a cidade" id="inputCidade">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputCidade">Cidade</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira a cidade" id="inputCidade">
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputBairro">Bairro</label>
-            <input type="text" placeholder="Insira o bairro" id="inputBairro">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputBairro">Bairro</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o bairro" id="inputBairro">
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputUf">UF</label>
-            <input type="text" placeholder="Insira o UF" id="inputUf">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputUf">UF</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o UF" id="inputUf" maxlength="2">
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputComplemento">Complemento</label>
-            <input type="text" placeholder="Insira o complemento" id="inputComplemento">
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputComplemento">Complemento</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o complemento"
+                id="inputComplemento">
+            </div>
 
             <button onclick="cadastrarEndereco(), setTimeout(() => gerarEnderecoFilial(), 200)">
               Cadastrar
@@ -77,40 +79,38 @@
 
             <div class="input-container">
               <label class="label" for="inputName">Nome</label>
-            <input type="text" placeholder="Insira o nome" id="inputName" />
-          </div>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome" id="inputName" />
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputEmail">E-mail</label>
-            <input type="text" placeholder="Insira o E-mail" id="inputEmail" />
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputEmail">E-mail</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o e-mail" id="inputEmail" />
+            </div>
 
-          <div class="input-container">
-            <label class="label" for="inputPassword">Senha</label>
-            <input type="text" placeholder="Insira a senha" id="inputPassword" />
-          </div>
+            <div class="input-container">
+              <label class="label" for="inputPassword">Senha</label>
+              <input oninput="removerErroInput(this)" type="password" placeholder="Insira a senha" id="inputPassword" />
+            </div>
 
             <div class="input-container">
               <label class="label" for="inputConfirmPassword">Confirmar senha</label>
-            <input type="text" placeholder="Confirme a Senha" id="inputConfirmPassword" />
-          </div>
+              <input oninput="removerErroInput(this)" type="password" placeholder="Confirme a Senha"
+                id="inputConfirmPassword" />
+            </div>
 
-          
-            
-
-          <div class="input-container">
-            <label class="label" for="selectEnderecoFilial">Endereço filial</label>
-            <select id="selectEnderecoFilial">
-              <option value="0">Selecionar</option>
-            </select>
-          </div>
+            <div class="input-container">
+              <label class="label" for="selectEnderecoFilial">Endereço filial</label>
+              <select oninput="removerErroInput(this)" id="selectEnderecoFilial">
+                <option value="0">Selecionar</option>
+              </select>
+            </div>
 
           </div>
 
           <div class="container-button">
-          <button onclick="cadastrar()">Cadastrar</button>
-          <button onclick="">Exibir usuários</button>
-        </div>
+            <button onclick="cadastrarUsuario()">Cadastrar</button>
+            <button onclick="">Exibir usuários</button>
+          </div>
         </div>
       </div>
     </div>

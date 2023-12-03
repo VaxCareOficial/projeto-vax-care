@@ -31,12 +31,17 @@
 input,
 select {
     padding: 12px 12px 12px 16px;
-    margin: 10px 0;
+    margin: 6px 0;
     border: none;
     border-radius: 50px;
     width: 340px;
     height: 45px;
-    transition: all .2s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+input.error,
+select.error {
+    background-color: #ffc2c2;
 }
 
 select {
@@ -73,7 +78,7 @@ input:disabled {
     align-items: center;
 }
 
-.label{
+.label {
     align-self: flex-start;
     margin: 0 0 4px 26px;
 }
@@ -109,7 +114,7 @@ input:disabled {
     background-color: #1f1f1f;
 }
 
-.container-button{
+.container-button {
     display: flex;
     flex-direction: column;
 }
