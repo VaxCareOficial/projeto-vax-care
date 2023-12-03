@@ -17,9 +17,26 @@ function cadastrarMedidas(fkSensor, temperatura, statusTemperatura) {
     return database.executar(instrucao);
 }
 
+function cadastrarSensor(nomeSensor){
+    var instrucao = `
+        INSERT INTO Sensor (nome) VALUES ('${nomeSensor}');
+    `
+    return database.executar(instrucao);
+}
+
+function editarSensor(nome, idSensor){
+    var instrucao = `
+        UPDATE Sensor set nome = '${nome}' where idSensor = ${idSensor};
+    `
+
+    return database.executar(instrucao);
+
+}
 
 
 module.exports = {
     buscarSensoresExistentes,
-    cadastrarMedidas
+    cadastrarMedidas,
+    cadastrarSensor,
+    editarSensor
 }

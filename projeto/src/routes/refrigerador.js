@@ -23,5 +23,10 @@ router.get("/buscarAlertas/:idSensor", function (req, res) {
     refrigeradorController.buscarAlertasDosRefrigeradores(req, res);
 })
 
+router.post("/cadastrar", function (req, res) {
+    refrigeradorController.cadastrar(req, res);
+})
+
+
 
 module.exports = router;

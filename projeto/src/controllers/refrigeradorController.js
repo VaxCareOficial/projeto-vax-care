@@ -1,4 +1,6 @@
 var refrigeradorModel = require("../models/refrigeradorModel");
+var sensorModel = require("../models/sensorModel");
+var vacinaModel = require("../models/vacinaModel");
 
 
 function buscarRefrigeradoresDisponiveis(req, res) {
@@ -21,7 +23,7 @@ function buscarRefrigeradoresDisponiveis(req, res) {
 }
 
 
-function buscarDados(req, res){
+function buscarDados(req, res) {
 
     const limite_linhas = 5;
 
@@ -85,13 +87,13 @@ function buscarTipoDeVacina(req, res) {
 }
 
 
-function  buscarAlertasDosRefrigeradores(req, res) {
+function buscarAlertasDosRefrigeradores(req, res) {
 
     var idSensor = req.params.idSensor;
 
     console.log(`Recuperando todos os dados dos refrigeradores disponiveis para o usuario logado`);
 
-    refrigeradorModel. buscarAlertasDosRefrigeradores(idSensor).then(function (resultado) {
+    refrigeradorModel.buscarAlertasDosRefrigeradores(idSensor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -105,11 +107,51 @@ function  buscarAlertasDosRefrigeradores(req, res) {
 }
 
 
+function cadastrar(req, res) {
+
+    var tipoVacina = req.body.nomeVacinaServer;
+    var temperaturaMinima = req.body.temperaturaMinimaServer;
+    var temperaturaMaxima = req.body.temperaturaMaximaServer;
+    var nomeSensor = req.body.nomeVacinaServer;
+    var filial = req.body.filialServer;
+
+    var ultimoIdVacina = 0;
+    var ultimoIdSensor = 0;
+
+    vacinaModel.cadastrar(tipoVacina, temperaturaMinima, temperaturaMaxima)
+        .then(function (resultadoVacina) {
+            ultimoIdVacina = resultadoVacina.insertId;
+
+            sensorModel.cadastrarSensor(nomeSensor)
+                .then(function (resultadoSensor) {
+                    ultimoIdSensor = resultadoSensor.insertId;
+
+                    refrigeradorModel.cadastrar(ultimoIdSensor, ultimoIdVacina, filial)
+                        .then(function() {
+                            res.status(201).send("refrigerador cadastrado com sucesso!")
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                }).catch(function (error) {
+                    console.log(error);
+                })
+        }).catch(function (error) {
+            console.log(error);
+        })
+
+
+
+
+
+}
+
+
 
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
     buscarMedidasEmTempoReal,
     buscarTipoDeVacina,
-    buscarAlertasDosRefrigeradores
+    buscarAlertasDosRefrigeradores,
+    cadastrar
 }

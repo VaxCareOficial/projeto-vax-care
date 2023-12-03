@@ -58,6 +58,14 @@ function buscarAlertasDosRefrigeradores(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function cadastrar(idSensor, idVacina, idEnderecoFilial) {
+
+    var instrucaoSql = `INSERT INTO Refrigerador VALUES (null, ${idSensor}, ${idVacina}, ${idEnderecoFilial})`
+
+    return database.executar(instrucaoSql);
+
+}
+
 
 
 module.exports = {
@@ -65,5 +73,6 @@ module.exports = {
     buscarDados,
     buscarMedidasEmTempoReal,
     buscarTipoDeVacina,
-    buscarAlertasDosRefrigeradores
+    buscarAlertasDosRefrigeradores,
+    cadastrar
 }
