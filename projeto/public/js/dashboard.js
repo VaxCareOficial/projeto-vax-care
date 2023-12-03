@@ -33,7 +33,6 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
                 listaSensores.push(dado.idSensor)
             }
 
-
             buscarAlertas()
         });
 
@@ -42,31 +41,30 @@ function validarRefrigeradoresDisponiveis(idUsuario) {
 
 // função que busca o ultimo alerta de cada sensor/refrigerador
 
-async function buscarAlertas(){
+async function buscarAlertas() {
     for (let i = 0; i < listaSensores.length; i++) {
         var resposta = await fetch(`/refrigerador/buscarAlertas/${listaSensores[i]}`)
         var dado = await resposta.json();
-       console.log(dado);
-       alert(dado[0].statusAlert);
+        console.log(dado);
+        alert(dado[0].statusAlert);
     }
 }
 
-function cleanSearch() {
+function limparBusca() {
     inputSearch.value = "";
     line1Title.innerHTML = "<h1>Bem-vindo, <span>Pfizer</span></h1>";
     imgInput.src = "../assets/svg/search-icon.svg";
-    imgInput.classList.remove("active");
     containerPrincipal.forEach((e) => e.style.display = "flex");
     containerSensor.forEach((e) => e.style.display = "none");
 
     variacao.innerHTML = ``
 }
 
-imgInput.addEventListener("click", cleanSearch)
+searchBtn.addEventListener("click", limparBusca)
 
 const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
 
-function searchSensor() {
+function buscarRefrigerador() {
 
     let searchText = inputSearch.value;
 
@@ -114,7 +112,7 @@ function searchSensor() {
             });
 
     } else {
-        cleanSearch()
+        limparBusca();
         alert(`Voce nao tem o refrigerador de número ${searchText}!`);
     }
 }
@@ -264,18 +262,12 @@ function selecionarTipodeVacina(searchText) {
     })
 }
 
-
-inputSearch.addEventListener("input", searchSensor);
-
-
-
-function retornarIndex() {
-    sessionStorage.clear();
-    window.location.href = "../index.html"
+function enviarPorEnter(e) {
+    if (e.key == "Enter") {
+        if (document.activeElement != searchBtn) {
+            searchBtn.click();
+        }
+    }
 }
 
-window.addEventListener("load", () => {
-    if (!idEmpresa) {
-        window.location.href = "../login.html";
-    }
-});
+document.addEventListener("keypress", enviarPorEnter);
