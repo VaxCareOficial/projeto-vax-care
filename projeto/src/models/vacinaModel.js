@@ -18,8 +18,8 @@ function editar(nome, tempMinima, tempMaxima, idVacina) {
     `
     return database.executar(instrucao);
     
-
 }
+
 
 module.exports = {
     

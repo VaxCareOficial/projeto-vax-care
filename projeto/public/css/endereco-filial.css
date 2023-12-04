@@ -178,7 +178,7 @@ td img {
 }
 
 .th-img {
-    width: 100px;
+    width: 52px;
 }
 
 .btn-editar {
@@ -220,4 +220,10 @@ td img {
 .container-button {
     display: flex;
     flex-direction: column;
+}
+
+th {
+
+    height: 46px;
+
 }
