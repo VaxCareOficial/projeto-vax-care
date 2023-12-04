@@ -13,8 +13,8 @@ CREATE TABLE Empresa (
 );
 
 CREATE TABLE EnderecoFilial (
-	nome varchar(45),
 	idEnderecoFilial INT PRIMARY KEY AUTO_INCREMENT,
+    nome varchar(45),
     cep CHAR(9),
     logradouro VARCHAR(45),
     cidade VARCHAR(45),
@@ -76,11 +76,11 @@ INSERT INTO Empresa VALUES
 (null, 'Biontech', 'Biontech Solucoes Em Tecnologia LTDA',  '27400744000150');
 
 INSERT INTO EnderecoFilial VALUES
-('Filial SP', null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
-('Filial BH', null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
-('Filial SC', null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
-('Filial AM', null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
-('Filial 1', null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
+(null, 'Filial SP', '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
+(null, 'Filial BH', '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
+(null,'Filial SC', '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
+(null,'Filial AM', '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
+(null,'Filial 1', '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
 
 INSERT INTO Usuario VALUES
 (null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3, 1),
