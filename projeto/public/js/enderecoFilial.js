@@ -65,6 +65,12 @@ function cadastrarEndereco() {
                 inputComplemento.value = "";
                 inputUf.value = "";
 
+                inputCep.classList.remove("error");
+                inputLogradouro.classList.remove("error");
+                inputCidade.classList.remove("error");
+                inputBairro.classList.remove("error");
+                inputUf.classList.remove("error");
+
                 inputLogradouro.removeAttribute("disabled");
                 inputCidade.removeAttribute("disabled");
                 inputBairro.removeAttribute("disabled");
@@ -74,4 +80,8 @@ function cadastrarEndereco() {
             }
         });
     }
+}
+
+function removerErroInput(input) {
+    if (input.value != "") input.classList.remove("error");
 }

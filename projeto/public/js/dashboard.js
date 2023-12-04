@@ -52,7 +52,13 @@ async function buscarAlertas() {
 
 function limparBusca() {
     inputSearch.value = "";
-    line1Title.innerHTML = `<h1>Bem-vindo, <span>${nomeUsuario}</span></h1>`;
+
+    if (tipoUsuario == "Administrador") {
+        line1Title.innerHTML = `<h1>Bem-vindo, <span>${nomeFantasia}</span></h1>`;
+    } else {
+        line1Title.innerHTML = `<h1>Bem-vindo, <span>${nomeUsuario}</span></h1>`;
+    }
+
     imgInput.src = "../assets/svg/search-icon.svg";
     containerPrincipal.forEach((e) => e.style.display = "flex");
     containerSensor.forEach((e) => e.style.display = "none");

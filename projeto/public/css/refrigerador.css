@@ -26,7 +26,7 @@ tbody::-webkit-scrollbar-thumb {
 }
 
 .column-2 {
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +89,7 @@ input:disabled {
 
 /* Estilo para a tabela */
 table {
-    width: 100%;
+    width: 600px;
     height: 70%;
     border: 2px solid #3ca9c2;
     border-radius: 10px;
