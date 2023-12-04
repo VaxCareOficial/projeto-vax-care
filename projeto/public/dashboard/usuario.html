@@ -10,7 +10,7 @@
   <title>Gerenciar Usuário | Vax Care</title>
 </head>
 
-<body onload="gerarEnderecoFilial()">
+<body onload="gerarEnderecoFilial(), setTimeout(() => listarUsuario(), 200)">
   <div class="container">
     <div class="menu">
       <div class="line-1">
@@ -62,7 +62,7 @@
           </div>
 
           <div class="container-button">
-            <button onclick="cadastrarUsuario()">Cadastrar</button>
+            <button onclick="cadastrarUsuario(), setTimeout(() => listarUsuario(), 200)">Cadastrar</button>
           </div>
         </div>
       </div>
@@ -79,14 +79,6 @@
               <th class="th-img"></th>
           </thead>
           <tbody id="tbodyUsuario">
-              <tr>
-                  <td class="td-nome">Renan</td>
-                  <td class="td-e-mail">renan@gmail.com</td>
-                  <td class="td-nomeFilial">Cerqueira Cesar</td>
-                  <td class="container-img">
-                      <img class="btn-excluir" src="../assets/svg/trash-icon.svg">
-                  </td>
-              </tr>
           </tbody>
       </table>
       </div>

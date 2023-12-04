@@ -1,3 +1,24 @@
+function listarUsuario() {
+    fetch(`/usuario/listar/${idEmpresa}`)
+        .then(res => {
+            res.json().then(res => {
+                tbodyUsuario.innerHTML = "";
+                for (var i = 0; i < res.length; i++){
+                tbodyUsuario.innerHTML += `
+                <tr>
+                  <td class="td-nome">${res[i].nome}</td>
+                  <td class="td-e-mail">${res[i].email}</td>
+                  <td class="td-nomeFilial">${res[i].nomeFilial}</td>
+                  <td class="container-img">
+                      <img class="btn-excluir" data-id="${res[i].idUsuario}" src="../assets/svg/trash-icon.svg">
+                  </td>
+              </tr>
+                `
+            }
+            })
+        })
+}
+
 function cadastrarUsuario() {
     var name = inputName.value;
     var email = inputEmail.value;
