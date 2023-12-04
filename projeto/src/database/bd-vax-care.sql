@@ -13,6 +13,7 @@ CREATE TABLE Empresa (
 );
 
 CREATE TABLE EnderecoFilial (
+	nome varchar(45),
 	idEnderecoFilial INT PRIMARY KEY AUTO_INCREMENT,
     cep CHAR(9),
     logradouro VARCHAR(45),
@@ -75,17 +76,17 @@ INSERT INTO Empresa VALUES
 (null, 'Biontech', 'Biontech Solucoes Em Tecnologia LTDA',  '27400744000150');
 
 INSERT INTO EnderecoFilial VALUES
-(null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
-(null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
-(null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
-(null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
-(null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
+('Filial SP', null, '08780-410', 'Rua Vitório Partênio, 47', 'Mogi das Cruzes', 'Vila Partenio', null, 'SP', 1),
+('Filial BH', null, '04717-904', 'Rua Alexandre Dumas, 1860', 'São Paulo', 'Santo Amaro', null, 'SP', 1), 
+('Filial SC', null, '06709-000', ' Rodovia Raposo Tavares', 'Moionho Velho', 'Cotia', ' KM 26.9 S/N', 'SP', 1),
+('Filial AM', null, '30360-540', 'Rua Eclipse, 171', 'Santa Lucia', 'Belo Horizonte', null, 'MG', 1),
+('Filial 1', null, '04717-004', 'Rua Alexandre Dumas, 1711', 'São Paulo', 'Santo Amaro', null, 'SP', 1);
 
 INSERT INTO Usuario VALUES
-(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3),
-(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 4),
-(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 2),
-(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1); 
+(null, 'Mario', 'mariosilva@astrazeneca.com', '$76hf238rB', 'Administrador', 3, 1),
+(null, 'Felipe', 'felipe@biontech.com', '!sdh586T', 'Administrador', 4, 1),
+(null, 'Gustavo', 'gustavo@pfizer.com', 'HDds234!*', 'Funcionário', 2, 1),
+(null, 'Julia', 'julia@vaccinecare.com', 'Hrfer3412@', 'Funcionário', 1, 1); 
 
 INSERT INTO Vacina VALUES
 (1, 'Covid-19', '-15', '-25'), 
@@ -104,3 +105,11 @@ INSERT INTO Refrigerador VALUES
 (2, 3, 2, 1),
 (3, 2, 3, 4),
 (4, 4, 1, 3);
+
+
+select * from Empresa;
+select * from EnderecoFilial;
+select * from Usuario;
+select * from Vacina;
+select * from Sensor;
+select * from Refrigerador;
