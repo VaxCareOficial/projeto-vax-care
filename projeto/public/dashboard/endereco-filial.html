@@ -31,6 +31,13 @@
           <div class="form-endereco">
 
             <div class="input-container">
+              <label class="label" for="inputNomeFilial">Nome filial</label>
+              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome da filial"
+                id="inputNomeFilial">
+            </div>
+            
+
+            <div class="input-container">
               <label class="label" for="inputCep">CEP</label>
               <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" oninput="removerErroInput(this)" type="text"
                 placeholder="Insira o CEP" id="inputCep" maxlength="9">
@@ -71,6 +78,27 @@
       </div>
       <div class="column-2">
         <h2>Endereços de Filiais Cadastrados</h2>
+
+        <table>
+          <thead>
+              <th colspan="2" class="th-nomeFilial">Nome <br> Filial</th>
+              <th class="th-CEP">CEP</th>
+              <th class="th-logradouro">Logradouro</th>
+              <th class="th-img"></th>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="td-nomeFilial">Filial Haddock </td>
+                  <td class="td-CEP">01414-000</td>
+                  <td class="td-logradouro">R. Haddock Lobo</td>
+                  <td class="container-img">
+                      <img class="btn-editar" src="../assets/svg/pencil-icon.svg">
+                      <img class="btn-excluir" src="../assets/svg/trash-icon.svg">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
       </div>
     </div>
 
