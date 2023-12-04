@@ -113,108 +113,117 @@ input:disabled {
 table {
     width: 100%;
     height: 70%;
-    border: 2px solid #3ca9c2; 
-    border-radius: 12px;
+    border: 2px solid #3ca9c2;
+    border-radius: 16px;
+    padding-bottom: 8px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
-thead{
+thead {
     background-color: #3ca9c2;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     color: #ffffff;
 }
-tbody{
-    height: 100%;
+
+tbody {
     width: 100%;
+    height: 100%;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
     overflow-y: scroll;
-    
+
 }
 
-th, td{
+tbody tr {
+    border-bottom: solid 1px #303030;
+}
+
+th,
+td {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4px ;
+    padding: 4px;
 }
 
-tr{
+tr {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    
+
 }
 
-.th-vacina{
+.th-vacina {
     width: 160px;
 }
 
-.th-tempMinima{
+.th-tempMinima {
     width: 150px;
 }
 
-.th-tempMax{
+.th-tempMax {
     width: 150px;
 }
 
-.th-nomeSensor{
+.th-nomeSensor {
     width: 140px;
 }
 
-.th-endereco{
+.th-endereco {
     width: 210px;
 }
 
-.td-vacina{
+.td-vacina {
     width: 160px;
 }
 
-.td-tempMinima{
+.td-tempMinima {
     width: 150px;
-   
+
 }
 
-.td-tempMax{
+.td-tempMax {
     width: 150px;
-    
+
 }
 
-.td-nomeSensor{
+.td-nomeSensor {
     width: 140px;
 }
 
-.td-endereco{
+.td-endereco {
     width: 210px;
-   
+
 }
 
-.container-img{
+.container-img {
     display: flex;
-    
+
 }
-td img{
+
+td img {
     height: 28px;
     cursor: pointer;
     padding: 4px;
     margin: 2px;
     /*background-color: white;*/
-   
+
 }
 
-.td-img{
+.td-img {
     width: 48px;
     height: 20px;
 
 }
 
-.th-img{
+.th-img {
     width: 90px;
     height: 20px;
 }
+
 .input-container {
     display: flex;
     flex-direction: column;
@@ -222,13 +231,13 @@ td img{
     margin-top: 4px;
 }
 
-.btn-editar{
+.btn-editar {
     height: 32px;
     background-color: #3CA9C2;
     border-radius: 6px;
 }
 
-.btn-excluir{
+.btn-excluir {
     height: 32px;
     background-color: #ef5858;
     border-radius: 6px;
