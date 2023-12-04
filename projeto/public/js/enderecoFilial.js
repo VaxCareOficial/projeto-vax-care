@@ -51,6 +51,7 @@ function cadastrarEndereco() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                nomeServer: nomeFilial,
                 cepServer: cep,
                 logradouroServer: logradouro,
                 cidadeServer: cidade,
@@ -60,6 +61,7 @@ function cadastrarEndereco() {
             })
         }).then(function (resposta) {
             if (resposta.status == 201) {
+                inputNomeFilial.value = "";
                 inputCep.value = "";
                 inputLogradouro.value = "";
                 inputCidade.value = "";
@@ -67,6 +69,7 @@ function cadastrarEndereco() {
                 inputComplemento.value = "";
                 inputUf.value = "";
 
+                inputNomeFilial.classList.remove("error");
                 inputCep.classList.remove("error");
                 inputLogradouro.classList.remove("error");
                 inputCidade.classList.remove("error");
