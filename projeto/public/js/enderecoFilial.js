@@ -28,6 +28,7 @@ function mascararCep(cep) {
 }
 
 function cadastrarEndereco() {
+    var nomeFilial = inputNomeFilial.value;
     var cep = inputCep.value;
     var isCepValid = (/^[0-9]{5}-[0-9]{3}$/).test(cep);
     var logradouro = inputLogradouro.value;
@@ -36,13 +37,14 @@ function cadastrarEndereco() {
     var complemento = inputComplemento.value;
     var uf = inputUf.value;
 
+    if (nomeFilial == "") inputNomeFilial.classList.add("error");  
     if (!isCepValid) inputCep.classList.add("error");
     if (logradouro == "") inputLogradouro.classList.add("error");
     if (cidade == "") inputCidade.classList.add("error");
     if (bairro == "") inputBairro.classList.add("error");
     if (uf == "") inputUf.classList.add("error");
 
-    if (isCepValid && logradouro != "" && cidade != "" && bairro != "" && uf != "") {
+    if (nomeFilial != "" && isCepValid && logradouro != "" && cidade != "" && bairro != "" && uf != "") {
         fetch(`/empresa/cadastrar-endereco/${idEmpresa}`, {
             method: "POST",
             headers: {

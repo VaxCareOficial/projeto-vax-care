@@ -14,9 +14,9 @@ function cadastrar(nomeFantasia, razaoSocial, cnpj) {
     return database.executar(instrucao);
 }
 
-function cadastrarEndereco(cep, logradouro, cidade, bairro, complemento, uf, idEmpresa) {
+function cadastrarEndereco(nome, cep, logradouro, cidade, bairro, complemento, uf, idEmpresa) {
     var instrucao = `
-      INSERT INTO EnderecoFilial (cep, logradouro, cidade, bairro, complemento, uf, fkEmpresa) VALUES ('${cep}', '${logradouro}', '${cidade}', '${bairro}', '${complemento}', '${uf}', ${idEmpresa});
+      INSERT INTO EnderecoFilial (nome, cep, logradouro, cidade, bairro, complemento, uf, fkEmpresa) VALUES ('${nome}', '${cep}', '${logradouro}', '${cidade}', '${bairro}', '${complemento}', '${uf}', ${idEmpresa});
   `;
     return database.executar(instrucao);
 }
