@@ -1,5 +1,17 @@
 var usuarioModel = require("../models/usuarioModel");
 
+function listar(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    usuarioModel.listar(idEmpresa)
+        .then(function (resultado) {
+            res.status(200).json(resultado);
+        }).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            })
+}
+
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
@@ -29,5 +41,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
+    listar,
     cadastrar
 }
