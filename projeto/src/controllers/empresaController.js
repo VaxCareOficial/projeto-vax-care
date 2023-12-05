@@ -1,5 +1,6 @@
 var empresaModel = require("../models/empresaModel");
 var usuarioModel = require("../models/usuarioModel");
+var refrigeradorModel = require("../models/refrigeradorModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -117,9 +118,25 @@ function gerarEnderecos(req, res) {
         );
 }
 
+function deletarEndereco(req, res) {
+    var idEndereco = req.params.idEndereco;
+
+    refrigeradorModel.deletarEnderecoRefrigerador(idEndereco)
+        .then(function() {
+            usuarioModel.deletarEnderecoUsuario(idEndereco) 
+                .then(function() {
+                    empresaModel.deletarEndereco(idEndereco)
+                        .then(function(){
+                            res.status(200).send("Endereço apagado com sucesso!")
+                        })
+                })
+        })
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarEndereco,
-    gerarEnderecos
+    gerarEnderecos,
+    deletarEndereco
 }

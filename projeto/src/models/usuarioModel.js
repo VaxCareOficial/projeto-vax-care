@@ -22,8 +22,17 @@ function deletar(idUsuario){
     return database.executar(instrucao);
 }
 
+function deletarEnderecoUsuario(idEndereco){
+    var instrucao = `
+    DELETE FROM usuario where fkEnderecoFilial = ${idEndereco};
+    `;
+    return database.executar(instrucao);
+
+}
+
 module.exports = {
     listar,
     cadastrar,
-    deletar
+    deletar,
+    deletarEnderecoUsuario
 };

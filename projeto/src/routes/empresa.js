@@ -19,5 +19,9 @@ router.get("/gerar-enderecos/:idEmpresa", function (req, res) {
     empresaController.gerarEnderecos(req, res);
 });
 
+router.delete("/deletar-endereco/:idEndereco", function (req, res) {
+    empresaController.deletarEndereco(req, res);
+})
+
 
 module.exports = router;

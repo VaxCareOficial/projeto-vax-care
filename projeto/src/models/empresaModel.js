@@ -29,9 +29,18 @@ function gerarEnderecos(idEmpresa) {
     return database.executar(instrucao);
 }
 
+function deletarEndereco(idEndereco){
+  var instrucao = `
+  DELETE FROM enderecoFilial where idEnderecoFilial = ${idEndereco};
+`;
+  return database.executar(instrucao);
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarEndereco,
-    gerarEnderecos
+    gerarEnderecos,
+    deletarEndereco
 };

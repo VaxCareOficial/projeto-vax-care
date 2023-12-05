@@ -96,6 +96,12 @@ function deletar(idRefrigerador) {
 
 }
 
+function deletarEnderecoRefrigerador(idEndereco){
+    var instrucaoSql = `DELETE FROM refrigerador where fkEnderecoFilial = ${idEndereco};`
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -105,5 +111,6 @@ module.exports = {
     contarRefrigeradoresEmpresa,
     listar,
     cadastrar,
-    deletar
+    deletar,
+    deletarEnderecoRefrigerador
 }
