@@ -26,6 +26,26 @@ function mascararCep(cep) {
         cep.value += "-";
     }
 }
+function listarEndereco() {
+    fetch(`/empresa/gerar-endereco/${idEmpresa}`)
+        .then(res => {
+            res.json().then(res => {
+                tbodyFilial.innerHTML = "";
+                for (var i = 0; i < res.length; i++){
+                tbodyFilial.innerHTML += `
+                <tr>
+                  <td class="td-nomeFilial">${res[i].nome}</td>
+                  <td class="td-CEP">${res[i].cep}</td>
+                  <td class="td-logradouro">${res[i].logradouro}</td>
+                  <td class="container-img">
+                      <img class="btn-excluir" src="../assets/svg/trash-icon.svg" data-id="${res[i].idEnderecoFilial}">
+                  </td>
+              </tr>
+                `
+            }
+            })
+        })
+}
 
 function cadastrarEndereco() {
     var nomeFilial = inputNomeFilial.value;
