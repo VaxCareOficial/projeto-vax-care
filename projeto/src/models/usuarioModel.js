@@ -15,7 +15,15 @@ function cadastrar(nome, email, senha, tipoUsuario, idEmpresa, idEnderecoFilial)
     return database.executar(instrucao);
 }
 
+function deletar(idUsuario){
+    var instrucao = `
+    DELETE FROM Usuario where idUsuario = ${idUsuario};
+    `;
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
-    cadastrar
+    cadastrar,
+    deletar
 };

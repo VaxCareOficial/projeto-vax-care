@@ -12,4 +12,8 @@ router.post("/cadastrar/:idEmpresa/:idEnderecoFilial", function (req, res) {
     usuarioController.cadastrar(req, res);
 });
 
+router.delete("/deletar/:idUsuario", function (req, res) {
+    usuarioController.deletar(req, res);
+});
+
 module.exports = router;

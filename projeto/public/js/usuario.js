@@ -10,7 +10,7 @@ function listarUsuario() {
                   <td class="td-e-mail">${res[i].email}</td>
                   <td class="td-nomeFilial">${res[i].nomeFilial}</td>
                   <td class="container-img">
-                      <img class="btn-excluir" data-id="${res[i].idUsuario}" src="../assets/svg/trash-icon.svg">
+                      <img onclick="deletarUsuario(this), setTimeout(() => listarUsuario(), 200)" class="btn-excluir" data-id="${res[i].idUsuario}" src="../assets/svg/trash-icon.svg">
                   </td>
               </tr>
                 `
@@ -74,6 +74,16 @@ function gerarEnderecoFilial() {
                 }
             });
         });
+}   
+
+function deletarUsuario(btn){
+    var idUsuario = Number(btn.getAttribute('data-id'));
+    
+    fetch(`/usuario/deletar/${idUsuario}`, {
+        method:"DELETE"    
+    })
+        
+
 }
 
 function removerErroInput(input) {

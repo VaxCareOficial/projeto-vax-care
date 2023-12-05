@@ -40,7 +40,23 @@ function cadastrar(req, res) {
     }
 }
 
+function deletar(req, res){
+    var idUsuario = req.params.idUsuario;
+
+        usuarioModel.deletar(idUsuario)
+        .then(
+            function () {
+                res.status(201).send("Usuario apagado com sucesso!");
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listar,
-    cadastrar
+    cadastrar,
+    deletar
 }
