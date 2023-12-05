@@ -10,6 +10,8 @@ var inputEmail = document.getElementById("inputEmail");
 var inputSubject = document.getElementById("inputSubject");
 var textareaMessage = document.getElementById("textareaMessage");
 
+AOS.init();
+
 function changeNav() {
     // Adiciona a classe "active" no elemento nav assim que o usuário rolar a página.
     nav.classList.toggle("active", scrollY > 0);
