@@ -24,7 +24,7 @@ function cadastrarEndereco(nome, cep, logradouro, cidade, bairro, complemento, u
 
 function gerarEnderecos(idEmpresa) {
     var instrucao = `
-    SELECT * FROM EnderecoFilial WHERE fkEmpresa = ${idEmpresa};
+    SELECT * FROM EnderecoFilial WHERE fkEmpresa = ${idEmpresa} order by idEnderecoFilial desc;
   `;
     return database.executar(instrucao);
 }
