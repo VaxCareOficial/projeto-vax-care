@@ -17,7 +17,7 @@
 <!-- simularSensorJogandoDadoNoBanco() -->
 <!-- selecionarQuantidadeAlertaPorRefrigerador() -->
 
-<body onload="simularSensorJogandoDadoNoBanco(), validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
+<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -193,7 +193,7 @@
                                 <div class="block-bottom-graph">
 
                                     <h5>Quantidade de alertas por dia</h5>
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="alertas_por_dia"></canvas>
                                 </div>
 
                                 <script>

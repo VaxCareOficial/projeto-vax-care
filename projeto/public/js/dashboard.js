@@ -101,6 +101,7 @@ function buscarRefrigerador() {
         containerSensor.forEach((e) => e.style.display = "flex");
 
         selecionarTipodeVacina(searchText);
+        buscarAlertasPorDia(searchText);
        
     
 
@@ -330,5 +331,76 @@ function buscarQuantidadeAlertas(searchText) {
         });
     })
 }
+
+
+function buscarAlertasPorDia(idRefrigerador){
+    fetch(`/refrigerador/qtdAlertasPorDia/${idRefrigerador}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (qtdAlerta) {
+            console.log(`Dados obtidos: ${JSON.stringify(qtdAlerta)}`);
+
+            plotarGraficoQuantidadeAlerta(qtdAlerta)
+           
+        });
+    })
+}
+
+
+
+function plotarGraficoQuantidadeAlerta(qtdAlerta) {
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: [],
+        datasets: [{
+            label: 'Temperatura',
+            data: [],
+            fill: false,
+            borderColor: `#000`,
+            backgroundColor: `#000`,
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "buscarDados" e passados para "plotarGrafico":')
+    console.log(qtdAlerta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < qtdAlerta.length; i++) {
+        // var registro = resposta[i];
+        dados.labels.push(qtdAlerta[i].data);
+        dados.datasets[0].data.push(qtdAlerta[i].qtdStatus);
+
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(dados.labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'bar',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`alertas_por_dia`),
+        config
+    );
+
+    
+}
+
+
+
+
 
 document.addEventListener("keypress", enviarPorEnter);
