@@ -35,6 +35,10 @@ router.post("/cadastrar", function (req, res) {
     refrigeradorController.cadastrar(req, res);
 })
 
+router.delete("/deletar/:idRefrigerador", function (req, res) {
+    refrigeradorController.deletar(req, res);
+})
+
 
 
 module.exports = router;

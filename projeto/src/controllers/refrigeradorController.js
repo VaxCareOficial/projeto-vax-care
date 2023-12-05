@@ -122,11 +122,11 @@ function listar(req, res) {
     var idEmpresa = req.params.idEmpresa;
 
     refrigeradorModel.listar(idEmpresa)
-    .then(function (resultado) {
-        res.status(200).json(resultado)
-    }).catch(function (erro) {
-        console.log(erro)
-    });
+        .then(function (resultado) {
+            res.status(200).json(resultado)
+        }).catch(function (erro) {
+            console.log(erro)
+        });
 
 }
 
@@ -162,7 +162,21 @@ function cadastrar(req, res) {
         })
 }
 
+function deletar(req, res) {
+    var idRefrigerador = req.params.idRefrigerador;
 
+    refrigeradorModel.deletar(idRefrigerador)
+        .then(
+            function () {
+                res.status(201).send("Refrigerador apagado com sucesso!");
+            }
+        ).catch(
+            function (erro) {
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
 
 module.exports = {
     buscarRefrigeradoresDisponiveis,
@@ -172,5 +186,6 @@ module.exports = {
     buscarAlertasDosRefrigeradores,
     contarRefrigeradoresEmpresa,
     listar,
-    cadastrar
+    cadastrar,
+    deletar
 }

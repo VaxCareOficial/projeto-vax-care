@@ -88,7 +88,13 @@ function cadastrar(idSensor, idVacina, idEnderecoFilial) {
 
 }
 
+function deletar(idRefrigerador) {
 
+    var instrucaoSql = `delete from Refrigerador where idRefrigerador = ${idRefrigerador};`
+
+    return database.executar(instrucaoSql);
+
+}
 
 module.exports = {
     buscarRefrigeradoresDisponiveis,
@@ -98,5 +104,6 @@ module.exports = {
     buscarAlertasDosRefrigeradores,
     contarRefrigeradoresEmpresa,
     listar,
-    cadastrar
+    cadastrar,
+    deletar
 }

@@ -12,7 +12,7 @@ function listarRefrigerador() {
                 <td class="td-nomeSensor">${res[i].nomeSensor}</td> 
                 <td class="td-endereco">${res[i].nomeFilial}</td>
                 <td class="container-img">
-                    <img data-id='${res[i].idRefrigerador}' class="btn-excluir" src="../assets/svg/trash-icon.svg">
+                    <img onclick="deletarRefrigerador(this), setTimeout(() => listarRefrigerador(), 200)" data-id='${res[i].idRefrigerador}' class="btn-excluir" src="../assets/svg/trash-icon.svg">
                 </td>
             </tr>
                 `
@@ -76,6 +76,15 @@ function gerarEnderecoFilial() {
                 }
             });
         });
+}
+
+function deletarRefrigerador(btn){
+    idRefrigerador = Number(btn.getAttribute('data-id'));
+
+    fetch(`/refrigerador/deletar/${idRefrigerador}`, {
+        method:"DELETE"    
+    })
+        
 }
 
 function removerErroInput(input) {
