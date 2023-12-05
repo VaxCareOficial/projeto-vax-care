@@ -74,7 +74,7 @@ function listar(idEmpresa){
     var instrucaoSql = `
     select r.idRefrigerador, s.nome as nomeSensor, v.nome as nomeVacina, v.tempMinima, v.tempMaxima, e.nome as nomeFilial from Refrigerador as r join Sensor as s on r.fkSensor = s.idSensor 
 	join Vacina as v on r.fkVacina = v.idVacina
-		join enderecoFilial as e on r.fkEnderecoFilial = e.idEnderecoFilial where e.fkEmpresa = ${idEmpresa};
+		join enderecoFilial as e on r.fkEnderecoFilial = e.idEnderecoFilial where e.fkEmpresa = ${idEmpresa} order by r.idRefrigerador desc;
     `
 
     return database.executar(instrucaoSql);
