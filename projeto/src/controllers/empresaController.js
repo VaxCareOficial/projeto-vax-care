@@ -123,7 +123,7 @@ function deletarEndereco(req, res) {
 
     refrigeradorModel.deletarEnderecoRefrigerador(idEndereco)
         .then(function() {
-            usuarioModel.deletarEnderecoUsuario(idEndereco) 
+            usuarioModel.atualizarEnderecoUsuario(idEndereco) 
                 .then(function() {
                     empresaModel.deletarEndereco(idEndereco)
                         .then(function(){

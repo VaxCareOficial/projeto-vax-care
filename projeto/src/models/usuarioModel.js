@@ -22,7 +22,7 @@ function deletar(idUsuario){
     return database.executar(instrucao);
 }
 
-function deletarEnderecoUsuario(idEndereco){
+function atualizarEnderecoUsuario(idEndereco){
     var instrucao = `
     UPDATE usuario SET fkEnderecoFilial = null where fkEnderecoFilial = ${idEndereco};
     `;
@@ -34,5 +34,5 @@ module.exports = {
     listar,
     cadastrar,
     deletar,
-    deletarEnderecoUsuario
+    atualizarEnderecoUsuario
 };
