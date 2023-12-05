@@ -102,6 +102,31 @@ function deletarEnderecoRefrigerador(idEndereco){
     return database.executar(instrucaoSql);
 }
 
+
+
+// Parte da integração
+
+function buscarQuantidadeAlertasRefrigerador() {
+
+    var instrucaoSql = `select count(idDadosSensor) qtdStatus, idRefrigerador refrigerador from dadosSensor dado join sensor on dado.fkSensor = idSensor join refrigerador refrigerador on idSensor = refrigerador.fkSensor
+    where statusAlert like 'Alerta%'
+    group by idRefrigerador
+    order by qtdStatus desc;`
+                                
+    return database.executar(instrucaoSql);
+}
+
+function buscarAlertasPorDia(idRefrigerador) {
+
+    var instrucaoSql = `
+    
+    select count(idDadosSensor) qtdStatus, idRefrigerador refrigerador, DATE_FORMAT(dataAtual, "%d/%m") as data, dayname(dataAtual) as diaDaSemana from dadosSensor dado join sensor on dado.fkSensor = idSensor join refrigerador refrigerador on idSensor = refrigerador.fkSensor
+    where statusAlert like 'Alerta%' AND idRefrigerador = ${idRefrigerador}
+    group by idRefrigerador, data, diaDaSemana;`
+                                
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -112,5 +137,7 @@ module.exports = {
     listar,
     cadastrar,
     deletar,
-    deletarEnderecoRefrigerador
+    deletarEnderecoRefrigerador,
+    buscarQuantidadeAlertasRefrigerador,
+    buscarAlertasPorDia
 }

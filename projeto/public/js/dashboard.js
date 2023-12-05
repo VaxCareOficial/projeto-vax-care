@@ -9,11 +9,14 @@ const idUsuario = sessionStorage.getItem("idUsuario");
 const nomeUsuario = sessionStorage.getItem("nomeUsuario");
 const nomeFantasia = sessionStorage.getItem("nomeFantasia");
 
+
 let proximaAtualizacao;
 let refrigeradorDisponivel = ``;
 
 let listaDisponivel = []
 let listaSensores = []
+
+let qtdAlertaPorRefrigerador = ``;
 
 window.addEventListener("load", () => {
     if (tipoUsuario == "Administrador") {
@@ -60,15 +63,15 @@ function limparBusca() {
     }
 
     imgInput.src = "../assets/svg/search-icon.svg";
-    containerPrincipal.forEach((e) => e.style.display = "flex");
-    containerSensor.forEach((e) => e.style.display = "none");
-
-    variacao.innerHTML = ``
+    containerPrincipal.forEach((e) => e.style.display = "none");
+    containerSensor.forEach((e) => e.style.display = "flex");
 }
 
 searchBtn.addEventListener("click", limparBusca)
 
 const graficoVariacao = document.getElementById('grafico_variacao_temperatura');
+
+
 
 function buscarRefrigerador() {
 
@@ -77,13 +80,20 @@ function buscarRefrigerador() {
     id_refrigerador_pesquisado.innerHTML = searchText;
     let existeRefrigeradorNaLista = false;
 
+
+    buscarQuantidadeAlertas(searchText)
+
     for (let i = 0; i < listaDisponivel.length; i++) {
         if (listaDisponivel[i] == searchText) {
             existeRefrigeradorNaLista = true
         }
     }
 
-    if (existeRefrigeradorNaLista == true && searchText != "") {
+   
+
+    if (existeRefrigeradorNaLista == true) {
+
+        
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
         imgInput.src = "../assets/svg/x-icon.svg";
         imgInput.classList.add("active");
@@ -91,8 +101,8 @@ function buscarRefrigerador() {
         containerSensor.forEach((e) => e.style.display = "flex");
 
         selecionarTipodeVacina(searchText);
-
-
+       
+    
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -118,16 +128,31 @@ function buscarRefrigerador() {
             });
 
     } else {
-        limparBusca();
+       
         alert(`Voce nao tem o refrigerador de número ${searchText}!`);
     }
 }
+
 
 function plotarGrafico(resposta, searchText) {
     console.log('iniciando plotagem do gráfico...');
 
     // Criando estrutura para plotar gráfico - labels
     let labels = [];
+    let corLinha = ``;
+
+
+    if(resposta[resposta.length -1].statusAlert == "Crítico Frio" || resposta[resposta.length -1].statusAlert == "Crítico Calor" ){
+
+        corLinha = `#960000`
+
+    }else if(resposta[resposta.length -1].statusAlert == "Alerta Frio" || resposta[resposta.length -1].statusAlert == "Critico Calor" ){
+
+        corLinha = `rgb(216, 178, 9)`
+    
+    }else if(resposta[resposta.length - 1].statusAlert == "Ideal"){
+        corLinha = `#41bd69`
+    }
 
     // Criando estrutura para plotar gráfico - dados
     let dados = {
@@ -136,7 +161,8 @@ function plotarGrafico(resposta, searchText) {
             label: 'Temperatura',
             data: [],
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: `${corLinha}`,
+            backgroundColor: `${corLinha}`,
             tension: 0.1
         }]
     };
@@ -220,7 +246,7 @@ function atualizarGrafico(searchText, dados, myChart) {
                 if (novoRegistro[0].data == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                    console.log("igual caralho")
+            
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].data)
                     console.log("Horário do último dado capturado:")
@@ -229,8 +255,8 @@ function atualizarGrafico(searchText, dados, myChart) {
 
 
                 } else {
-                    // tirando e colocando valores no gráfico
-                    console.log("difeente caralho")
+                   
+                    
                     dados.labels.shift(); // apagar o primeiro
                     dados.labels.push(novoRegistro[0].data); // incluir um novo momento
 
@@ -243,7 +269,7 @@ function atualizarGrafico(searchText, dados, myChart) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 5000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(searchText, dados, myChart), 1000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -256,6 +282,7 @@ function atualizarGrafico(searchText, dados, myChart) {
         });
 
 }
+
 
 function selecionarTipodeVacina(searchText) {
     fetch(`/refrigerador/buscarVacina/${searchText}`, { cache: 'no-store' }).then(function (response) {
@@ -277,12 +304,31 @@ function contarRefrigeradoresEmpresa(){
     })
 }
 
+
 function enviarPorEnter(e) {
     if (e.key == "Enter") {
         if (document.activeElement != searchBtn) {
             searchBtn.click();
         }
     }
+}
+
+
+
+function buscarQuantidadeAlertas(searchText) {
+    fetch(`/refrigerador/buscarQuantidadeAlertas`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (qtdAlerta) {
+            console.log(`Dados obtidos: ${JSON.stringify(qtdAlerta)}`);
+           
+            for(let i=0; i < qtdAlerta.length; i++){
+
+                if(searchText == qtdAlerta[i].refrigerador){
+        
+                    posicaoQuantidadeAlertas.innerHTML = `#${i+1}`
+                }
+            }
+        });
+    })
 }
 
 document.addEventListener("keypress", enviarPorEnter);

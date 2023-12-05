@@ -178,6 +178,48 @@ function deletar(req, res) {
 
 }
 
+
+
+// Parte da integração
+
+function buscarQuantidadeAlertasRefrigerador(req, res) {
+
+
+    console.log(`Recuperando todos os dados dos refrigeradores disponiveis para o usuario logado`);
+
+    refrigeradorModel. buscarQuantidadeAlertasRefrigerador().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function buscarAlertasPorDia(req, res) {
+
+    var idRefrigerador = req.params.idRefrigerador;
+
+    console.log(`Recuperando todos os dados dos refrigeradores disponiveis para o usuario logado`);
+
+    refrigeradorModel.buscarAlertasPorDia(idRefrigerador).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -187,5 +229,7 @@ module.exports = {
     contarRefrigeradoresEmpresa,
     listar,
     cadastrar,
-    deletar
+    deletar,
+    buscarQuantidadeAlertasRefrigerador,
+    buscarAlertasPorDia
 }

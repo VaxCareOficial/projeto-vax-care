@@ -212,6 +212,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 220px;
     height: 100px;
     background-color: #ffffff;
@@ -234,6 +235,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 520px;
     height: 280px;
     background-color: #ffffff;
@@ -276,4 +278,92 @@ p {
 #pieChart {
     height: 190px !important;
     width: 190px !important;
+}
+
+
+.area-metricas{
+    width: 90%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.metrica{
+    width: 25%;
+    height: 100%;
+   background-color: #ffffff;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metrica h4{
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #023c15;
+}
+
+.alertaFrio{
+ 
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ideal{
+  font-size: 15px;
+  background-color: #41bd69;
+}
+
+.alertaCalor{
+   
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.critico h4{
+    color: #960000;
+   font-size: 15PX;
+}
+
+.critico{
+    width: 50%;
+    height: 100%;
+    background-color: #ec5656;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+   
+}
+
+.alerta{
+    width: 50%;
+    height: 100%;
+    background-color: #ecfb8a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.alerta h4{
+    color: rgb(216, 178, 9);
+    font-size: 15px;
+}
+
+.criticoCalor, .alertFrio{
+    border-top-right-radius:32px ;
+    border-bottom-right-radius: 32px;
+}
+
+.alertCalor, .criticoFrio{
+    border-top-left-radius:32px ;
+    border-bottom-left-radius: 32px;
 }

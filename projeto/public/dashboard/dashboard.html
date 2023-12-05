@@ -15,8 +15,9 @@
 </head>
 
 <!-- simularSensorJogandoDadoNoBanco() -->
+<!-- selecionarQuantidadeAlertaPorRefrigerador() -->
 
-<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
+<body onload="simularSensorJogandoDadoNoBanco(), validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -74,14 +75,35 @@
                                 <p>Tipo de vacina: <span id="id_tipo_vacina"></span></p>
 
                             </div>
+                        </div>
 
-                            <div class="box-2">
 
-                                <img src="../assets/svg/warning.svg" alt="">
-                                <p id="mensagem_alerta"></p>
-
+                        <div class="area-metricas">
+                            <div class="metrica alertaFrio">
+                                <div class="critico criticoFrio">
+                                    <h4 class="temperaturaCritica">2°C</h4>
+                                    <!-- <span>Crítico Frio</span> -->
+                                </div>
+                                <div class="alerta alertFrio">
+                                    <h4 class="temperaturaAlerta">< 4.46°C</h4>
+                                    <!-- <span>Alerta Frio</span> -->
+                                </div>
+                            </div>
+                            <div class="metrica ideal">
+                                <h4>4.46°C - 6.75°C</h4>
+                                <!-- <span>Ideal</span> -->
                             </div>
 
+                            <div class="metrica alertaCalor">
+                                <div class="alerta alertCalor">
+                                    <h4 class="temperaturaAlerta">> 6.75°C</h4>
+                                    <!-- <span>Alerta Calor</span> -->
+                                </div>
+                                <div class="critico criticoCalor">
+                                    <h4 class="temperaturaCritica">8°C</h4>
+                                    <!-- <span>Crítico Calor</span> -->
+                                </div>
+                            </div>
                         </div>
 
                         <div class="line-3">
@@ -102,8 +124,8 @@
 
                                 </div>
                                 <div class="box-detalhada">
-                                    <h3>#2</h3>
-                                    <span>Em sensores que mais emitiram alertas</span>
+                                    <h3 id="posicaoQuantidadeAlertas"></h3>
+                                    <span>Em refrigeradores que mais estiveram em estado de alertas</span>
                                 </div>
                             </div>
                         </div>
@@ -299,33 +321,7 @@
         );
     </script>
 
-    <script>
-        // Gráfico da variação de temperatura de um sensor específico
-
-        //     const grafico_variacao_temperatura = document.getElementById('grafico_variacao_temperatura');
-        //     new Chart(grafico_variacao_temperatura, {
-        //         type: 'line',
-        //         data: {
-        //             labels: [],
-        //             datasets: [{
-        //                 label: 'Temperatura (°C)',
-        //                 data: [4, 4, 3.01, 2.27, 1.93, 1],
-        //                 borderWidth: 1,
-        //                 // cor amarela para simular que o sensor esteja num alerta de calor, já que pelo analytics,
-        //                 // essa temperatura "atual" indica calor
-        //                 backgroundColor: '#ea5965'
-        //             }]
-        //         },
-        //         options: {
-        //             scales: {
-        //                 y: {
-        //                     beginAtZero: true
-        //                 }
-        //             }
-        //         }
-        //     });
-        // </script>
-
+   
 
     <script src="../js/menu.js"></script>
     <script src="../js/dashboard.js"></script>

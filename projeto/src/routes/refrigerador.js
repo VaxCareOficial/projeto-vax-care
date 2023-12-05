@@ -23,6 +23,17 @@ router.get("/buscarAlertas/:idSensor", function (req, res) {
     refrigeradorController.buscarAlertasDosRefrigeradores(req, res);
 })
 
+// Parte da integração
+
+router.get("/buscarQuantidadeAlertas", function (req, res) {
+    refrigeradorController.buscarQuantidadeAlertasRefrigerador(req, res);
+})
+
+// Parte da integração
+router.get("/qtdAlertasPorDia/:idRefrigerador", function (req, res) {
+    refrigeradorController.buscarAlertasPorDia(req, res);
+})
+
 router.get("/contarRefrigeradoresEmpresa/:idEmpresa", function (req, res) {
     refrigeradorController.contarRefrigeradoresEmpresa(req, res);
 })
@@ -38,7 +49,6 @@ router.post("/cadastrar", function (req, res) {
 router.delete("/deletar/:idRefrigerador", function (req, res) {
     refrigeradorController.deletar(req, res);
 })
-
 
 
 module.exports = router;
