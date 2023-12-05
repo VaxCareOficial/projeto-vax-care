@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function listar(idEmpresa) {
     var instrucao =  `
-     SELECT u.idUsuario, u.nome, email, e.nome as nomeFilial FROM Usuario as u join enderecoFilial as e on u.fkEnderecoFilial = e.idEnderecoFilial  where u.fkEmpresa = ${idEmpresa} ORDER BY u.idUsuario DESC; 
+     SELECT u.idUsuario, u.nome, email, e.nome as nomeFilial FROM Usuario as u left join enderecoFilial as e on u.fkEnderecoFilial = e.idEnderecoFilial  where u.fkEmpresa = ${idEmpresa} ORDER BY u.idUsuario DESC; 
 `;
 return database.executar(instrucao);
 
@@ -24,7 +24,7 @@ function deletar(idUsuario){
 
 function deletarEnderecoUsuario(idEndereco){
     var instrucao = `
-    DELETE FROM usuario where fkEnderecoFilial = ${idEndereco};
+    UPDATE usuario SET fkEnderecoFilial = null where fkEnderecoFilial = ${idEndereco};
     `;
     return database.executar(instrucao);
 
