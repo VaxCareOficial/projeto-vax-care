@@ -3,24 +3,24 @@ function listarUsuario() {
         .then(res => {
             res.json().then(res => {
                 console.log(res); tbodyUsuario.innerHTML = "";
-                for (var i = 0; i < res.length; i++){
+                for (var i = 0; i < res.length; i++) {
                     var nomeFilial = "";
-                    if(res[i].nomeFilial == null){
+                    if (res[i].nomeFilial == null) {
                         nomeFilial = "Indefinido";
-                    } else{
+                    } else {
                         nomeFilial = res[i].nomeFilial;
                     }
-                tbodyUsuario.innerHTML += `
+                    tbodyUsuario.innerHTML += `
                 <tr>
                   <td class="td-nome">${res[i].nome}</td>
                   <td class="td-e-mail">${res[i].email}</td>
                   <td class="td-nomeFilial">${nomeFilial}</td>
                   <td class="container-img">
-                      <img onclick="deletarUsuario(this), setTimeout(() => listarUsuario(), 200)" class="btn-excluir" data-id="${res[i].idUsuario}" src="../assets/svg/trash-icon.svg">
+                      <img onclick="deletarUsuario(this)" class="btn-excluir" data-id="${res[i].idUsuario}" src="../assets/svg/trash-icon.svg">
                   </td>
               </tr>
                 `
-            }
+                }
             })
         })
 }
@@ -61,7 +61,9 @@ function cadastrarUsuario() {
                 inputConfirmPassword.value = "";
                 selectEnderecoFilial.value = 0;
 
-                abrirModalCadastro();
+                resposta.text().then(resposta => {
+                    abrirModal(resposta);
+                });
             }
         });
     }
@@ -80,16 +82,18 @@ function gerarEnderecoFilial() {
                 }
             });
         });
-}   
+}
 
-function deletarUsuario(btn){
+function deletarUsuario(btn) {
     var idUsuario = Number(btn.getAttribute('data-id'));
-    
-    fetch(`/usuario/deletar/${idUsuario}`, {
-        method:"DELETE"    
-    })
-        
 
+    fetch(`/usuario/deletar/${idUsuario}`, {
+        method: "DELETE"
+    }).then(res => {
+        res.text().then(res => {
+            abrirModal(res);
+        });
+    });
 }
 
 function removerErroInput(input) {

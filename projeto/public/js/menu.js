@@ -129,14 +129,17 @@ function fecharModalLogout(modal) {
   document.getElementById(idModal).classList.remove("active");
 }
 
-function abrirModalCadastro() {
-  modalCadastroBackground.classList.add("active");
-  modalCadastro.classList.add("active");
+function abrirModal(text, func) {
+  modalBackground.classList.add("active");
+  modal.classList.add("active");
+  textModal.innerHTML = text;
+
+  func;
 }
 
-function fecharModalCadastro() {
-  modalCadastroBackground.classList.remove("active");
-  modalCadastro.classList.remove("active");
+function fecharModal() {
+  modalBackground.classList.remove("active");
+  modal.classList.remove("active");
 }
 
 function retornarIndex() {

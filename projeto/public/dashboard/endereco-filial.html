@@ -10,7 +10,7 @@
   <title>Gerenciar Endereço Filial | Vax Care</title>
 </head>
 
-<body onload="setTimeout(()=>listarEndereco(), 200)">
+<body onload="setTimeout(() => listarEndereco(), 100)">
   <div class="container">
     <div class="menu">
       <div class="line-1">
@@ -35,7 +35,7 @@
               <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome da filial"
                 id="inputNomeFilial">
             </div>
-            
+
 
             <div class="input-container">
               <label class="label" for="inputCep">CEP</label>
@@ -70,7 +70,7 @@
                 id="inputComplemento">
             </div>
 
-            <button onclick="cadastrarEndereco(), setTimeout(()=>listarEndereco(), 200)">
+            <button onclick="cadastrarEndereco()">
               Cadastrar
             </button>
           </div>
@@ -81,15 +81,15 @@
 
         <table>
           <thead>
-              <th colspan="2" class="th-nomeFilial">Nome Filial</th>
-              <th class="th-CEP">CEP</th>
-              <th class="th-logradouro">Logradouro</th>
-              <th class="th-img"></th>
+            <th colspan="2" class="th-nomeFilial">Nome Filial</th>
+            <th class="th-CEP">CEP</th>
+            <th class="th-logradouro">Logradouro</th>
+            <th class="th-img"></th>
           </thead>
           <tbody id="tbodyFilial">
-              
+
           </tbody>
-      </table>
+        </table>
 
       </div>
     </div>
@@ -109,16 +109,16 @@
       </div>
     </div>
 
-    <div id="modalCadastroBackground" class="modal-background">
-      <div id="modalCadastro" class="modal-cadastro">
+    <div id="modalBackground" class="modal-background">
+      <div id="modal" class="modal">
         <div class="line-1">
           <img src="../assets/imgs/success-icon.png">
         </div>
         <div class="line-2">
-          <h4>Cadastro realizado <br> com sucesso!</h4>
+          <h4 id="textModal"></h4>
         </div>
         <div class="line-3">
-          <button onclick="fecharModalCadastro()">Continuar</button>
+          <button onclick="fecharModal(setTimeout(() => listarEndereco(), 100))">Continuar</button>
         </div>
       </div>
     </div>

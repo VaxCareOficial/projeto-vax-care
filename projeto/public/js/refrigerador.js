@@ -3,8 +3,8 @@ function listarRefrigerador() {
         .then(res => {
             res.json().then(res => {
                 tbodyRefrigerador.innerHTML = "";
-                for (var i = 0; i < res.length; i++){
-                tbodyRefrigerador.innerHTML += `
+                for (var i = 0; i < res.length; i++) {
+                    tbodyRefrigerador.innerHTML += `
                 <tr>
                 <td class="td-vacina">${res[i].nomeVacina}</td>
                 <td class="td-tempMinima">${Number(res[i].tempMinima).toFixed(0)}°C</td>
@@ -12,11 +12,11 @@ function listarRefrigerador() {
                 <td class="td-nomeSensor">${res[i].nomeSensor}</td> 
                 <td class="td-endereco">${res[i].nomeFilial}</td>
                 <td class="container-img">
-                    <img onclick="deletarRefrigerador(this), setTimeout(() => listarRefrigerador(), 200)" data-id='${res[i].idRefrigerador}' class="btn-excluir" src="../assets/svg/trash-icon.svg">
+                    <img onclick="deletarRefrigerador(this)" data-id='${res[i].idRefrigerador}' class="btn-excluir" src="../assets/svg/trash-icon.svg">
                 </td>
             </tr>
                 `
-            }
+                }
             })
         })
 }
@@ -55,9 +55,9 @@ function cadastrarRefrigerador() {
                 inputNomeSensor.value = "";
                 selectFilial.value = 0;
 
-                abrirModalCadastro();
-            } else {
-                console.log("Houve um problema ao cadastrar o refrigerador!");
+                resposta.text().then(resposta => {
+                    abrirModal(resposta);
+                });
             }
         });
     }
@@ -78,13 +78,16 @@ function gerarEnderecoFilial() {
         });
 }
 
-function deletarRefrigerador(btn){
+function deletarRefrigerador(btn) {
     idRefrigerador = Number(btn.getAttribute('data-id'));
 
     fetch(`/refrigerador/deletar/${idRefrigerador}`, {
-        method:"DELETE"    
-    })
-        
+        method: "DELETE"
+    }).then(res => {
+        res.text().then(res => {
+            abrirModal(res);
+        });
+    });
 }
 
 function removerErroInput(input) {

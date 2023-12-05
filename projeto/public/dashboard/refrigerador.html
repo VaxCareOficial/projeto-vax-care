@@ -10,7 +10,7 @@
     <title>Gerenciar Refrigerador | Vax Care</title>
 </head>
 
-<body onload="gerarEnderecoFilial(), setTimeout(()=> listarRefrigerador(), 200)">
+<body onload="gerarEnderecoFilial(), setTimeout(() => listarRefrigerador(), 100)">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -60,7 +60,8 @@
                         </select>
                     </div>
 
-                    <button onclick="cadastrarRefrigerador(), setTimeout(()=> listarRefrigerador(), 200)">Cadastrar</button>
+                    <button
+                        onclick="cadastrarRefrigerador()">Cadastrar</button>
                 </div>
             </div>
             <div class="column-2">
@@ -72,11 +73,11 @@
                         <th class="th-tempMinima">Temp. <br> Mínima</th>
                         <th class="th-tempMax">Temp. <br> Máxima</th>
                         <th class="th-nomeSensor">Sensor</th>
-                        <th class="th-endereco"><span>Endereço</span></th>
+                        <th class="th-endereco"><span>Nome Filial</span></th>
                         <th class="th-img"></th>
                     </thead>
                     <tbody id="tbodyRefrigerador">
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -97,16 +98,16 @@
             </div>
         </div>
 
-        <div id="modalCadastroBackground" class="modal-background">
-            <div id="modalCadastro" class="modal-cadastro">
+        <div id="modalBackground" class="modal-background">
+            <div id="modal" class="modal">
                 <div class="line-1">
                     <img src="../assets/imgs/success-icon.png">
                 </div>
                 <div class="line-2">
-                    <h4>Cadastro realizado <br> com sucesso!</h4>
+                    <h4 id="textModal"></h4>
                 </div>
                 <div class="line-3">
-                    <button onclick="fecharModalCadastro()">Continuar</button>
+                    <button onclick="fecharModal(setTimeout(() => listarRefrigerador(), 100))">Continuar</button>
                 </div>
             </div>
         </div>

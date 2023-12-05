@@ -72,7 +72,7 @@ function cadastrar(req, res) {
 }
 
 function cadastrarEndereco(req, res) {
-    var nome = req.body.nomeServer; 
+    var nome = req.body.nomeServer;
     var cep = req.body.cepServer;
     var logradouro = req.body.logradouroServer;
     var cidade = req.body.cidadeServer;
@@ -83,7 +83,7 @@ function cadastrarEndereco(req, res) {
 
     if (nome == "") {
         res.status(400).send("Preencha o campo de Nome.");
-    }else if (cep == "") {
+    } else if (cep == "") {
         res.status(400).send("Preencha o campo de CEP.");
     } else if (logradouro == "") {
         res.status(400).send("Preencha o campo de logradouro.");
@@ -122,12 +122,12 @@ function deletarEndereco(req, res) {
     var idEndereco = req.params.idEndereco;
 
     refrigeradorModel.deletarEnderecoRefrigerador(idEndereco)
-        .then(function() {
-            usuarioModel.atualizarEnderecoUsuario(idEndereco) 
-                .then(function() {
+        .then(function () {
+            usuarioModel.atualizarEnderecoUsuario(idEndereco)
+                .then(function () {
                     empresaModel.deletarEndereco(idEndereco)
-                        .then(function(){
-                            res.status(200).send("Endereço apagado com sucesso!")
+                        .then(function () {
+                            res.status(200).send("Endereço excluído com sucesso!");
                         })
                 })
         })

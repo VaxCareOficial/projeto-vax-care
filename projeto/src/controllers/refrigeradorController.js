@@ -150,7 +150,7 @@ function cadastrar(req, res) {
 
                     refrigeradorModel.cadastrar(ultimoIdSensor, ultimoIdVacina, filial)
                         .then(function () {
-                            res.status(201).send("refrigerador cadastrado com sucesso!")
+                            res.status(201).send("Refrigerador cadastrado com sucesso!")
                         }).catch(function (error) {
                             console.log(error);
                         })
@@ -168,7 +168,7 @@ function deletar(req, res) {
     refrigeradorModel.deletar(idRefrigerador)
         .then(
             function () {
-                res.status(201).send("Refrigerador apagado com sucesso!");
+                res.status(201).send("Refrigerador excluído com sucesso!");
             }
         ).catch(
             function (erro) {

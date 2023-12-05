@@ -31,18 +31,18 @@ function listarEndereco() {
         .then(res => {
             res.json().then(res => {
                 tbodyFilial.innerHTML = "";
-                for (var i = 0; i < res.length; i++){
-                tbodyFilial.innerHTML += `
+                for (var i = 0; i < res.length; i++) {
+                    tbodyFilial.innerHTML += `
                 <tr>
                   <td class="td-nomeFilial">${res[i].nome}</td>
                   <td class="td-CEP">${res[i].cep}</td>
                   <td class="td-logradouro">${res[i].logradouro}</td>
                   <td class="container-img">
-                      <img onclick="deletarEndereco(this), setTimeout(() => listarEndereco(), 200)" class="btn-excluir" src="../assets/svg/trash-icon.svg" data-id="${res[i].idEnderecoFilial}">
+                      <img onclick="deletarEndereco(this)" class="btn-excluir" src="../assets/svg/trash-icon.svg" data-id="${res[i].idEnderecoFilial}">
                   </td>
               </tr>
                 `
-            }
+                }
             })
         })
 }
@@ -57,7 +57,7 @@ function cadastrarEndereco() {
     var complemento = inputComplemento.value;
     var uf = inputUf.value;
 
-    if (nomeFilial == "") inputNomeFilial.classList.add("error");  
+    if (nomeFilial == "") inputNomeFilial.classList.add("error");
     if (!isCepValid) inputCep.classList.add("error");
     if (logradouro == "") inputLogradouro.classList.add("error");
     if (cidade == "") inputCidade.classList.add("error");
@@ -101,7 +101,9 @@ function cadastrarEndereco() {
                 inputBairro.removeAttribute("disabled");
                 inputUf.removeAttribute("disabled");
 
-                abrirModalCadastro();
+                resposta.text().then(resposta => {
+                    abrirModal(resposta);
+                });
             }
         });
     }
@@ -111,11 +113,14 @@ function removerErroInput(input) {
     if (input.value != "") input.classList.remove("error");
 }
 
-function deletarEndereco(btn){
+function deletarEndereco(btn) {
     var idEndereco = Number(btn.getAttribute("data-id"));
 
-        fetch(`/empresa/deletar-endereco/${idEndereco}`, {
-        method:"DELETE"    
-    })
-
+    fetch(`/empresa/deletar-endereco/${idEndereco}`, {
+        method: "DELETE"
+    }).then(res => {
+        res.text().then(res => {
+            abrirModal(res);
+        });
+    });
 }

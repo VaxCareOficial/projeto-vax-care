@@ -30,7 +30,7 @@ function cadastrar(req, res) {
         usuarioModel.cadastrar(nome, email, senha, tipoUsuario, idEmpresa, idEnderecoFilial)
             .then(
                 function () {
-                    res.status(201).send("Cadastro realizado com sucesso!");
+                    res.status(201).send("Usuário cadastrado com sucesso!");
                 }
             ).catch(
                 function (erro) {
@@ -40,13 +40,13 @@ function cadastrar(req, res) {
     }
 }
 
-function deletar(req, res){
+function deletar(req, res) {
     var idUsuario = req.params.idUsuario;
 
-        usuarioModel.deletar(idUsuario)
+    usuarioModel.deletar(idUsuario)
         .then(
             function () {
-                res.status(201).send("Usuario apagado com sucesso!");
+                res.status(200).send("Usuário excluído com sucesso!");
             }
         ).catch(
             function (erro) {
