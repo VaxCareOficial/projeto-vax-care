@@ -19,7 +19,6 @@ CREATE TABLE EnderecoFilial (
     logradouro VARCHAR(45),
     cidade VARCHAR(45),
     bairro VARCHAR(45),
-    complemento VARCHAR(45),
     uf CHAR(2),
     fkEmpresa INT,
     CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)

@@ -23,7 +23,6 @@ tbody::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(0.9);
 }
 
 .form-usuario {

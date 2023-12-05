@@ -32,42 +32,36 @@
 
             <div class="input-container">
               <label class="label" for="inputNomeFilial">Nome filial</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o nome da filial"
+              <input autocomplete="off" oninput="removerErroInput(this)" type="text" placeholder="Insira o nome da filial"
                 id="inputNomeFilial">
             </div>
 
 
             <div class="input-container">
               <label class="label" for="inputCep">CEP</label>
-              <input onblur="pegarCep(this)" onkeypress="mascararCep(this)" oninput="removerErroInput(this)" type="text"
+              <input autocomplete="off"  onblur="pegarCep(this)" onkeypress="mascararCep(this)" oninput="removerErroInput(this)" type="text"
                 placeholder="Insira o CEP" id="inputCep" maxlength="9">
             </div>
 
             <div class="input-container">
               <label class="label" for="inputLogradouro">Logradouro</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o logradouro"
+              <input autocomplete="off" oninput="removerErroInput(this)" type="text" placeholder="Insira o logradouro"
                 id="inputLogradouro">
             </div>
 
             <div class="input-container">
               <label class="label" for="inputCidade">Cidade</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira a cidade" id="inputCidade">
+              <input autocomplete="off" oninput="removerErroInput(this)" type="text" placeholder="Insira a cidade" id="inputCidade">
             </div>
 
             <div class="input-container">
               <label class="label" for="inputBairro">Bairro</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o bairro" id="inputBairro">
+              <input autocomplete="off" oninput="removerErroInput(this)" type="text" placeholder="Insira o bairro" id="inputBairro">
             </div>
 
             <div class="input-container">
               <label class="label" for="inputUf">UF</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o UF" id="inputUf" maxlength="2">
-            </div>
-
-            <div class="input-container">
-              <label class="label" for="inputComplemento">Complemento</label>
-              <input oninput="removerErroInput(this)" type="text" placeholder="Insira o complemento (opcional)"
-                id="inputComplemento">
+              <input autocomplete="off" oninput="removerErroInput(this)" type="text" placeholder="Insira o UF" id="inputUf" maxlength="2">
             </div>
 
             <button onclick="cadastrarEndereco()">

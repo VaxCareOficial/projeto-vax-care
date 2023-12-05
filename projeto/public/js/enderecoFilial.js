@@ -54,7 +54,6 @@ function cadastrarEndereco() {
     var logradouro = inputLogradouro.value;
     var cidade = inputCidade.value;
     var bairro = inputBairro.value;
-    var complemento = inputComplemento.value;
     var uf = inputUf.value;
 
     if (nomeFilial == "") inputNomeFilial.classList.add("error");
@@ -76,7 +75,6 @@ function cadastrarEndereco() {
                 logradouroServer: logradouro,
                 cidadeServer: cidade,
                 bairroServer: bairro,
-                complementoServer: complemento,
                 ufServer: uf
             })
         }).then(function (resposta) {
@@ -86,7 +84,6 @@ function cadastrarEndereco() {
                 inputLogradouro.value = "";
                 inputCidade.value = "";
                 inputBairro.value = "";
-                inputComplemento.value = "";
                 inputUf.value = "";
 
                 inputNomeFilial.classList.remove("error");

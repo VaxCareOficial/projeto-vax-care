@@ -77,7 +77,6 @@ function cadastrarEndereco(req, res) {
     var logradouro = req.body.logradouroServer;
     var cidade = req.body.cidadeServer;
     var bairro = req.body.bairroServer;
-    var complemento = req.body.complementoServer;
     var uf = req.body.ufServer;
     var idEmpresa = req.params.idEmpresa;
 
@@ -94,7 +93,7 @@ function cadastrarEndereco(req, res) {
     } else if (uf == "") {
         res.status(400).send("Preencha o campo de uf");
     } else {
-        empresaModel.cadastrarEndereco(nome, cep, logradouro, cidade, bairro, complemento, uf, idEmpresa)
+        empresaModel.cadastrarEndereco(nome, cep, logradouro, cidade, bairro, uf, idEmpresa)
             .then(function () {
                 res.status(201).send("Endereço cadastrado com sucesso!");
             }).catch(
