@@ -15,7 +15,7 @@ router.post("/cadastrar-endereco/:idEmpresa", function (req, res) {
     empresaController.cadastrarEndereco(req, res);
 });
 
-router.get("/gerar-endereco/:idEmpresa", function (req, res) {
+router.get("/gerar-enderecos/:idEmpresa", function (req, res) {
     empresaController.gerarEnderecos(req, res);
 });
 

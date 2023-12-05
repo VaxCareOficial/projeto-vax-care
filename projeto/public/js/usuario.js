@@ -69,7 +69,7 @@ function gerarEnderecoFilial() {
             resposta.json().then(resposta => {
                 for (var i = 0; i < resposta.length; i++) {
                     selectEnderecoFilial.innerHTML += `
-                    <option value="${resposta[i].idEnderecoFilial}">${resposta[i].cep}</option>
+                    <option value="${resposta[i].idEnderecoFilial}">${resposta[i].nome}</option>
                     `;
                 }
             });

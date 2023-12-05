@@ -27,7 +27,7 @@ function mascararCep(cep) {
     }
 }
 function listarEndereco() {
-    fetch(`/empresa/gerar-endereco/${idEmpresa}`)
+    fetch(`/empresa/gerar-enderecos/${idEmpresa}`)
         .then(res => {
             res.json().then(res => {
                 tbodyFilial.innerHTML = "";
