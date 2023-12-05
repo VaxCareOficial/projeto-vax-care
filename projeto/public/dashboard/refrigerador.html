@@ -10,7 +10,7 @@
     <title>Gerenciar Refrigerador | Vax Care</title>
 </head>
 
-<body onload="gerarEnderecoFilial()">
+<body onload="gerarEnderecoFilial(), setTimeout(()=> listarRefrigerador(), 200)">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -60,7 +60,7 @@
                         </select>
                     </div>
 
-                    <button onclick="cadastrarRefrigerador()">Cadastrar</button>
+                    <button onclick="cadastrarRefrigerador(), setTimeout(()=> listarRefrigerador(), 200)">Cadastrar</button>
                 </div>
             </div>
             <div class="column-2">
@@ -76,16 +76,7 @@
                         <th class="th-img"></th>
                     </thead>
                     <tbody id="tbodyRefrigerador">
-                        <tr>
-                            <td class="td-vacina">Febre amarela</td>
-                            <td class="td-tempMinima">2º C</td>
-                            <td class="td-tempMax">8º C</td>
-                            <td class="td-nomeSensor">DHT11</td>
-                            <td class="td-endereco">Emanoel Cerqueira</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg">
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>

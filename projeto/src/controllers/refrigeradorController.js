@@ -118,6 +118,18 @@ function contarRefrigeradoresEmpresa(req, res) {
         })
 }
 
+function listar(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    refrigeradorModel.listar(idEmpresa)
+    .then(function (resultado) {
+        res.status(200).json(resultado)
+    }).catch(function (erro) {
+        console.log(erro)
+    });
+
+}
+
 function cadastrar(req, res) {
     var tipoVacina = req.body.tipoVacinaServer;
     var temperaturaMinima = req.body.temperaturaMinimaServer;
@@ -159,5 +171,6 @@ module.exports = {
     buscarTipoDeVacina,
     buscarAlertasDosRefrigeradores,
     contarRefrigeradoresEmpresa,
+    listar,
     cadastrar
 }

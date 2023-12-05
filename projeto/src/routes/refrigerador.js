@@ -27,6 +27,10 @@ router.get("/contarRefrigeradoresEmpresa/:idEmpresa", function (req, res) {
     refrigeradorController.contarRefrigeradoresEmpresa(req, res);
 })
 
+router.get("/listar/:idEmpresa", function (req, res) {
+    refrigeradorController.listar(req, res);
+})
+
 router.post("/cadastrar", function (req, res) {
     refrigeradorController.cadastrar(req, res);
 })

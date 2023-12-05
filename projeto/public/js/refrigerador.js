@@ -1,3 +1,26 @@
+function listarRefrigerador() {
+    fetch(`/refrigerador/listar/${idEmpresa}`)
+        .then(res => {
+            res.json().then(res => {
+                tbodyRefrigerador.innerHTML = "";
+                for (var i = 0; i < res.length; i++){
+                tbodyRefrigerador.innerHTML += `
+                <tr>
+                <td class="td-vacina">${res[i].nomeVacina}</td>
+                <td class="td-tempMinima">${res[i].tempMinima}</td>
+                <td class="td-tempMax">${res[i].tempMaxima}</td>
+                <td class="td-nomeSensor">${res[i].nomeSensor}</td>
+                <td class="td-endereco">${res[i].nomeFilial}</td>
+                <td class="container-img">
+                    <img data-id='${res[i].idRefrigerador}' class="btn-excluir" src="../assets/svg/trash-icon.svg">
+                </td>
+            </tr>
+                `
+            }
+            })
+        })
+}
+
 function cadastrarRefrigerador() {
     var tipoVacina = inputTipoVacina.value;
     var temperaturaMaxima = inputTemperaturaMaxima.value;
