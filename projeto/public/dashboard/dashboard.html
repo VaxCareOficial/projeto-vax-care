@@ -17,7 +17,7 @@
 <!-- simularSensorJogandoDadoNoBanco() -->
 <!-- selecionarQuantidadeAlertaPorRefrigerador() -->
 
-<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
+<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa(), selecionarUltimoDadoPorRefrigerador(sessionStorage.idUsuario)">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -46,11 +46,11 @@
 
                             </div>
                             <div class="box">
-                                <h1 style="color: #b2e8ab;"></h1>
+                                <h1 style="color: #b2e8ab;" id="emEstadoIdeal"></h1>
                                 <h5>Refrigeradores na temperatura ideal</h5>
                             </div>
                             <div class="box">
-                                <h1 style="color: #ea5965"></h1>
+                                <h1 style="color: #ea5965" id="emEstadoDeAlerta"></h1>
                                 <h5>Refrigeradores em alerta</h5>
                             </div>
                         </div>

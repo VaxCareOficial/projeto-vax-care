@@ -127,6 +127,26 @@ function buscarAlertasPorDia(idRefrigerador) {
     return database.executar(instrucaoSql);
 }
 
+
+
+function buscarUltimoDadoPorRefrigerador(idUsuario) {
+
+    var instrucaoSql = `
+    select max(idDadosSensor) ultimoDado, idRefrigerador refrigerador from dadosSensor join sensor on fkSensor = idSensor join refrigerador r on idSensor = r.fkSensor join enderecoFilial on r.fkEnderecoFilial = idEnderecoFilial join usuario u on u.fkEnderecoFilial = idEnderecoFilial
+            where idUsuario = ${idUsuario}
+            group by idRefrigerador;`
+                                
+    return database.executar(instrucaoSql);
+}
+
+
+function buscarStatusTemperaturaUltimoDado(idDadosSensor) {
+
+    var instrucaoSql = `select temperatura, statusAlert from dadosSensor where idDadosSensor = ${idDadosSensor};`
+                                
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -139,5 +159,7 @@ module.exports = {
     deletar,
     deletarEnderecoRefrigerador,
     buscarQuantidadeAlertasRefrigerador,
-    buscarAlertasPorDia
+    buscarAlertasPorDia,
+    buscarUltimoDadoPorRefrigerador,
+    buscarStatusTemperaturaUltimoDado
 }

@@ -51,4 +51,19 @@ router.delete("/deletar/:idRefrigerador", function (req, res) {
 })
 
 
+router.get("/ultimoDadoRefrigeradorDisponivel/:idUsuario", function (req, res) {
+    refrigeradorController.buscarUltimoDadoPorRefrigerador(req, res);
+})
+
+
+router.get("/statusEtemperaturaUltimoDado/:idDadosSensor", function (req, res) {
+    refrigeradorController.buscarStatusTemperaturaUltimoDado(req, res);
+})
+
+
+
+
+
+
+
 module.exports = router;

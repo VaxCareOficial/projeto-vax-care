@@ -220,6 +220,48 @@ function buscarAlertasPorDia(req, res) {
     });
 }
 
+
+
+
+function buscarUltimoDadoPorRefrigerador(req, res) {
+
+    var idUsuario = req.params.idUsuario;
+
+    console.log(`Recuperando ultimos dados`);
+
+    refrigeradorModel.buscarUltimoDadoPorRefrigerador(idUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function buscarStatusTemperaturaUltimoDado(req, res) {
+
+    var idDadosSensor = req.params.idDadosSensor;
+
+    console.log(`Recuperando ultimos dados`);
+
+    refrigeradorModel.buscarStatusTemperaturaUltimoDado(idDadosSensor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -231,5 +273,7 @@ module.exports = {
     cadastrar,
     deletar,
     buscarQuantidadeAlertasRefrigerador,
-    buscarAlertasPorDia
+    buscarAlertasPorDia,
+    buscarUltimoDadoPorRefrigerador,
+    buscarStatusTemperaturaUltimoDado
 }

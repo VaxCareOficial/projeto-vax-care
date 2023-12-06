@@ -51,6 +51,7 @@ async function buscarAlertas() {
         console.log(dado);
         alert(dado[0].statusAlert);
     }
+    // setTimeout(() => buscarAlertas(), 5000);
 }
 
 function limparBusca() {
@@ -82,6 +83,7 @@ function buscarRefrigerador() {
 
 
     buscarQuantidadeAlertas(searchText)
+
 
     for (let i = 0; i < listaDisponivel.length; i++) {
         if (listaDisponivel[i] == searchText) {
@@ -131,6 +133,9 @@ function buscarRefrigerador() {
     } else {
        
         alert(`Voce nao tem o refrigerador de número ${searchText}!`);
+        
+        containerPrincipal.forEach((e) => e.style.display = "flex");
+        containerSensor.forEach((e) => e.style.display = "none");
     }
 }
 
@@ -300,7 +305,7 @@ function contarRefrigeradoresEmpresa(){
     fetch(`/refrigerador/contarRefrigeradoresEmpresa/${idEmpresa}`)
     .then(resposta => {
         resposta.json().then(resposta => {
-            refrigeradoresRegistrados.innerHTML = resposta[0].qtdRefrigerador;
+            // refrigeradoresRegistrados.innerHTML = resposta[0].qtdRefrigerador;
         })
     })
 }
@@ -339,6 +344,8 @@ function buscarAlertasPorDia(idRefrigerador){
             console.log(`Dados obtidos: ${JSON.stringify(qtdAlerta)}`);
 
             plotarGraficoQuantidadeAlerta(qtdAlerta)
+
+            setTimeout(() => buscarAlertasPorDia(idRefrigerador), 5000);
            
         });
     })
@@ -358,8 +365,8 @@ function plotarGraficoQuantidadeAlerta(qtdAlerta) {
             label: 'Temperatura',
             data: [],
             fill: false,
-            borderColor: `#000`,
-            backgroundColor: `#000`,
+            borderColor: `#3ca9c2`,
+            backgroundColor: `#3ca9c2`,
             tension: 0.1
         }]
     };
@@ -398,6 +405,82 @@ function plotarGraficoQuantidadeAlerta(qtdAlerta) {
 
     
 }
+
+
+
+
+
+// teste kpi 
+
+
+let listaUltimosDadosEmAlerta = [];
+let listaUltimosDadosEmEstadoIdeal = [];
+
+function selecionarUltimoDadoPorRefrigerador(idUsuario){
+    fetch(`/refrigerador/ultimoDadoRefrigeradorDisponivel/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+
+                console.log(`teste de dado recebido ${resposta[0].ultimoDado}`)
+
+
+                for(let i=0; i < resposta.length; i++){
+
+
+                    let idDadosSensor = resposta[i].ultimoDado;
+
+                    fetch(`/refrigerador/statusEtemperaturaUltimoDado/${idDadosSensor}`, { cache: 'no-store' }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (respostacu) {
+
+                               for(let i = 0; i < respostacu.length; i++){
+
+                                if(respostacu[i].statusAlert.indexOf('Alerta') > -1 || respostacu[i].statusAlert.indexOf('Crítico') > -1 ){
+
+                                    listaUltimosDadosEmAlerta.push(respostacu[i].statusAlert)
+                                }else{
+                                    listaUltimosDadosEmEstadoIdeal.push(respostacu[i].statusAlert)
+                                }
+                               }
+                
+                               emEstadoIdeal.innerHTML = listaUltimosDadosEmEstadoIdeal.length;
+                               emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
+                               refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
+
+                
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                          
+                        }
+                    })
+                        .catch(function (error) {
+                            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                        });
+
+                }
+
+           
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+
+
+
+
+
 
 
 
