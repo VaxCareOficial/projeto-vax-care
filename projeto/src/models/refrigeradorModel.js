@@ -147,6 +147,18 @@ function buscarStatusTemperaturaUltimoDado(idDadosSensor) {
     return database.executar(instrucaoSql);
 }
 
+
+
+
+function buscarQuantidadeVacinaRefrigerador(idUsuario) {
+
+    var instrucaoSql = `select count(idRefrigerador) refrigeradores, v.nome vacina from refrigerador r join vacina v on fkVacina = idVacina join enderecoFilial on r.fkEnderecoFilial = idEnderecoFilial join usuario u on u.fkEnderecoFilial = idEnderecoFilial
+    where idUsuario = ${idUsuario}
+    group by v.nome;`
+                                
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarRefrigeradoresDisponiveis,
     buscarDados,
@@ -161,5 +173,6 @@ module.exports = {
     buscarQuantidadeAlertasRefrigerador,
     buscarAlertasPorDia,
     buscarUltimoDadoPorRefrigerador,
-    buscarStatusTemperaturaUltimoDado
+    buscarStatusTemperaturaUltimoDado,
+    buscarQuantidadeVacinaRefrigerador
 }

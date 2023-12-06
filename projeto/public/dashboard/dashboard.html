@@ -18,7 +18,7 @@
 <!-- selecionarQuantidadeAlertaPorRefrigerador() -->
 
 <body
-    onload="simularSensorJogandoDadoNoBanco(), validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
+    onload="simularSensorJogandoDadoNoBanco(), validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa(), selecionarUltimoDadoPorRefrigerador(sessionStorage.idUsuario), buscarQuantidadeDeRefrigeradorPorVacina(sessionStorage.idUsuario)">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -47,11 +47,11 @@
 
                             </div>
                             <div class="box">
-                                <h1 style="color: #b2e8ab;"></h1>
+                                <h1 style="color: #b2e8ab;" id="emEstadoIdeal"></h1>
                                 <h5>Refrigeradores na temperatura ideal</h5>
                             </div>
                             <div class="box">
-                                <h1 style="color: #ea5965"></h1>
+                                <h1 style="color: #ea5965" id="emEstadoDeAlerta"></h1>
                                 <h5>Refrigeradores em alerta</h5>
                             </div>
                         </div>
@@ -291,22 +291,22 @@
         };
 
         //GRAFICO 3
-        const dataBar = {
-            labels: ['Covid-19', 'H1N1', 'Febre Amarela', 'Hepatite A', 'Varicela'],
-            datasets: [{
-                label: 'Quantidade de refrigeradores por tipo de vacina',
-                data: [15, 19, 7, 3, 5],
-                backgroundColor: [
-                    '#74abe0'
-                ]
-            }]
-        };
+        // const dataBar = {
+        //     labels: ['Covid-19', 'H1N1', 'Febre Amarela', 'Hepatite A', 'Varicela'],
+        //     datasets: [{
+        //         label: 'Quantidade de refrigeradores por tipo de vacina',
+        //         data: [15, 19, 7, 3, 5],
+        //         backgroundColor: [
+        //             '#74abe0'
+        //         ]
+        //     }]
+        // };
 
-        const configBar = {
-            type: 'bar',
-            data: dataBar,
-            options: {}
-        };
+        // const configBar = {
+        //     type: 'bar',
+        //     data: dataBar,
+        //     options: {}
+        // };
     </script>
 
     <script>
@@ -321,10 +321,10 @@
             configSide
         );
         //G3
-        const GraficoBar = new Chart(
-            document.getElementById('GraficoBar'),
-            configBar
-        );
+        // const GraficoBar = new Chart(
+        //     document.getElementById('GraficoBar'),
+        //     configBar
+        // );
     </script>
 
 

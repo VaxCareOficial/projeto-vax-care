@@ -61,6 +61,11 @@ router.get("/statusEtemperaturaUltimoDado/:idDadosSensor", function (req, res) {
 })
 
 
+router.get("/buscarQuantidadePorVacina/:idUsuario", function (req, res) {
+    refrigeradorController.buscarQuantidadeVacinaRefrigerador(req, res);
+})
+
+
 
 
 
