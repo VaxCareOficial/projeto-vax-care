@@ -355,3 +355,13 @@ body {
 .modal.active {
     transform: scale(1);
 }
+
+.download-pdf {
+    position: absolute;
+    left: 20px;
+    bottom: 12px;
+}
+
+.download-pdf img {
+    height: 20px;
+}

@@ -338,11 +338,12 @@ function abrirListaAlerta() {
 
 
 
-
+let pctAlerta = 0;
+let pctIdeal = 0;
 
 
 // kpi 
-function selecionarUltimoDadoPorRefrigerador(idUsuario){
+function selecionarUltimoDadoPorRefrigerador(idUsuario) {
     fetch(`/refrigerador/ultimoDadoRefrigeradorDisponivel/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
@@ -355,69 +356,94 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
                 let qtdIdeal = 0;
                 let qtdAlerta = 0;
                 let totalCadastrado = 0;
-               
-                
 
-                for(let i=0; i < resposta.length; i++){
+
+
+                for (let i = 0; i < resposta.length; i++) {
 
 
                     let idDadosSensor = resposta[i].ultimoDado;
-                   
+
 
                     fetch(`/refrigerador/statusEtemperaturaUltimoDado/${idDadosSensor}`, { cache: 'no-store' }).then(function (response) {
                         if (response.ok) {
                             response.json().then(function (respostacu) {
 
-                               for(let i = 0; i < respostacu.length; i++){
+                                for (let i = 0; i < respostacu.length; i++) {
 
-                                if(respostacu[i].statusAlert.indexOf('Alerta') > -1 || respostacu[i].statusAlert.indexOf('Crítico') > -1 ){
+                                    if (respostacu[i].statusAlert.indexOf('Alerta') > -1 || respostacu[i].statusAlert.indexOf('Crítico') > -1) {
 
-                                    listaUltimosDadosEmAlerta.push(respostacu[i].statusAlert)
-                                }else{
-                                    listaUltimosDadosEmEstadoIdeal.push(respostacu[i].statusAlert)
+                                        listaUltimosDadosEmAlerta.push(respostacu[i].statusAlert)
+                                    } else {
+                                        listaUltimosDadosEmEstadoIdeal.push(respostacu[i].statusAlert)
+                                    }
                                 }
-                               }
-
-
-                               
-                
-                               emEstadoIdeal.innerHTML = listaUltimosDadosEmEstadoIdeal.length;
-                               emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
-                               refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
-
-
-                               totalCadastrado = listaDisponivel.length;
-                               qtdAlerta = listaUltimosDadosEmAlerta.length;
-                               qtdIdeal = listaUltimosDadosEmEstadoIdeal.length;
 
 
 
-                               setTimeout(() => selecionarUltimoDadoPorRefrigerador(idUsuario), 10000);
 
-                               
-                
+                                emEstadoIdeal.innerHTML = listaUltimosDadosEmEstadoIdeal.length;
+                                emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
+                                refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
+
+
+                                totalCadastrado = listaDisponivel.length;
+                                qtdAlerta = listaUltimosDadosEmAlerta.length;
+                                qtdIdeal = listaUltimosDadosEmEstadoIdeal.length;
+
+                                pctAlerta = (qtdAlerta * 100) / totalCadastrado;
+                                pctIdeal = (qtdIdeal * 100) / totalCadastrado;
+
+                                setTimeout(() => {
+                                    const dataPizza = {
+                                        labels: ['Funcionando em temperatura ideal',
+                                            'Em estado de alerta'],
+                                        datasets: [{
+                                            data: [pctIdeal, pctAlerta],
+                                            backgroundColor: [
+                                                '#74abe0',
+                                                '#ea5965']
+                                        }]
+                                    };
+
+                                    const configPizza = {
+                                        type: 'pie',
+                                        data: dataPizza,
+                                        options: {}
+                                    };
+
+                                    const GraficoPizza = new Chart(
+                                        document.getElementById('GraficoPizza'),
+                                        configPizza
+                                    );
+                                }, 100);
+
+
+                                setTimeout(() => selecionarUltimoDadoPorRefrigerador(idUsuario), 10000);
+
+
                             });
                         } else {
                             console.error('Nenhum dado encontrado ou erro na API');
                             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                          
+
                         }
                     })
                         .catch(function (error) {
                             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                         });
 
-                        
+
                 }
 
-                
-                
+
+
 
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          
+
         }
     })
         .catch(function (error) {
@@ -431,19 +457,19 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
 
 
 
-function buscarQuantidadeDeRefrigeradorPorVacina(idUsuario){
+function buscarQuantidadeDeRefrigeradorPorVacina(idUsuario) {
     fetch(`/refrigerador/buscarQuantidadePorVacina/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (respostaaa) {
 
                 console.log(`foi bomba ${respostaaa[1].refrigeradores}`)
-                
+
                 plotarGraficoQuantidadeVacina(respostaaa)
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          
+
         }
     })
         .catch(function (error) {
@@ -452,7 +478,7 @@ function buscarQuantidadeDeRefrigeradorPorVacina(idUsuario){
 }
 
 
-function plotarGraficoQuantidadeVacina(respostaaa){
+function plotarGraficoQuantidadeVacina(respostaaa) {
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -465,8 +491,8 @@ function plotarGraficoQuantidadeVacina(respostaaa){
             label: 'Refrigeradores',
             data: [],
             fill: false,
-            borderColor: [`#3ca9c2`,'#838383'],
-            backgroundColor: [`#3ca9c2`,'#838383'],
+            borderColor: [`#3ca9c2`, '#838383'],
+            backgroundColor: [`#3ca9c2`, '#838383'],
             tension: 0.1
         }]
     };
@@ -486,7 +512,7 @@ function plotarGraficoQuantidadeVacina(respostaaa){
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
     console.log('Labels:')
-    
+
     console.log('Dados:')
     console.log(dados.datasets)
     console.log('----------------------------------------------')
