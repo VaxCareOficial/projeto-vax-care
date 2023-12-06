@@ -422,16 +422,20 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
 
                 console.log(`teste de dado recebido ${resposta[0].ultimoDado}`)
 
-                let listaUltimosDadosEmAlerta = [];
+                let listaUltimosDadosEmAlerta = []
                 let listaUltimosDadosEmEstadoIdeal = [];
 
+                let qtdIdeal = 0;
+                let qtdAlerta = 0;
+                let totalCadastrado = 0;
+               
+                
 
                 for(let i=0; i < resposta.length; i++){
 
 
                     let idDadosSensor = resposta[i].ultimoDado;
-
-
+                   
 
                     fetch(`/refrigerador/statusEtemperaturaUltimoDado/${idDadosSensor}`, { cache: 'no-store' }).then(function (response) {
                         if (response.ok) {
@@ -446,14 +450,24 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
                                     listaUltimosDadosEmEstadoIdeal.push(respostacu[i].statusAlert)
                                 }
                                }
+
+
+                               
                 
                                emEstadoIdeal.innerHTML = listaUltimosDadosEmEstadoIdeal.length;
                                emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
                                refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
 
 
+                               totalCadastrado = listaDisponivel.length;
+                               qtdAlerta = listaUltimosDadosEmAlerta.length;
+                               qtdIdeal = listaUltimosDadosEmEstadoIdeal.length;
+
+
 
                                setTimeout(() => selecionarUltimoDadoPorRefrigerador(idUsuario), 10000);
+
+                              
                 
                             });
                         } else {
@@ -466,9 +480,12 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
                             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                         });
 
+                        
                 }
 
-           
+
+                
+                
 
             });
         } else {
@@ -480,6 +497,75 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+
+}
+
+
+function calcularPorcentagens(){
+
+    let porcentagens = [];
+
+    let porcentagemIdeal = (qtdIdeal * 100)/totalCadastrado;
+    let porcentagemAlerta = (qtdAlerta* 100)/totalCadastrado;
+
+    porcentagens.push(porcentagemAlerta);
+    porcentagens.push(porcentagemIdeal)
+
+    plotarGraficoPercentual(porcentagens)
+}
+
+
+
+function plotarGraficoPercentual(porcentagens){
+
+    console.log('iniciando plotagem do gráfico...');
+
+
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: [],
+        datasets: [{
+            label: '',
+            data: [],
+            fill: false,
+            borderColor: `#74abe0`,
+            backgroundColor: `#000`,
+            tension: 0.1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "buscarDados" e passados para "plotarGrafico":')
+    console.log(porcentagens[0])
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < porcentagens.length; i++) {
+        // var registro = resposta[i];
+        dados.labels.push(porcentagens[i]);
+        dados.datasets[0].data.push(porcentagens[i]);
+
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'pie',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChartPercentual = new Chart(
+        document.getElementById(`GraficoPizza`),
+        config
+    );
 
 }
 
