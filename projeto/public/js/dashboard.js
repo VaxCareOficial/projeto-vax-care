@@ -51,7 +51,6 @@ async function buscarAlertas() {
         console.log(dado);
         alert(dado[0].statusAlert);
     }
-    // setTimeout(() => buscarAlertas(), 5000);
 }
 
 function limparBusca() {
@@ -84,18 +83,17 @@ function buscarRefrigerador() {
 
     buscarQuantidadeAlertas(searchText)
 
-
     for (let i = 0; i < listaDisponivel.length; i++) {
         if (listaDisponivel[i] == searchText) {
             existeRefrigeradorNaLista = true
         }
     }
 
-   
+
 
     if (existeRefrigeradorNaLista == true) {
 
-        
+
         line1Title.innerHTML = "<h1>Painel de controle <span>detalhado</span></h1>";
         imgInput.src = "../assets/svg/x-icon.svg";
         imgInput.classList.add("active");
@@ -103,9 +101,8 @@ function buscarRefrigerador() {
         containerSensor.forEach((e) => e.style.display = "flex");
 
         selecionarTipodeVacina(searchText);
-        buscarAlertasPorDia(searchText);
-       
-    
+
+
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -131,11 +128,8 @@ function buscarRefrigerador() {
             });
 
     } else {
-       
+
         alert(`Voce nao tem o refrigerador de número ${searchText}!`);
-        
-        containerPrincipal.forEach((e) => e.style.display = "flex");
-        containerSensor.forEach((e) => e.style.display = "none");
     }
 }
 
@@ -148,15 +142,15 @@ function plotarGrafico(resposta, searchText) {
     let corLinha = ``;
 
 
-    if(resposta[resposta.length -1].statusAlert == "Crítico Frio" || resposta[resposta.length -1].statusAlert == "Crítico Calor" ){
+    if (resposta[resposta.length - 1].statusAlert == "Crítico Frio" || resposta[resposta.length - 1].statusAlert == "Crítico Calor") {
 
         corLinha = `#960000`
 
-    }else if(resposta[resposta.length -1].statusAlert == "Alerta Frio" || resposta[resposta.length -1].statusAlert == "Critico Calor" ){
+    } else if (resposta[resposta.length - 1].statusAlert == "Alerta Frio" || resposta[resposta.length - 1].statusAlert == "Critico Calor") {
 
         corLinha = `rgb(216, 178, 9)`
-    
-    }else if(resposta[resposta.length - 1].statusAlert == "Ideal"){
+
+    } else if (resposta[resposta.length - 1].statusAlert == "Ideal") {
         corLinha = `#41bd69`
     }
 
@@ -252,7 +246,7 @@ function atualizarGrafico(searchText, dados, myChart) {
                 if (novoRegistro[0].data == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-            
+
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].data)
                     console.log("Horário do último dado capturado:")
@@ -261,8 +255,8 @@ function atualizarGrafico(searchText, dados, myChart) {
 
 
                 } else {
-                   
-                    
+
+
                     dados.labels.shift(); // apagar o primeiro
                     dados.labels.push(novoRegistro[0].data); // incluir um novo momento
 
@@ -301,13 +295,13 @@ function selecionarTipodeVacina(searchText) {
     })
 }
 
-function contarRefrigeradoresEmpresa(){
+function contarRefrigeradoresEmpresa() {
     fetch(`/refrigerador/contarRefrigeradoresEmpresa/${idEmpresa}`)
-    .then(resposta => {
-        resposta.json().then(resposta => {
-            // refrigeradoresRegistrados.innerHTML = resposta[0].qtdRefrigerador;
+        .then(resposta => {
+            resposta.json().then(resposta => {
+                refrigeradoresRegistrados.innerHTML = resposta[0].qtdRefrigerador;
+            })
         })
-    })
 }
 
 
@@ -325,258 +319,21 @@ function buscarQuantidadeAlertas(searchText) {
     fetch(`/refrigerador/buscarQuantidadeAlertas`, { cache: 'no-store' }).then(function (response) {
         response.json().then(function (qtdAlerta) {
             console.log(`Dados obtidos: ${JSON.stringify(qtdAlerta)}`);
-           
-            for(let i=0; i < qtdAlerta.length; i++){
 
-                if(searchText == qtdAlerta[i].refrigerador){
-        
-                    posicaoQuantidadeAlertas.innerHTML = `#${i+1}`
+            for (let i = 0; i < qtdAlerta.length; i++) {
+
+                if (searchText == qtdAlerta[i].refrigerador) {
+
+                    posicaoQuantidadeAlertas.innerHTML = `#${i + 1}`
                 }
             }
         });
     })
 }
 
-
-function buscarAlertasPorDia(idRefrigerador){
-    fetch(`/refrigerador/qtdAlertasPorDia/${idRefrigerador}`, { cache: 'no-store' }).then(function (response) {
-        response.json().then(function (qtdAlerta) {
-            console.log(`Dados obtidos: ${JSON.stringify(qtdAlerta)}`);
-
-            plotarGraficoQuantidadeAlerta(qtdAlerta)
-
-            setTimeout(() => buscarAlertasPorDia(idRefrigerador), 5000);
-           
-        });
-    })
+function abrirListaAlerta() {
+    containerAlertas.classList.toggle("active");
+    qtdAlertas.innerHTML = "";
 }
-
-
-
-function plotarGraficoQuantidadeAlerta(qtdAlerta) {
-    console.log('iniciando plotagem do gráfico...');
-
-    // Criando estrutura para plotar gráfico - labels
-    
-    // Criando estrutura para plotar gráfico - dados
-    let dados = {
-        labels: [],
-        datasets: [{
-            label: 'Temperatura',
-            data: [],
-            fill: false,
-            borderColor: `#3ca9c2`,
-            backgroundColor: `#3ca9c2`,
-            tension: 0.1
-        }]
-    };
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "buscarDados" e passados para "plotarGrafico":')
-    console.log(qtdAlerta)
-
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < qtdAlerta.length; i++) {
-        // var registro = resposta[i];
-        dados.labels.push(qtdAlerta[i].data);
-        dados.datasets[0].data.push(qtdAlerta[i].qtdStatus);
-
-    }
-
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(dados.labels)
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
-
-    // Criando estrutura para plotar gráfico - config
-    const config = {
-        type: 'bar',
-        data: dados,
-    };
-
-    // Adicionando gráfico criado em div na tela
-    let myChart = new Chart(
-        document.getElementById(`alertas_por_dia`),
-        config
-    );
-
-    
-}
-
-
-
-
-
-// teste kpi 
-
-
-
-
-function selecionarUltimoDadoPorRefrigerador(idUsuario){
-    fetch(`/refrigerador/ultimoDadoRefrigeradorDisponivel/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-
-                console.log(`teste de dado recebido ${resposta[0].ultimoDado}`)
-
-                let listaUltimosDadosEmAlerta = []
-                let listaUltimosDadosEmEstadoIdeal = [];
-
-                let qtdIdeal = 0;
-                let qtdAlerta = 0;
-                let totalCadastrado = 0;
-               
-                
-
-                for(let i=0; i < resposta.length; i++){
-
-
-                    let idDadosSensor = resposta[i].ultimoDado;
-                   
-
-                    fetch(`/refrigerador/statusEtemperaturaUltimoDado/${idDadosSensor}`, { cache: 'no-store' }).then(function (response) {
-                        if (response.ok) {
-                            response.json().then(function (respostacu) {
-
-                               for(let i = 0; i < respostacu.length; i++){
-
-                                if(respostacu[i].statusAlert.indexOf('Alerta') > -1 || respostacu[i].statusAlert.indexOf('Crítico') > -1 ){
-
-                                    listaUltimosDadosEmAlerta.push(respostacu[i].statusAlert)
-                                }else{
-                                    listaUltimosDadosEmEstadoIdeal.push(respostacu[i].statusAlert)
-                                }
-                               }
-
-
-                               
-                
-                               emEstadoIdeal.innerHTML = listaUltimosDadosEmEstadoIdeal.length;
-                               emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
-                               refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
-
-
-                               totalCadastrado = listaDisponivel.length;
-                               qtdAlerta = listaUltimosDadosEmAlerta.length;
-                               qtdIdeal = listaUltimosDadosEmEstadoIdeal.length;
-
-
-
-                               setTimeout(() => selecionarUltimoDadoPorRefrigerador(idUsuario), 10000);
-
-                              
-                
-                            });
-                        } else {
-                            console.error('Nenhum dado encontrado ou erro na API');
-                            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                          
-                        }
-                    })
-                        .catch(function (error) {
-                            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                        });
-
-                        
-                }
-
-
-                
-                
-
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          
-        }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-
-}
-
-
-function calcularPorcentagens(){
-
-    let porcentagens = [];
-
-    let porcentagemIdeal = (qtdIdeal * 100)/totalCadastrado;
-    let porcentagemAlerta = (qtdAlerta* 100)/totalCadastrado;
-
-    porcentagens.push(porcentagemAlerta);
-    porcentagens.push(porcentagemIdeal)
-
-    plotarGraficoPercentual(porcentagens)
-}
-
-
-
-function plotarGraficoPercentual(porcentagens){
-
-    console.log('iniciando plotagem do gráfico...');
-
-
-
-    // Criando estrutura para plotar gráfico - dados
-    let dados = {
-        labels: [],
-        datasets: [{
-            label: '',
-            data: [],
-            fill: false,
-            borderColor: `#74abe0`,
-            backgroundColor: `#000`,
-            tension: 0.1
-        }]
-    };
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "buscarDados" e passados para "plotarGrafico":')
-    console.log(porcentagens[0])
-
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < porcentagens.length; i++) {
-        // var registro = resposta[i];
-        dados.labels.push(porcentagens[i]);
-        dados.datasets[0].data.push(porcentagens[i]);
-
-    }
-
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    
-    console.log('Dados:')
-    console.log(dados.datasets)
-    console.log('----------------------------------------------')
-
-    // Criando estrutura para plotar gráfico - config
-    const config = {
-        type: 'pie',
-        data: dados,
-    };
-
-    // Adicionando gráfico criado em div na tela
-    let myChartPercentual = new Chart(
-        document.getElementById(`GraficoPizza`),
-        config
-    );
-
-}
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener("keypress", enviarPorEnter);

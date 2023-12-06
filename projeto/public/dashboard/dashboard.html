@@ -17,7 +17,8 @@
 <!-- simularSensorJogandoDadoNoBanco() -->
 <!-- selecionarQuantidadeAlertaPorRefrigerador() -->
 
-<body onload="validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa(), selecionarUltimoDadoPorRefrigerador(sessionStorage.idUsuario)">
+<body
+    onload="simularSensorJogandoDadoNoBanco(), validarRefrigeradoresDisponiveis(sessionStorage.idUsuario), contarRefrigeradoresEmpresa()">
     <div class="container">
         <div class="menu">
             <div class="line-1">
@@ -46,11 +47,11 @@
 
                             </div>
                             <div class="box">
-                                <h1 style="color: #b2e8ab;" id="emEstadoIdeal"></h1>
+                                <h1 style="color: #b2e8ab;"></h1>
                                 <h5>Refrigeradores na temperatura ideal</h5>
                             </div>
                             <div class="box">
-                                <h1 style="color: #ea5965" id="emEstadoDeAlerta"></h1>
+                                <h1 style="color: #ea5965"></h1>
                                 <h5>Refrigeradores em alerta</h5>
                             </div>
                         </div>
@@ -85,8 +86,9 @@
                                     <!-- <span>Crítico Frio</span> -->
                                 </div>
                                 <div class="alerta alertFrio">
-                                    <h4 class="temperaturaAlerta">< 4.46°C</h4>
-                                    <!-- <span>Alerta Frio</span> -->
+                                    <h4 class="temperaturaAlerta">
+                                        < 4.46°C</h4>
+                                            <!-- <span>Alerta Frio</span> -->
                                 </div>
                             </div>
                             <div class="metrica ideal">
@@ -140,10 +142,14 @@
                                     src="../assets/svg/search-icon.svg"></button>
                         </div>
 
-                        <button id="btnNotification">
-                            <span>2</span>
-                            <img src="../assets/svg/notification-icon.svg">
-                        </button>
+                        <div class="container-btn-notificacao">
+                            <button onclick="abrirListaAlerta()" id="btnNotification">
+                                <span id="qtdAlertas">2</span>
+                                <img src="../assets/svg/notification-icon.svg">
+                            </button>
+
+                            <div id="containerAlertas"></div>
+                        </div>
                     </div>
 
                     <div class="container-principal">
@@ -193,7 +199,7 @@
                                 <div class="block-bottom-graph">
 
                                     <h5>Quantidade de alertas por dia</h5>
-                                    <canvas id="alertas_por_dia"></canvas>
+                                    <canvas id="myChart"></canvas>
                                 </div>
 
                                 <script>
@@ -247,22 +253,22 @@
 
     <script>
         //GRAFICO 1
-        // const dataPizza = {
-        //     labels: ['Funcionando em temperatura ideal',
-        //         'Em estado de alerta'],
-        //     datasets: [{
-        //         data: [47, 3],
-        //         backgroundColor: [
-        //             '#74abe0',
-        //             '#ea5965']
-        //     }]
-        // };
+        const dataPizza = {
+            labels: ['Funcionando em temperatura ideal',
+                'Em estado de alerta'],
+            datasets: [{
+                data: [47, 3],
+                backgroundColor: [
+                    '#74abe0',
+                    '#ea5965']
+            }]
+        };
 
-        // const configPizza = {
-        //     type: 'pie',
-        //     data: dataPizza,
-        //     options: {}
-        // };
+        const configPizza = {
+            type: 'pie',
+            data: dataPizza,
+            options: {}
+        };
 
         //GRAFICO 2
         const dataSide = {
@@ -305,10 +311,10 @@
 
     <script>
         //G1
-        // const GraficoPizza = new Chart(
-        //     document.getElementById('GraficoPizza'),
-        //     configPizza
-        // );
+        const GraficoPizza = new Chart(
+            document.getElementById('GraficoPizza'),
+            configPizza
+        );
         //G2
         const GraficoSide = new Chart(
             document.getElementById('GraficoSide'),
@@ -321,7 +327,7 @@
         );
     </script>
 
-   
+
 
     <script src="../js/menu.js"></script>
     <script src="../js/dashboard.js"></script>

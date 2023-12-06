@@ -106,6 +106,10 @@ p {
     cursor: pointer;
 }
 
+.container-btn-notificacao {
+    position: relative;
+}
+
 #btnNotification {
     all: unset;
     margin: 6px 0 0 20px;
@@ -113,6 +117,38 @@ p {
     width: 20px;
     cursor: pointer;
     transition: all .4s ease-in-out;
+}
+
+#containerAlertas::-webkit-scrollbar {
+    width: 8px;
+}
+
+#containerAlertas::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+#containerAlertas::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+}
+
+#containerAlertas {
+    content: "";
+    display: none;
+    flex-direction: column;
+    width: 180px;
+    height: 180px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    position: absolute;
+    top: 44px;
+    left: -54px;
+    box-shadow: 0 0 4px #00000035;
+    overflow-y: auto;
+}
+
+#containerAlertas.active {
+    display: flex;
 }
 
 #btnNotification img {
