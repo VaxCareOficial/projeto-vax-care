@@ -413,8 +413,7 @@ function plotarGraficoQuantidadeAlerta(qtdAlerta) {
 // teste kpi 
 
 
-let listaUltimosDadosEmAlerta = [];
-let listaUltimosDadosEmEstadoIdeal = [];
+
 
 function selecionarUltimoDadoPorRefrigerador(idUsuario){
     fetch(`/refrigerador/ultimoDadoRefrigeradorDisponivel/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
@@ -423,11 +422,16 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
 
                 console.log(`teste de dado recebido ${resposta[0].ultimoDado}`)
 
+                let listaUltimosDadosEmAlerta = [];
+                let listaUltimosDadosEmEstadoIdeal = [];
+
 
                 for(let i=0; i < resposta.length; i++){
 
 
                     let idDadosSensor = resposta[i].ultimoDado;
+
+
 
                     fetch(`/refrigerador/statusEtemperaturaUltimoDado/${idDadosSensor}`, { cache: 'no-store' }).then(function (response) {
                         if (response.ok) {
@@ -447,6 +451,9 @@ function selecionarUltimoDadoPorRefrigerador(idUsuario){
                                emEstadoDeAlerta.innerHTML = listaUltimosDadosEmAlerta.length;
                                refrigeradoresRegistrados.innerHTML = listaDisponivel.length;
 
+
+
+                               setTimeout(() => selecionarUltimoDadoPorRefrigerador(idUsuario), 10000);
                 
                             });
                         } else {
