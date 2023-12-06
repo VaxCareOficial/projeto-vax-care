@@ -38,7 +38,12 @@ function validateInput() {
                     sessionStorage.setItem("nomeUsuario", resposta[0].nome);
                     sessionStorage.setItem("nomeFantasia", resposta[0].nomeFantasia);
                     sessionStorage.setItem("tipoUsuario", resposta[0].tipoUsuario);
-                    window.location.href = "dashboard/dashboard.html";
+
+                    if (resposta[0].tipoUsuario == "Funcionário") {
+                        window.location.href = "dashboard/dashboard.html";
+                    } else {
+                        window.location.href = "dashboard/usuario.html";
+                    }
                 })
             } else {
                 resposta.text().then(text => {
