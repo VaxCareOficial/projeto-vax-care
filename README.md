@@ -1,6 +1,7 @@
 <img src="projeto/public/assets/svg/vax-care-logo.svg" width="350px">
 
-<h1>Vax Care</h1>
+##
+
 Uma empresa líder em soluções avançadas de controle de temperatura para refrigeradores de vacina. Com um compromisso inabalável com a saúde pública e a qualidade, estamos dedicados a aprimorar a eficiência e a segurança do armazenamento de vacinas em todo o mundo.  <br>
 
 ## Front-end
