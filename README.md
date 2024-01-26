@@ -1,17 +1,20 @@
-<img src="projeto/public/assets/svg/vax-care-logo.svg" width="350px">
+<div align="center">
+<img src="projeto/public/assets/svg/vax-care-logo.svg" width="580px">
+</div>
 
-##
+
 
 Uma empresa líder em soluções avançadas de controle de temperatura para refrigeradores de vacina. Com um compromisso inabalável com a saúde pública e a qualidade, estamos dedicados a aprimorar a eficiência e a segurança do armazenamento de vacinas em todo o mundo.  <br>
 
-## Front-end
+## 🎨 Front-end 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-## Back-end
+## 👨🏼‍💻 Back-end
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
 ## ⚙ Instalação local
 
